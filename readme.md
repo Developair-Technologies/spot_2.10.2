@@ -60,6 +60,6 @@ Then, please run:
 After this step, all errors require a fresh start from the repo (`git clean -f`is your friend).
 Now please cross all your fingers, legs, hands, arms, hair and ask someone (your hands should not be able to type anything since they're crossed) to type:
 
-    make deb
+    sudo make deb
     
 This is configured to stop on errors, so anything wrong will stop the process. `git clean -f`is still your friend, and you can fix the problem and start over from the config step. 
