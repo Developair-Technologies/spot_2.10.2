@@ -44,7 +44,7 @@ Building is nice and stuff, but it takes time. Conveniently, we can make a debia
 
 First of all, creating the debian package requires more stuff than just building the software. Please note that the working directory MUST BE CLEAN like the butt of a baby:
 
-  git clean -f
+    git clean -f
 
 This will remove all untracked files and changes.
 From the main folder, run:
