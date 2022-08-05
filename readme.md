@@ -24,13 +24,17 @@ Local Usage
 -----------
 
 To build the package, please use: 
+
     ./configure --prefix ~/usr
     make
     make install
+
 Note that the make install step is required, otherwise Developair packages that depend on this version of spot will break.
 
 To check that the tools are correctly installed, run:
+
     ltl2tgba --version
+    
 If your shell reports that ltl2tgba is not found, add ~/usr/bin to you $PATH environment variable or check that your user (that shall not be root) has permission to access that folder.
 
 Deployement
