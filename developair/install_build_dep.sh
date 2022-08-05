@@ -41,9 +41,11 @@ echo 'deb [trusted=true] http://www.lrde.epita.fr/repo/debian/ unstable/' >> /et
     locales \
     divine-ltsmin spins spin \
     default-jdk ant dot2tex pdf2svg lcov \
-    g++-mingw-w64-i686 gcc-snapshot
+    g++-mingw-w64-i686 gcc-snapshot \
+    dh-python
 
 apt-get clean
 sed -i 's/# \+\(en_US.UTF.*\)/\1/' /etc/locale.gen
 locale-gen
 ipython3 -c 'exit;'
+
