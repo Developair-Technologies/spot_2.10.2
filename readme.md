@@ -41,3 +41,11 @@ Deployement
 -----------
 
 Building is nice and stuff, but it takes time. Conveniently, we can make a debian package.
+
+First of all, creating the debian package requires more stuff than just building the software. From the main folder, run:
+
+    sudo ./developair/install_build_dep.sh
+
+Note the the "sudo" part is important. The script checks it and will return ERR_CODE 126 if it is not ran as sudo.
+
+
