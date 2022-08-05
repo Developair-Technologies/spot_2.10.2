@@ -12,7 +12,6 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # using debian main ensures quite some stability 
-echo 'deb [trusted=true] http://debian.mirrors.ovh.net/debian sid main'   >> /etc/apt/sources.list && \
 echo 'deb [trusted=true] http://www.lrde.epita.fr/repo/debian/ unstable/' >> /etc/apt/sources.list && \
     apt-get update && \
     RUNLEVEL=1 DEBIAN_FRONTEND=noninteractive \
