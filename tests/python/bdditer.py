@@ -1,6 +1,6 @@
 # -*- mode: python; coding: utf-8 -*-
-# Copyright (C) 2017, 2018 Laboratoire de Recherche et Développement de l'Epita
-# (LRDE).
+# Copyright (C) 2017, 2018, 2021 Laboratoire de Recherche et
+# Développement de l'Epita (LRDE).
 #
 # This file is part of Spot, a model checking library.
 #
@@ -19,8 +19,8 @@
 
 
 # Tests different ways to explore a BDD label, as discussed in
-# http://lists.lrde.epita.fr/pipermail/spot/2017q1/000117.html
-
+# https://lists.lrde.epita.fr/hyperkitty/list/spot@lrde.epita.fr/\
+# message/WIAOWDKKPXTTK6UBE3MAHDFWIT36EUMX/
 import spot
 import buddy
 import sys

@@ -1,7 +1,7 @@
 #!/bin/sh
 # -*- coding: utf-8 -*-
-# Copyright (C) 2013-2016, 2018, 2020 Laboratoire de Recherche et
-# Développement de l'Epita (LRDE).
+# Copyright (C) 2013-2016, 2018, 2020, 2022 Laboratoire de Recherche
+# et Développement de l'Epita (LRDE).
 #
 # This file is part of Spot, a model checking library.
 #
@@ -85,7 +85,7 @@ run 0 ../ikwiad -d -XDB -R3 dra.dstar | tee stdout
 cat >expected <<EOF
 digraph "" {
   rankdir=LR
-  label="\n[Büchi]"
+  label="[Büchi]"
   labelloc="t"
   node [shape="circle"]
   I [label="", style=invis, width=0]
@@ -132,7 +132,7 @@ run 0 ../ikwiad -d -XDB dsa.dstar | tee stdout
 cat >expected <<EOF
 digraph "" {
   rankdir=LR
-  label="\n[Büchi]"
+  label="[Büchi]"
   labelloc="t"
   node [shape="circle"]
   I [label="", style=invis, width=0]

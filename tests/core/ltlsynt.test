@@ -821,3 +821,11 @@ ltlsynt -f '!(F(a | b))' --outs=b, --decompose=yes \
                          --verbose --aiger 2> out || true
 sed 's/ [0-9.e-]* seconds/ X seconds/g' out > outx
 diff outx exp
+
+ltlsynt --ins="" -f "GFa"
+ltlsynt --outs="" -f "GFb" | grep "UNREALIZABLE"
+
+ltlsynt --outs="" -f "1"
+
+ltlsynt --outs="" --ins="" -f "GFa" 2>&1 | \
+  grep "both --ins and --outs are specified"

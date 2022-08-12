@@ -1,5 +1,5 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2011, 2014, 2017, 2021 Laboratoire de Recherche et
+// Copyright (C) 2011, 2014, 2017, 2021, 2022 Laboratoire de Recherche et
 // Developpement de l'Epita (LRDE).
 // Copyright (C) 2003, 2004  Laboratoire d'Informatique de Paris 6 (LIP6),
 // département Systèmes Répartis Coopératifs (SRC), Université Pierre
@@ -33,8 +33,7 @@ namespace spot
   /// This comparison function use BDD ids for efficiency.  An
   /// algorithm depending on this order may return different results
   /// depending on how the BDD library has been used before.
-  struct bdd_less_than :
-    public std::binary_function<const bdd&, const bdd&, bool>
+  struct bdd_less_than
   {
     bool
     operator()(const bdd& left, const bdd& right) const
@@ -50,8 +49,7 @@ namespace spot
   /// long as the variable order is the same, the output of this
   /// comparison will be stable and independent on previous BDD
   /// operations.
-  struct bdd_less_than_stable :
-    public std::binary_function<const bdd&, const bdd&, bool>
+  struct bdd_less_than_stable
   {
     bool
     operator()(const bdd& left, const bdd& right) const
@@ -62,8 +60,7 @@ namespace spot
 
   /// \ingroup misc_tools
   /// \brief Hash functor for BDDs.
-  struct bdd_hash :
-    public std::unary_function<const bdd&, size_t>
+  struct bdd_hash
   {
     size_t
     operator()(const bdd& b) const noexcept

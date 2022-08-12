@@ -1,5 +1,5 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2014-2018, 2020, 2021 Laboratoire de Recherche et
+// Copyright (C) 2014-2018, 2020-2022 Laboratoire de Recherche et
 // Développement de l'Epita.
 //
 // This file is part of Spot, a model checking library.
@@ -1243,14 +1243,19 @@ namespace spot
       //dump_storage(std::cerr);
       auto pi = [&](unsigned t1, unsigned t2)
           {return p(edges_[t1], edges_[t2]); };
+
+      // Sort the outgoing edges of each selected state according
+      // to predicate p.  Do that in place.
       std::vector<unsigned> sort_idx_;
-      for (unsigned i = 0; i < num_states(); ++i)
+      unsigned ns = num_states();
+      for (unsigned i = 0; i < ns; ++i)
         {
           if (to_sort_ptr && !(*to_sort_ptr)[i])
             continue;
-
-          sort_idx_.clear();
           unsigned t = states_[i].succ;
+          if (t == 0)
+            continue;
+          sort_idx_.clear();
           do
             {
                sort_idx_.push_back(t);

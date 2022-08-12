@@ -22,6 +22,7 @@
 #include <spot/tl/print.hh>
 #include <spot/misc/bddlt.hh>
 #include <spot/twa/bddprint.hh>
+#include <spot/kripke/kripkegraph.hh>
 #include <spot/misc/escape.hh>
 #include <vector>
 #include <deque>
@@ -1275,6 +1276,17 @@ namespace spot
           return p.first->second;
         };
 
+      // If the input is a kripke_graph and the number of states is
+      // not restricted, predeclare all states to keep their
+      // numbering, and also copy unreachable states.
+      if (max_states == -1U)
+        if (auto kg = std::dynamic_pointer_cast<const kripke_graph>(aut))
+          {
+            unsigned ns = kg->num_states();
+            for (unsigned s = 0; s < ns; ++s)
+              new_state(kg->state_from_number(s));
+          }
+
       out->set_init_state(new_state(aut->get_init_state()));
       while (!todo.empty())
         {
@@ -1312,7 +1324,6 @@ namespace spot
                 }
             }
         }
-
 
       auto s = seen.begin();
       while (s != seen.end())

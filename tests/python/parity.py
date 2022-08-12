@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- mode: python; coding: utf-8 -*-
-# Copyright (C) 2018, 2019 Laboratoire de Recherche et Développement de
+# Copyright (C) 2018, 2019, 2022 Laboratoire de Recherche et Développement de
 # l'EPITA.
 #
 # This file is part of Spot, a model checking library.
@@ -155,3 +155,17 @@ except RuntimeError as e:
   assert "invalid state number" in str(e)
 else:
   report_missing_exception()
+
+
+a = spot.automaton("""HOA: v1 name: "F(!p0 | X!p1)" States: 3
+Start: 1 AP: 2 "p0" "p1" acc-name: Buchi Acceptance: 1 Inf(0)
+properties: trans-labels explicit-labels trans-acc complete
+properties: deterministic terminal --BODY-- State: 0 [t] 0 {0} State:
+1 [!0] 0 [0] 2 State: 2 [!0 | !1] 0 [0&1] 2 --END--""")
+# Erase the first edge of state 1
+oi = a.out_iteraser(1)
+oi.erase()
+# postprocess used to call reduce_parity that did not
+# work correctly on automata with deleted edges.
+sm = a.postprocess("gen", "small")
+assert sm.num_states() == 3

@@ -1,6 +1,6 @@
 #! /bin/sh
 # -*- coding: utf-8 -*-
-# Copyright (C) 2013-2020 Laboratoire de Recherche et Développement de
+# Copyright (C) 2013-2020, 2022 Laboratoire de Recherche et Développement de
 # l'Epita (LRDE).
 #
 # This file is part of Spot, a model checking library.
@@ -562,3 +562,17 @@ f1=`genltl --pps-arbiter-standard=2`
 f2=`genltl --pps-arbiter-strict=2`
 run 1 ltlfilt -f "$f2" --implied-by "$f1"
 run 0 ltlfilt -f "$f1" --implied-by "$f2"
+
+
+# Reading two different columns of the same file
+echo a,b > file
+run 0 ltlfilt -Ffile/1 -Ffile/2 --stats=%f >out
+cat >expected <<EOF
+a
+b
+EOF
+diff expected out
+# We used to have a bug where a column specification on one file
+# would stick to the rest of the file unless overridden.
+run 2 ltlfilt -Ffile/1 -Ffile
+:

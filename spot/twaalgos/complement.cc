@@ -522,11 +522,10 @@ namespace spot
         m.set("det-max-states", aborter->max_states());
         m.set("det-max-edges", aborter->max_edges());
       }
-    if (aut->num_states() > 32)
-      {
-        m.set("ba-simul", 0);
-        m.set("simul", 0);
-      }
+    // In addition to the above options, the simulation-based
+    // optimization of the determinization is already restricted by
+    // the default values of simul-max and simul-trans-pruning.
+    // (See spot-x(7) for details.)
     spot::postprocessor p(&m);
     p.set_type(spot::postprocessor::Generic);
     p.set_pref(spot::postprocessor::Deterministic);

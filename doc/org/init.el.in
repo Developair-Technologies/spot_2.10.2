@@ -33,10 +33,10 @@
       (message "unloading feature %s" feature)
       (unload-feature feature t)))
   ;; install org-plus-contrib, not org, as the former includes htmlize
-  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
   (package-refresh-contents)
-  (let ((org-p-c (cadr (assq 'org-plus-contrib package-archive-contents))))
-    (package-install org-p-c)))
+  (let ((org (cadr (assq 'org package-archive-contents))))
+    (package-install org)))
 
 (let ((have-htmlize (require 'htmlize nil t))
       (have-ess (require 'ess nil t)))

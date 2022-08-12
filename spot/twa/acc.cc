@@ -1,5 +1,5 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2015-2021 Laboratoire de Recherche et Développement
+// Copyright (C) 2015-2022 Laboratoire de Recherche et Développement
 // de l'Epita.
 //
 // This file is part of Spot, a model checking library.
@@ -1029,7 +1029,7 @@ namespace spot
     int base = ba.allocate_variables(umax+2);
     assert(base == 0);
     std::vector<bdd> r;
-    for (unsigned i = 0; r.size() < umax; ++i)
+    while (r.size() < umax)
       r.emplace_back(bdd_ithvar(base++));
     bdd bddcode = to_bdd(&r[0]);
     bdd tmp;

@@ -25,7 +25,8 @@ $(s',c',a',d')$ leaving $s'$ with a condition $c'$ that covers $c$,
 some colors $a'\supseteq a$ that covers the colors of $a$ other
 transition, and reaching a destination state $d'$ that simulates $d$.
 
-In the following automaton, for instance, XXX
+In the following automaton, for instance, state 5 simulates state 1,
+and state 4 simulates state 0.
 
 #+NAME: tut40in
 #+BEGIN_SRC hoa
@@ -143,9 +144,11 @@ states.
 
 We now look at how to create such a game in Python.
 
-Essentially, a game in Spot is just an automaton equiped with a
-special property to indicate the owner of each states.  So it can be
-created using the usual interface:
+Essentially, a game in Spot is just an automaton equiped with a [[file:concepts.org::#named-properties][named
+property "state-player"]] that hold a Boolean vector indicating the
+owner of each state.  The game can be created using the usual
+automaton interface, and the owners are set by calling
+=game.set_state_players()= with a vector of Boolean at the very end.
 
 #+NAME: build_game
 #+BEGIN_SRC python :exports code
@@ -172,7 +175,7 @@ created using the usual interface:
       todo = []
 
       # Create the state (i, j) for a player if it does not exist yet and
-      # returns the state's number in the game.
+      # return the state's number in the game.
       def get_game_state(player, i, j):
           orig_state = s_orig_states if player else d_orig_states
           if (i, j) in orig_state:

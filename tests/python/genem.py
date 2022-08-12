@@ -1,5 +1,5 @@
 # -*- mode: python; coding: utf-8 -*-
-# Copyright (C) 2018-2021 Laboratoire de Recherche et Développement de l'Epita
+# Copyright (C) 2018-2022 Laboratoire de Recherche et Développement de l'Epita
 # (LRDE).
 #
 # This file is part of Spot, a model checking library.
@@ -137,6 +137,15 @@ explicit-labels trans-acc complete properties: deterministic --BODY--
 State: 0 [0&1] 0 {4 6 7} [0&!1] 1 {0 6} [!0&1] 0 {3 7} [!0&!1] 0 {0}
 State: 1 [0&1] 0 {4 6 7} [0&!1] 1 {3 6} [!0&1] 0 {4 7} [!0&!1] 1 {0}
 --END--""")
+
+# From Clément Tamines (2022-01-14)
+act = spot.automaton("""HOA: v1 States: 5 Start: 0 AP: 1 "p0"
+acc-name: none Acceptance: 8 (Inf(6) | Fin(7)) & (Inf(4) | Fin(5)) &
+(Inf(2) | Fin(3)) & (Inf(0) | Fin(1)) properties: trans-labels
+explicit-labels trans-acc --BODY-- State: 0 [!0] 1 {1 2 5 6} [!0] 3 {0
+2 5 6} State: 1 [!0] 4 {1 3 5 6} [0] 3 {0 2 4 7} [!0] 1 {0 2 4 7}
+State: 2 [0] 2 {1 2 5 6} [0] 1 {0 3 4 6} [!0] 4 {0 2 4 6} State: 3
+[!0] 2 {0 3 5 7} State: 4 [!0] 2 {0 3 4 6} --END--""")
 
 
 def generic_emptiness2_rec(aut):
@@ -306,4 +315,4 @@ def run_bench(automata):
             assert run3.replay(spot.get_cout()) is True
 
 
-run_bench([a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a360])
+run_bench([a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a360, act])

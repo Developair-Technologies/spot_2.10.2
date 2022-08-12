@@ -1,6 +1,6 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2016, 2018, 2019 Laboratoire de Recherche et Développement
-// de l'Epita (LRDE).
+// Copyright (C) 2016, 2018, 2019, 2022 Laboratoire de Recherche et
+// Développement de l'Epita (LRDE).
 //
 // This file is part of Spot, a model checking library.
 //
@@ -465,8 +465,9 @@ namespace spot
     // using k=0 or k=1.
     //
     // -2 means the edge was never assigned a color.
-    std::vector<int> piprime1(aut->num_edges() + 1, -2); // k=1
-    std::vector<int> piprime2(aut->num_edges() + 1, -2); // k=0
+    unsigned evs = aut->edge_vector().size();
+    std::vector<int> piprime1(evs, -2); // k=1
+    std::vector<int> piprime2(evs, -2); // k=0
     bool sba = aut->prop_state_acc().is_true();
 
     auto rec =

@@ -1,5 +1,5 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2008, 2011, 2014, 2015-2018, 2021 Laboratoire de
+// Copyright (C) 2008, 2011, 2014, 2015-2018, 2021, 2022 Laboratoire de
 // Recherche et Développement de l'Epita (LRDE).
 // Copyright (C) 2003, 2004, 2005 Laboratoire d'Informatique de
 // Paris 6 (LIP6), département Systèmes Répartis Coopératifs (SRC),
@@ -36,8 +36,7 @@ namespace spot
   /// \ingroup hash_funcs
   /// \brief A hash function for pointers.
   template <class T>
-  struct ptr_hash :
-    public std::unary_function<const T*, size_t>
+  struct ptr_hash
   {
     // A default constructor is needed if the ptr_hash object is
     // stored in a const member.  This occur with the clang version
@@ -59,8 +58,7 @@ namespace spot
   /// \ingroup hash_funcs
   /// \brief A hash function that returns identity
   template<typename T>
-  struct identity_hash:
-    public std::unary_function<const T&, size_t>
+  struct identity_hash
   {
     // A default constructor is needed if the identity_hash object is
     // stored in a const member.

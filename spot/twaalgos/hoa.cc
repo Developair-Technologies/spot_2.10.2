@@ -31,6 +31,7 @@
 #include <spot/twa/formula2bdd.hh>
 #include <spot/tl/formula.hh>
 #include <spot/kripke/fairkripke.hh>
+#include <spot/kripke/kripkegraph.hh>
 
 using namespace std::string_literals;
 
@@ -771,7 +772,11 @@ namespace spot
           strcpy(tmpopt, opt);
         tmpopt[n] = 'k';
         tmpopt[n + 1] = 0;
-        preserve_names = true;
+        // Preserve names if we have some state names, or if we are
+        // not a kripke_graph.
+        auto sn = aut->get_named_prop<std::vector<std::string>>("state-names");
+        preserve_names =
+          !!sn || !std::dynamic_pointer_cast<const kripke_graph>(aut);
       }
 
     auto a = std::dynamic_pointer_cast<const twa_graph>(aut);

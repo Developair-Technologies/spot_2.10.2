@@ -530,6 +530,8 @@ namespace std {
 %include <spot/twa/bdddict.hh>
 %include <spot/twa/bddprint.hh>
 %include <spot/twa/formula2bdd.hh>
+%template(formula_to_bdd) spot::formula_to_bdd<spot::twa_graph>;
+
 %include <spot/twa/fwd.hh>
  /* These operators may raise exceptions, and we do not
     want Swig4 to convert those exceptions to NotImplemented. */
@@ -1012,6 +1014,7 @@ static void* ptr_for_bdddict(PyObject* obj)
 }
 
 %extend spot::internal::state_out<spot::digraph<spot::twa_graph_state, spot::twa_graph_edge_data>> {
+  %newobject __iter__(PyObject **PYTHON_SELF);
   swig::SwigPyIterator* __iter__(PyObject **PYTHON_SELF)
    {
       return swig::make_forward_iterator(self->begin(), self->begin(),
@@ -1020,6 +1023,7 @@ static void* ptr_for_bdddict(PyObject* obj)
 }
 
 %extend spot::internal::state_out<spot::digraph<spot::kripke_graph_state, void>> {
+  %newobject __iter__(PyObject **PYTHON_SELF);
   swig::SwigPyIterator* __iter__(PyObject **PYTHON_SELF)
    {
       return swig::make_forward_iterator(self->begin(), self->begin(),
@@ -1045,6 +1049,7 @@ static void* ptr_for_bdddict(PyObject* obj)
 }
 
 %extend spot::internal::all_trans<spot::digraph<spot::kripke_graph_state, void>> {
+  %newobject __iter__(PyObject **PYTHON_SELF);
   swig::SwigPyIterator* __iter__(PyObject **PYTHON_SELF)
    {
       return swig::make_forward_iterator(self->begin(), self->begin(),
@@ -1053,6 +1058,7 @@ static void* ptr_for_bdddict(PyObject* obj)
 }
 
 %extend spot::internal::all_trans<spot::digraph<spot::twa_graph_state, spot::twa_graph_edge_data>> {
+  %newobject __iter__(PyObject **PYTHON_SELF);
   swig::SwigPyIterator* __iter__(PyObject **PYTHON_SELF)
    {
       return swig::make_forward_iterator(self->begin(), self->begin(),
@@ -1061,6 +1067,7 @@ static void* ptr_for_bdddict(PyObject* obj)
 }
 
 %extend spot::internal::const_universal_dests {
+  %newobject __iter__(PyObject **PYTHON_SELF);
   swig::SwigPyIterator* __iter__(PyObject **PYTHON_SELF)
    {
       return swig::make_forward_iterator_np(self->begin(), self->begin(),
@@ -1069,6 +1076,7 @@ static void* ptr_for_bdddict(PyObject* obj)
 }
 
 %extend spot::internal::mark_container {
+  %newobject __iter__(PyObject **PYTHON_SELF);
   swig::SwigPyIterator* __iter__(PyObject **PYTHON_SELF)
    {
       return swig::make_forward_iterator_np(self->begin(), self->begin(),
@@ -1077,6 +1085,7 @@ static void* ptr_for_bdddict(PyObject* obj)
 }
 
 %extend spot::internal::scc_edges<spot::digraph<spot::twa_graph_state, spot::twa_graph_edge_data> const, spot::internal::keep_all> {
+  %newobject __iter__(PyObject **PYTHON_SELF);
   swig::SwigPyIterator* __iter__(PyObject **PYTHON_SELF)
    {
       return swig::make_forward_iterator(self->begin(), self->begin(),
@@ -1085,6 +1094,7 @@ static void* ptr_for_bdddict(PyObject* obj)
 }
 
 %extend spot::internal::scc_edges<spot::digraph<spot::twa_graph_state, spot::twa_graph_edge_data> const, spot::internal::keep_inner_scc> {
+  %newobject __iter__(PyObject **PYTHON_SELF);
   swig::SwigPyIterator* __iter__(PyObject **PYTHON_SELF)
    {
       return swig::make_forward_iterator(self->begin(), self->begin(),
@@ -1113,6 +1123,7 @@ static void* ptr_for_bdddict(PyObject* obj)
  }
 
 %extend spot::scc_info {
+  %newobject __iter__(PyObject **PYTHON_SELF);
   swig::SwigPyIterator* __iter__(PyObject **PYTHON_SELF)
    {
       return swig::make_forward_iterator(self->begin(), self->begin(),

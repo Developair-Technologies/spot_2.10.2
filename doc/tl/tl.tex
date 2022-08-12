@@ -707,7 +707,7 @@ $a$ is an atomic proposition.
       \VDash f\FSTAR{\mvar{i-1}..}))\\
     \end{cases}\\
   \sigma\VDash \FIRSTMATCH\code(f\code) & \iff
-      (\sigma\VDash f)\land (\nexists k<|\sigma|,\,\sigma^{0..k}\nVDash f)
+      (\sigma\VDash f)\land (\forall k<|\sigma|,\,\sigma^{0..k}\nVDash f)
 \end{align*}}
 
 Notes:

@@ -1,5 +1,5 @@
 # -*- mode: python; coding: utf-8 -*-
-# Copyright (C) 2019, 2020 Laboratoire de Recherche et Développement de
+# Copyright (C) 2019, 2020, 2021 Laboratoire de Recherche et Développement de
 # l'Epita (LRDE).
 #
 # This file is part of Spot, a model checking library.
@@ -124,8 +124,8 @@ assert dehoa == """HOA: v1
 States: 4
 Start: 0
 AP: 1 "p0"
-acc-name: parity max even 2
-Acceptance: 2 Fin(1) & Inf(0)
+acc-name: co-Buchi
+Acceptance: 1 Fin(0)
 properties: trans-labels explicit-labels trans-acc complete
 properties: deterministic
 --BODY--
@@ -134,11 +134,11 @@ State: 0 "0#0"
 [!0] 2
 State: 1 "1#0"
 [!0] 2
-[0] 3 {0 1}
+[0] 3 {0}
 State: 2 "3#0"
-[t] 2 {0}
+[t] 2
 State: 3 "2#0"
-[0] 1 {0 1}
+[0] 1 {0}
 [!0] 2
 --END--"""
 

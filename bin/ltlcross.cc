@@ -264,7 +264,7 @@ end_error()
 
 struct statistics
 {
-  statistics()
+  statistics() noexcept
     : ok(false),
       alternating(false),
       status_str(nullptr),

@@ -52,11 +52,17 @@ namespace spot
   /// \param complete_env Whether the automaton should be complete for the
   ///                     environment, i.e. the player of inputs
   /// \note This function also computes the state players
-  /// \note If the automaton is to be completed for both env and player
-  ///       then egdes between the sinks will be added
+  /// \note If the automaton is to be completed, sink states will
+  ///       be added for both env and player if necessary
   SPOT_API twa_graph_ptr
   split_2step(const const_twa_graph_ptr& aut,
-              const bdd& output_bdd, bool complete_env);
+              const bdd& output_bdd, bool complete_env = true);
+
+  /// \ingroup synthesis
+  /// \brief Like split_2step but relying on the named property
+  /// 'synthesis-outputs'
+  SPOT_API twa_graph_ptr
+  split_2step(const const_twa_graph_ptr& aut, bool complete_env = true);
 
   /// \ingroup synthesis
   /// \brief the inverse of split_2step

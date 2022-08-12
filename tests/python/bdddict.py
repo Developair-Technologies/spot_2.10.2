@@ -17,8 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# Make sure we can leep track of BDD association in Python using bdd_dict, as
-# discussed in issue #372.
+# Make sure we can keep track of BDD association in Python using bdd_dict, as
+# discussed in (deleted???) issue #372.
 
 # CPython use reference counting, so that automata are destructed
 # when we expect them to be.   However other implementations like

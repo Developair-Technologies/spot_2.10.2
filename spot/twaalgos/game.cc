@@ -309,16 +309,21 @@ namespace spot
       {
         auto scc_acc = info_->acc_sets_of(c_scc_idx_);
         // We will override all parities of edges leaving the scc
+        // Currently game is colored max odd
+        // So there is at least one color
         bool added[] = {false, false};
         unsigned par_pair[2];
         unsigned scc_new_par = std::max(scc_acc.max_set(), 1u);
+        bool player_color_larger;
         if (scc_new_par&1)
           {
+            player_color_larger = false;
             par_pair[1] = scc_new_par;
             par_pair[0] = scc_new_par+1;
           }
         else
           {
+            player_color_larger = true;
             par_pair[1] = scc_new_par+1;
             par_pair[0] = scc_new_par;
           }
@@ -331,6 +336,7 @@ namespace spot
         for (unsigned v : c_states())
           {
             assert(subgame_[v] == unseen_mark);
+            bool owner = (*owner_ptr_)[v];
             for (auto &e : arena_->out(v))
               {
                 // The outgoing edges are taken finitely often
@@ -342,14 +348,20 @@ namespace spot
                                                e.dst, e.acc);
                     if (w_.winner(e.dst))
                       {
-                        // Winning region of player -> odd
-                        e.acc = odd_mark;
+                        // Winning region off player ->
+                        // odd mark if player
+                        // else 1 (smallest loosing for env)
+                        e.acc = owner ? odd_mark
+                                      : acc_cond::mark_t({1});
                         added[1] = true;
                       }
                     else
                       {
-                        // Winning region of env -> even
-                        e.acc = even_mark;
+                        // Winning region of env ->
+                        // even mark for env,
+                        // else 0 (smallest loosing for player)
+                        e.acc = !owner ? even_mark
+                                       : acc_cond::mark_t({0});
                         added[0] = true;
                       }
                     // Replace with self-loop
@@ -360,13 +372,22 @@ namespace spot
 
         // Compute the attractors of the self-loops/transitions leaving scc
         // These can be directly added to the winning states
-        // Note: attractors can not intersect therefore the order in which
-        // they are computed does not matter
+        // To avoid disregarding edges in attr computation we
+        // need to start with the larger color
+        // Todo come up with a test for this
         unsigned dummy_rd;
 
-        for (bool p : {false, true})
-          if (added[p])
-            attr(dummy_rd, p, par_pair[p], true, par_pair[p]);
+        for (bool p : {player_color_larger,
+                       !player_color_larger})
+          {
+            if (added[p])
+              {
+                // Always take the larger,
+                // Otherwise states with an transition to a winning AND
+                // a loosing scc are treated incorrectly
+                attr(dummy_rd, p, par_pair[p], true, par_pair[p]);
+              }
+          }
 
         if (added[0] || added[1])
           // Fix "negative" strategy
@@ -379,8 +400,11 @@ namespace spot
 
       inline bool
       attr(unsigned &rd, bool p, unsigned max_par,
-           bool acc_par, unsigned min_win_par)
+           bool acc_par, unsigned min_win_par,
+           bool no_check=false)
       {
+        // In fix_scc, the attr computation is
+        // abused so we can not check ertain things
         // Computes the attractor of the winning set of player p within a
         // subgame given as rd.
         // If acc_par is true, max_par transitions are also accepting and
@@ -394,7 +418,7 @@ namespace spot
         // As proposed in Oink! / PGSolver
         // Needs the transposed graph however
 
-        assert((!acc_par) || (acc_par && (max_par&1) == p));
+        assert((no_check || !acc_par) || (acc_par && (max_par&1) == p));
         assert(!acc_par || (0 < min_win_par));
         assert((min_win_par <= max_par) && (max_par <= max_abs_par_));
 

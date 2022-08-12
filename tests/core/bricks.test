@@ -1,7 +1,7 @@
 #!/bin/sh
 # -*- coding: utf-8 -*-
-# Copyright (C) 2020 Laboratoire de Recherche et Développement de
-# l'Epita (LRDE).
+# Copyright (C) 2020, 2022 Laboratoire de Recherche et Développement
+# de l'Epita (LRDE).
 #
 # This file is part of Spot, a model checking library.
 #
@@ -21,12 +21,13 @@
 . ./defs
 set -e
 
-seq 0 1999 > expected
+# The seq command is not always available, but we assume awk is.
+$AWK 'BEGIN{for(x=0;x<2000;++x) print x;}' >expected
 
 ../bricks > stdout
 
-cat stdout | head -n 2000 | awk '{print $2}' | sed 's/{//g' | \
-    awk -F',' '{print $1}' | sort -n > map
+cat stdout | head -n 2000 | $AWK '{print $2}' | sed 's/{//g' | \
+    $AWK -F',' '{print $1}' | sort -n > map
 
 diff expected map
 

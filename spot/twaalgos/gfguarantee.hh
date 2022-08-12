@@ -1,5 +1,5 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2018 Laboratoire de Recherche et Développement
+// Copyright (C) 2018, 2022 Laboratoire de Recherche et Développement
 // de l'Epita (LRDE).
 //
 // This file is part of Spot, a model checking library.
@@ -48,7 +48,7 @@ namespace spot
   /// \brief Convert GF(φ) into a (D)BA if φ is a guarantee property.
   ///
   /// If the formula \a gf has the form GΦ where Φ matches either F(φ)
-  /// or F(φ₁)|F(φ₂)|...|F(φₙ), we translate Φ into A_Φ and attempt to
+  /// or F(φ₁)&F(φ₂)&...&F(φₙ), we translate Φ into A_Φ and attempt to
   /// minimize it to a WDBA W_Φ.  If the resulting automaton is
   /// terminal, we then call g_f_terminal_inplace(W_Φ).  If \a
   /// deterministic is not set, we keep the minimized automaton only

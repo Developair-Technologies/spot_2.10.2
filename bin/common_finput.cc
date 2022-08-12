@@ -305,6 +305,8 @@ job_processor::process_stream(std::istream& is,
 int
 job_processor::process_file(const char* filename)
 {
+  col_to_read = 0;
+
   // Special case for stdin.
   if (filename[0] == '-' && filename[1] == 0)
     return process_stream(std::cin, filename);

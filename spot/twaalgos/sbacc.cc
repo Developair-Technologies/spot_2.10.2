@@ -145,6 +145,8 @@ namespace spot
           // Use any edge going into the initial state to set the first
           // acceptance mark.
           init_acc = one_in[s] | common_out[s];
+        else
+          init_acc = unsat_mark.second;
 
         old_st.push_back(new_state(s, init_acc));
       }

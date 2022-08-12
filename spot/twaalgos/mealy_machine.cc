@@ -2951,6 +2951,19 @@ namespace
                             decltype(iaj_eq)>& used_ziaj_map)
   {
     const unsigned n_env_states = minmach->num_states();
+    // Looping over unordered is different on arm vs intel
+    // todo better way to do this?
+    // We could move it I guess, but the elements are fairly cheap to copy
+    auto used_ziaj_ordered = std::vector<std::pair<iaj_t, bdd>>();
+    used_ziaj_ordered.reserve(used_ziaj_map.size());
+
+    for (const auto& e : used_ziaj_map)
+      used_ziaj_ordered.push_back(e);
+
+    std::sort(used_ziaj_ordered.begin(), used_ziaj_ordered.end(),
+              [](const auto& pl, const auto& pr)
+                {return pl.first < pr.first; });
+
     // For each minimal letter, create the (input) condition that it represents
     // This has to be created for each minimal letters
     // and might be shared between alphabets
@@ -2958,7 +2971,7 @@ namespace
         = comp_represented_cond(red);
 
 #ifdef TRACE
-    for (const auto& el : used_ziaj_map)
+    for (const auto& el : used_ziaj_ordered)
       {
         const unsigned group = x_in_class[el.first.i].first;
         const bdd& incond = gmm2cond[group][el.first.a];
@@ -3014,7 +3027,7 @@ namespace
           minmach->edge_storage(it->second).cond |= incond;
       };
 
-    for (const auto& [iaj, outcond] : used_ziaj_map)
+    for (const auto& [iaj, outcond] : used_ziaj_ordered)
       {
         // The group determines the incond
         const unsigned group = x_in_class[iaj.i].first;
@@ -3232,8 +3245,10 @@ namespace
                        incomp_cubes_list.end(),
                        incomp_cubes_list.begin(),
                        [&](auto& el) -> std::pair<int, int>
-                       {return {repl1(el.first),
-                                repl2(el.second)}; });
+                       {
+                         auto r1 = repl1(el.first);
+                         auto r2 = repl2(el.second);
+                         return {r1, r2}; });
       };
 
     std::vector<std::pair<int, int>> incomp_cubes_list;

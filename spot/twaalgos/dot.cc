@@ -1,5 +1,5 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2011, 2012, 2014-2021 Laboratoire de Recherche
+// Copyright (C) 2011, 2012, 2014-2022 Laboratoire de Recherche
 // et Développement de l'Epita (LRDE).
 // Copyright (C) 2003, 2004  Laboratoire d'Informatique de Paris 6 (LIP6),
 // département Systèmes Répartis Coopératifs (SRC), Université Pierre
@@ -471,6 +471,8 @@ namespace spot
         // (e.g., "&" -> "&amp;") can increase it a lot, and (2)
         // a label of size 2048 is already unreasonable to display.
         std::string s = str_psl(f);
+        if (s.size() > 2048)
+          s = "(label too long)";
         return escape_for_output(os, s);
       }
 
@@ -624,7 +626,16 @@ namespace spot
         std::string accstr = aut_->acc().name("d");
         if (accstr.empty())
           return;
-        os_ << nl_ << '[' << accstr << ']';
+        // If a name or an acceptance formula was printed,
+        // we need to add a newline before the human version of the acceptance.
+        //
+        // We used to always add that line, but on unnamed Büchi
+        // automata with double circles, this would (1) create an
+        // empty line, and (2) run into the following GraphViz bug:
+        // https://gitlab.com/graphviz/graphviz/-/issues/2179
+        if (name_ || !dcircles_)
+          os_ << nl_;
+        os_ << '[' << accstr << ']';
       }
 
       void

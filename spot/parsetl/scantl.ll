@@ -1,6 +1,6 @@
 /* -*- coding: utf-8 -*-
-** Copyright (C) 2010-2015, 2017-2019, 2021, Laboratoire de Recherche
-** et Développement de l'Epita (LRDE).
+** Copyright (C) 2010-2015, 2017-2019, 2021-2022, Laboratoire de
+** Recherche et Développement de l'Epita (LRDE).
 ** Copyright (C) 2003, 2004 Laboratoire d'Informatique de Paris 6
 ** (LIP6), département Systèmes Répartis Coopératifs (SRC), Université
 ** Pierre et Marie Curie.
@@ -27,7 +27,18 @@
 %option never-interactive
 
 %top{
-#include "config.h"
+#include "libc-config.h"
+/* Flex 2.6.4's test for <inttypes.h> relies on __STDC_VERSION__
+   which is undefined in C++.   So without that, it will define
+   its own integer types, including a broken SIZE_MAX definition that
+   breaks compilation on OpenBSD. So let's define __STDC_VERSION__ to
+   make sure <inttypes.h> gets included.  Redefining __STDC_VERSION__
+   this way can break all sort of macros defined in <cdefs.h>, so
+   we include "libc-config.h" instead of "config.h" above to define
+   those macros first. */
+#if HAVE_INTTYPES_H && !(defined __STDC_VERSION__)
+#  define __STDC_VERSION__ 199901L
+#endif
 }
 %{
 #include <cstdlib>

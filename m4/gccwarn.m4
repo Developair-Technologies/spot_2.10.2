@@ -21,6 +21,7 @@ AC_DEFUN([CF_GXX_WARNINGS],
   cat > conftest.$ac_ext <<EOF
 #line __oline__ "configure"
 #include <string>
+#include <regex>
 int main(int argc, char *argv[[]])
 {
   // This string comparison is here to detect superfluous
@@ -33,19 +34,26 @@ int main(int argc, char *argv[[]])
   std::string a{"foo"}, b{"bar"};
   if (b < a)
     return 1;
+  // GCC 12 has spurious warnings about ininialized values in regex.
+  // See https://gcc.gnu.org/bugzilla/show_bug.cgi?id=105562
+  // We need -Wno-maybe-uninitialized in this case.
+  std::regex r{"a"};
+  (void)r;
   return argv[[argc-1]] == nullptr;
 }
 EOF
   cf_save_CXXFLAGS="$CXXFLAGS"
-  ac_cv_prog_gxx_warn_flags="-W -Wall"
+  ac_cv_prog_gxx_warn_flags="-W -Werror"
+dnl The following list has options of the form OPT:BAD:GOOD
+dnl if -OPT fails we try -OPT -BAD.  If -OPT succeeds we add -GOOD.
   for cf_opt in \
-   Werror \
+   Wall:Wno-maybe-uninitialized:\
    Wint-to-void-pointer-cast \
    Wzero-as-null-pointer-constant \
    Wcast-align \
    Wpointer-arith \
    Wwrite-strings \
-   Wcast-qual \
+   Wcast-qual::DXTSTRINGDEFINES \
    Wdocumentation \
    Wmissing-declarations \
    Wnoexcept \
@@ -58,11 +66,26 @@ EOF
    Wsuggest-override \
    Wpedantic
   do
-    CXXFLAGS="$cf_save_CXXFLAGS $ac_cv_prog_gxx_warn_flags -$cf_opt"
-    if AC_TRY_EVAL(ac_compile); then
-      ac_cv_prog_gxx_warn_flags="$ac_cv_prog_gxx_warn_flags -$cf_opt"
-      test "$cf_opt" = Wcast-qual && ac_cv_prog_gxx_warn_flags="$ac_cv_prog_gxx_warn_flags -DXTSTRINGDEFINES"
-    fi
+     fopt=${cf_opt%%:*}
+     CXXFLAGS="$cf_save_CXXFLAGS $ac_cv_prog_gxx_warn_flags -$fopt"
+     if AC_TRY_EVAL(ac_compile); then
+       ac_cv_prog_gxx_warn_flags="$ac_cv_prog_gxx_warn_flags -$fopt"
+       case $cf_opt in
+        *:*:);;
+        *:*:*)ac_cv_prog_gxx_warn_flags="$ac_cv_prog_gxx_warn_flags -${cf_opt##*:}";;
+       esac
+     else
+       case $cf_opt in
+        *::*);;
+        *:*:*)
+          sopt=${cf_opt%:*}
+          sopt=${sopt#*:}
+          CXXFLAGS="$cf_save_CXXFLAGS $ac_cv_prog_gxx_warn_flags -$fopt -$sopt"
+          if AC_TRY_EVAL(ac_compile); then
+             ac_cv_prog_gxx_warn_flags="$ac_cv_prog_gxx_warn_flags -$fopt -$sopt"
+          fi;;
+        esac
+     fi
   done
   rm -f conftest*
   CXXFLAGS="$cf_save_CXXFLAGS"])

@@ -1,5 +1,5 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2015 Laboratoire de Recherche et Développement
+// Copyright (C) 2015, 2022 Laboratoire de Recherche et Développement
 // de l'Epita (LRDE)
 // Copyright (C) 2005  Laboratoire d'Informatique de Paris 6 (LIP6),
 // département Systèmes Répartis Coopératifs (SRC), Université Pierre
@@ -39,8 +39,7 @@ namespace spot
   /// \code
   ///   std::map<const char*, int, spot::state_ptr_less_than> seen;
   /// \endcode
-  struct char_ptr_less_than:
-    public std::binary_function<const char*, const char*, bool>
+  struct char_ptr_less_than
   {
     bool
     operator()(const char* left, const char* right) const

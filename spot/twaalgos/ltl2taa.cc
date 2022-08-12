@@ -61,7 +61,8 @@ namespace spot
             {
               std::vector<formula> empty;
               res_->create_transition(init_, empty);
-              succ_state ss = { empty, f, empty };
+              succ_state ss;
+              ss.condition = f;
               succ_.emplace_back(ss);
               return;
             }
@@ -76,7 +77,8 @@ namespace spot
               std::vector<formula> empty;
               taa_tgba::transition* t = res_->create_transition(init_, empty);
               res_->add_condition(t, f);
-              succ_state ss = { empty, f, empty };
+              succ_state ss;
+              ss.condition = f;
               succ_.emplace_back(ss);
               return;
             }
@@ -90,7 +92,7 @@ namespace spot
                 return;
               dst.emplace_back(v.init_);
               res_->create_transition(init_, dst);
-              succ_state ss = { dst, formula::tt(), a };
+              succ_state ss = { std::move(dst), formula::tt(), std::move(a) };
               succ_.emplace_back(ss);
               return;
             }
@@ -206,7 +208,7 @@ namespace spot
                     }
                   t = res_->create_transition(init_, u);
                   res_->add_condition(t, f);
-                  succ_state ss = { u, f, a };
+                  succ_state ss = { std::move(u), f, std::move(a) };
                   succ_.emplace_back(ss);
                 }
 

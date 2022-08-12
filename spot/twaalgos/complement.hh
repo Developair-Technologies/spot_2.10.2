@@ -1,5 +1,5 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2013-2015, 2017, 2019 Laboratoire de Recherche et
+// Copyright (C) 2013-2015, 2017, 2019, 2022 Laboratoire de Recherche et
 // Développement de l'Epita.
 //
 // This file is part of Spot, a model checking library.
@@ -49,8 +49,8 @@ namespace spot
   ///
   /// The automaton \a aut should be semideterministic.
   ///
-  /// Uses the NCSB algorithm described by F. Blahoudek, M. Heizmann,
-  /// S. Schewe, J. Strejček, and MH. Tsai (TACAS'16).
+  /// Uses the NCSB algorithm described by F. Blahoudek, et al.
+  /// \cite blahoudek.16.atva
   SPOT_API twa_graph_ptr
   complement_semidet(const const_twa_graph_ptr& aut, bool show_names = false);
 

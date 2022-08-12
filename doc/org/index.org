@@ -25,7 +25,7 @@ checking.  It has the following notable features:
   weak-DBA, removal of useless SCCs, acceptance-condition
   transformations, determinization, [[file:satmin.org][SAT-based minimization of
   deterministic automata]], [[https://spot.lrde.epita.fr/ipynb/zlktree.html][Alternating Cycle Decomposition]], etc.
-- Support for [[file:tut40.org][Safety]] and [[https://spot-dev.lrde.epita.fr/ipynb/games.html][parity games]].
+- Support for [[file:tut40.org][Safety]] and [[https://spot.lrde.epita.fr/ipynb/games.html][parity games]].
 - Applications to [[file:ltlsynt.org][reactive synthesis]] and [[https://spot.lrde.epita.fr/ipynb/atva16-fig2b.html][model checking]].
 - In addition to the C++ interface, most of its algorithms are usable
   via [[file:tools.org][command-line tools]], and via [[file:tut.org][Python bindings]].
@@ -69,10 +69,10 @@ with]] Spot, you should distribute the source code of that tool as well.
 
 =spot-announce@lrde.epita.fr= is an extremely low-traffic and
 read-only mailing list for release announcements.  If you want to stay
-informed about future releases of Spot, we invite you to [[https://lists.lrde.epita.fr/listinfo/spot-announce][subscribe]].
+informed about future releases of Spot, we invite you to [[https://lists.lrde.epita.fr/postorius/lists/spot-announce.lrde.epita.fr/][subscribe]].
 
 [[mailto:spot@lrde.epita.fr][=spot@lrde.epita.fr=]] is a list for general discussions and questions
-about Spot. [[https://lists.lrde.epita.fr/listinfo/spot][Subscribe here]] if you want to join, but feel free to send
+about Spot. [[https://lists.lrde.epita.fr/postorius/lists/spot.lrde.epita.fr/][Subscribe here]] if you want to join, but feel free to send
 in any question (in English) or bug report without subscribing.
 
 * Citing

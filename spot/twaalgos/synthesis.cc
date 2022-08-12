@@ -447,16 +447,28 @@ namespace spot
               const bdd& output_bdd, bool complete_env)
   {
     auto split = make_twa_graph(aut->get_dict());
+
+    auto [has_unsat, unsat_mark] = aut->acc().unsat_mark();
+
     split->copy_ap_of(aut);
-    split->copy_acceptance_of(aut);
     split->new_states(aut->num_states());
     split->set_init_state(aut->get_init_state_number());
-    split->set_named_prop<bdd>("synthesis-outputs", new bdd(output_bdd));
+    set_synthesis_outputs(split, output_bdd);
 
-    auto [is_unsat, unsat_mark] = aut->acc().unsat_mark();
-    if (!is_unsat && complete_env)
-      throw std::runtime_error("split_2step(): Cannot complete arena for "
-                               "env as there is no unsat mark.");
+    const auto use_color = has_unsat;
+    if (has_unsat)
+      split->copy_acceptance_of(aut);
+    else
+      {
+        if (complete_env)
+          {
+            split->set_co_buchi(); // Fin(0)
+            unsat_mark = acc_cond::mark_t({0});
+            has_unsat = true;
+          }
+        else
+          split->acc().set_acceptance(acc_cond::acc_code::t());
+      }
 
     bdd input_bdd = bddtrue;
     {
@@ -504,9 +516,10 @@ namespace spot
     unsigned sink_con = -1u;
     unsigned sink_env = -1u;
     auto get_sink_con_state = [&split, &sink_con, &sink_env,
-                               um = unsat_mark]
+                               um = unsat_mark, hu = has_unsat]
                               (bool create = true)
       {
+        assert(hu);
         if (SPOT_UNLIKELY((sink_con == -1u) && create))
           {
             sink_con = split->new_state();
@@ -518,7 +531,8 @@ namespace spot
       };
 
     // Loop over all states
-    for (unsigned src = 0; src < aut->num_states(); ++src)
+    const auto n_states = aut->num_states();
+    for (unsigned src = 0; src < n_states; ++src)
       {
         env_edge_hash.clear();
         e_cache.clear();
@@ -579,11 +593,16 @@ namespace spot
                 auto out = split->out(i);
                 if (std::equal(out.begin(), out.end(),
                                dests.begin(), dests.end(),
-                               [](const twa_graph::edge_storage_t& x,
+                               [uc = use_color]
+                               (const twa_graph::edge_storage_t& x,
                                   const e_info_t* y)
                                {
+                                 // If there is no unsat -> we do not care
+                                 // about color
+                                 // todo further optim?
                                  return   x.dst == y->dst
-                                          &&  x.acc == y->acc
+                                          &&  (!uc
+                                               || x.acc == y->acc)
                                           &&  x.cond.id() == y->econdout.id();
                                }))
                   {
@@ -592,6 +611,7 @@ namespace spot
                     if (it != env_edge_hash.end())
                       it->second.second |= one_letter;
                     else
+                      // Uncolored
                       env_edge_hash.emplace(i,
                           eeh_t(split->new_edge(src, i, bddtrue), one_letter));
                     break;
@@ -605,7 +625,8 @@ namespace spot
                 env_hash.emplace(h, d);
                 env_edge_hash.emplace(d, eeh_t(n_e, one_letter));
                 for (const auto &t: dests)
-                  split->new_edge(d, t->dst, t->econdout, t->acc);
+                  split->new_edge(d, t->dst, t->econdout,
+                                  use_color ? t->acc : acc_cond::mark_t({}));
               }
           } // letters
         // save locally stored condition
@@ -619,19 +640,32 @@ namespace spot
     // The named property
     // compute the owners
     // env is equal to false
-    std::vector<bool>* owner =
-        new std::vector<bool>(split->num_states(), false);
+    auto owner = std::vector<bool>(split->num_states(), false);
     // All "new" states belong to the player
-    std::fill(owner->begin()+aut->num_states(), owner->end(), true);
+    std::fill(owner.begin()+aut->num_states(), owner.end(), true);
     // Check if sinks have been created
     if (sink_env != -1u)
-      owner->at(sink_env) = false;
-    split->set_named_prop("state-player", owner);
-    split->set_named_prop("synthesis-outputs",
-                          new bdd(output_bdd));
+      owner.at(sink_env) = false;
+
+    // !use_color -> all words accepted
+    // complete_env && sink_env == -1u
+    // complet. for env demanded but already
+    // satisfied -> split is also all true
+    if (complete_env && sink_env == -1u && !use_color)
+      split->acc() = acc_cond::acc_code::t();
+
+    set_state_players(split, std::move(owner));
 
     // Done
     return split;
+  }
+
+  twa_graph_ptr
+  split_2step(const const_twa_graph_ptr& aut, bool complete_env)
+  {
+    return split_2step(aut,
+                       get_synthesis_outputs(aut),
+                       complete_env);
   }
 
   twa_graph_ptr

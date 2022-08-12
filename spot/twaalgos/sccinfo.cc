@@ -1,5 +1,5 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2014-2021 Laboratoire de Recherche et Développement
+// Copyright (C) 2014-2022 Laboratoire de Recherche et Développement
 // de l'Epita (LRDE).
 //
 // This file is part of Spot, a model checking library.
@@ -637,8 +637,8 @@ namespace spot
     const unsigned start = (unsigned)substart;
 
     // Cycle search
-    acc_cond actual_cond = acccond.restrict_to(node.acc_marks())
-      .force_inf(node.acc_marks());
+    acc_cond::mark_t allc = node.acc_marks();
+    acc_cond actual_cond = acccond.restrict_to(allc).force_inf(allc);
     assert(!actual_cond.uses_fin_acceptance());
     assert(!actual_cond.is_f());
     acc_cond::mark_t acc_to_see = actual_cond.accepting_sets(node.acc_marks());
@@ -650,7 +650,7 @@ namespace spot
             [&](const twa_graph::edge_storage_t& t)
             {
               // Stay in the specified SCC.
-              return scc_of(t.dst) != scc || filter(t);
+              return scc_of(t.dst) != scc || filter(t) || !t.acc.subset(allc);
             },
             [&](const twa_graph::edge_storage_t& t)
             {

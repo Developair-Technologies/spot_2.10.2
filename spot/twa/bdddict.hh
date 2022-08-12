@@ -1,6 +1,6 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2011-2017 Laboratoire de Recherche et Développement
-// de l'Epita (LRDE).
+// Copyright (C) 2011-2017, 2022 Laboratoire de Recherche et
+// Développement de l'Epita (LRDE).
 // Copyright (C) 2003, 2004, 2006 Laboratoire d'Informatique de Paris
 // 6 (LIP6), département Systèmes Répartis Coopératifs (SRC),
 // Université Pierre et Marie Curie.
@@ -78,7 +78,7 @@ namespace spot
 
     enum var_type { anon = 0, var, acc };
     struct bdd_info {
-      bdd_info() : type(anon) {}
+      bdd_info() noexcept: type(anon) {}
       var_type type;
       formula f;        // Used unless t==anon.
       ref_set refs;

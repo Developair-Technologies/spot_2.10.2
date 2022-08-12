@@ -1,5 +1,5 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2017-2021 Laboratoire de Recherche et Développement
+// Copyright (C) 2017-2022 Laboratoire de Recherche et Développement
 // de l'Epita (LRDE).
 //
 // This file is part of Spot, a model checking library.
@@ -1359,7 +1359,7 @@ namespace spot
       {
         unsigned var_g = gate_var(i);
         state_[var_g] = state_[and_gates_[i].first]
-                        & state_[and_gates_[i].second];
+                        && state_[and_gates_[i].second];
         state_[aig_not(var_g)] = !state_[var_g];
       }
     // Update latches

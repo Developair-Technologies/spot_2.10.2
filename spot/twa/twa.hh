@@ -1,5 +1,5 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2009, 2011, 2013-2021 Laboratoire de Recherche et
+// Copyright (C) 2009, 2011, 2013-2022 Laboratoire de Recherche et
 // Développement de l'Epita (LRDE).
 // Copyright (C) 2003-2005 Laboratoire d'Informatique de Paris 6
 // (LIP6), département Systèmes Répartis Coopératifs (SRC), Université
@@ -761,7 +761,7 @@ namespace spot
     void register_aps_from_dict()
     {
       if (!aps_.empty())
-        throw std::runtime_error("register_ap_from_dict() may not be"
+        throw std::runtime_error("register_aps_from_dict() may not be"
                                  " called on an automaton that has already"
                                  " registered some AP");
       auto& m = get_dict()->bdd_map;

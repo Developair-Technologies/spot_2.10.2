@@ -583,7 +583,7 @@ struct _ConcurrentHashSet : HashSetBase< Cell >
             return begin() + size();
         }
 
-        Row() : _data( nullptr ), _size( 0 ) {}
+        Row() noexcept : _data( nullptr ), _size( 0 ) {}
         ~Row() { free(); }
     };
 

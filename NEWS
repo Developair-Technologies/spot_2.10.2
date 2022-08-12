@@ -1,3 +1,88 @@
+New in spot 2.10.6  (2022-05-18)
+
+  Bugs fixed:
+
+  - Fix compilation error on MacOS X.
+
+  - Using -Ffile/N to read column N of a CSV file would not reset the
+    /N specification for the next file.
+
+  - make_twa_graph() will now preserve state number when copying a
+    kripke_graph object.  As a consequence, print_dot() and
+    print_hoa() will now use state numbers matching those of the
+    kripke_graph (issue #505).
+
+  - Fix several compilation warning introduced by newer versions
+    of GCC and Clang.
+
+New in spot 2.10.5  (2022-05-03)
+
+  Bugs fixed:
+
+  - reduce_parity() produced incorrect results when applied to
+    automata with deleted edges.
+
+  - An optimization of Zielonka could result in incorrect results
+    in some cases.
+
+  - ltlsynt --print-pg incorrectly solved the game in addition to
+    printing it.
+
+  - ltlsynt would fail if only one of --ins or --outs was set, and
+    if it was set empty.
+
+  - Work around a portability issue in Flex 2.6.4 preventing
+    compilation on OpenBSD.
+
+  - Do not use the seq command in test cases, it is not available
+    everywhere.
+
+  - Do not erase the previous contents of the PYTHONPATH environment
+    variable when running tests, prepend to it instead.
+
+  - Simplify Debian instructions for LTO build to work around newer
+    libtool version.
+
+  - Fix invalid read in digraph::sort_edges_of_(), currently unused in
+    Spot.
+
+New in spot 2.10.4  (2022-02-01)
+
+  Bug fixed:
+
+  - Fix memory leaks in Python bindings for several iteration objects.
+    This occured while itering on twa_graph.out(), twa_graph.edges(),
+    twa_graph.univ_dests(), kripke_graph.out(), kripke_graph.edges(),
+    mark_t.sets(), scc_info.edges_of(), scc_info.inner_edges_of(), and
+    on an scc_info instance.
+
+New in spot 2.10.3  (2022-01-15)
+
+  Bugs fixed:
+
+  - On automata where the absence of color is not rejecting
+    (e.g. co-Büchi) and where the initial state was in a rejecting
+    SCC, sbacc() could output a superfluous state.  (Issue #492)
+
+  - Compared to 2.9.8, complement() (and many functions using it) was
+    slower and produced larger outputs on some automata with more than
+    32 states due to an optimization of the determinization being
+    unintentionally disabled.
+
+  - The split_2step() function used to create a synthesis game could
+    complain that it was unable to complement a monitor (Issue #495).
+
+  - Work around GraphViz bug #2179 by avoiding unnecessary empty
+    lines in the acceptance conditions shown in dot.
+
+  - Fix a case where generic_accepting_run() incorrectly returns a
+    cycle around a rejecting self-loop.
+
+  - Mealy machine resulting from SAT-based minimization could differ
+    on architectures with different hash tables implementations.
+
+  - org-mode moved to GNU ELPA (Issue #496).
+
 New in spot 2.10.2  (2021-12-03)
 
   Bugs fixed:

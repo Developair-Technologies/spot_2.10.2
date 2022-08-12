@@ -1,6 +1,6 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2009, 2011-2019 Laboratoire de Recherche et Développement de
-// l'Epita (LRDE).
+// Copyright (C) 2009, 2011-2019, 2022 Laboratoire de Recherche et
+// Développement de l'Epita (LRDE).
 //
 // This file is part of Spot, a model checking library.
 //
@@ -121,9 +121,7 @@ namespace spot
                                std::vector<taa_tgba::transition*>,
                                state_ptr_hash, state_ptr_equal> seen_map;
 
-    struct distance_sort :
-      public std::binary_function<const iterator_pair&,
-                                  const iterator_pair&, bool>
+    struct distance_sort
     {
       bool
       operator()(const iterator_pair& lhs, const iterator_pair& rhs) const

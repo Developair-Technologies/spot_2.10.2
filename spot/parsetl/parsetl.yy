@@ -164,7 +164,7 @@ using namespace spot;
       if (str.empty())
 	{
 	  error_list.emplace_back(location, "unexpected empty block");
-	  return nullptr;
+	  return fnode::ff();
 	}
 
       spot::parsed_formula pf;

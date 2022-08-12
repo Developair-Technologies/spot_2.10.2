@@ -26,34 +26,52 @@ p2 = buddy.bdd_ithvar(k.register_ap("p2"))
 cond1 = p1 & p2
 cond2 = p1 & -p2
 cond3 = -p1 & -p2
-s2 = k.new_state(cond1)
+s0 = k.new_state(cond1)
 s1 = k.new_state(cond2)
-s3 = k.new_state(cond3)
+s2 = k.new_state(cond3)
+k.new_edge(s1, s0)
+k.new_edge(s0, s0)
 k.new_edge(s1, s2)
 k.new_edge(s2, s2)
-k.new_edge(s1, s3)
-k.new_edge(s3, s3)
-k.new_edge(s3, s2)
+k.new_edge(s2, s0)
 k.set_init_state(s1)
 
 hoa = """HOA: v1
 States: 3
-Start: 0
+Start: 1
 AP: 2 "p1" "p2"
 acc-name: all
 Acceptance: 0 t
 properties: state-labels explicit-labels state-acc
 --BODY--
-State: [0&!1] 0 "1"
-1 2
-State: [0&1] 1 "0"
-1
-State: [!0&!1] 2 "2"
-2 1
+State: [0&1] 0
+0
+State: [0&!1] 1
+0 2
+State: [!0&!1] 2
+2 0
 --END--"""
 assert hoa == k.to_str('HOA')
 assert k.num_states() == 3
 assert k.num_edges() == 5
+
+k.set_state_names(["s0", "s1", "s2"])
+hoa = """HOA: v1
+States: 3
+Start: 1
+AP: 2 "p1" "p2"
+acc-name: all
+Acceptance: 0 t
+properties: state-labels explicit-labels state-acc
+--BODY--
+State: [0&1] 0 "s0"
+0
+State: [0&!1] 1 "s1"
+0 2
+State: [!0&!1] 2 "s2"
+2 0
+--END--"""
+assert hoa == k.to_str('HOA')
 
 res = []
 for e in k.out(s1):

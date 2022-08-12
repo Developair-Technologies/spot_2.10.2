@@ -1,6 +1,6 @@
 // -*- coding: utf-8 -*-
-// Copyright (C) 2016 Laboratoire de Recherche et Développement de
-// l'Epita (LRDE).
+// Copyright (C) 2016, 2022 Laboratoire de Recherche et Développement
+// de l'Epita (LRDE).
 //
 // This file is part of Spot, a model checking library.
 //
@@ -27,7 +27,7 @@ namespace spot
   /// \brief Convert an LTLf into an LTL formula.
   ///
   /// This is based on De Giacomo & Vardi (IJCAI'13) reduction from
-  /// LTLf (finite-LTL) to LTL.
+  /// LTLf (finite-LTL) to LTL. \cite degiacomo.13.ijcai
   ///
   /// In this reduction, finite words are extended into infinite words
   /// in which a new atomic proposition <code>alive</code> marks the
