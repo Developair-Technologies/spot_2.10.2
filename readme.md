@@ -42,24 +42,4 @@ Deployement
 
 Building is nice and stuff, but it takes time. Conveniently, we can make a debian package.
 
-First of all, creating the debian package requires more stuff than just building the software. Please note that the working directory MUST BE CLEAN like the butt of a baby:
-
-    git clean -f
-
-This will remove all untracked files and changes.
-From the main folder, run:
-
-    sudo ./developair/install_build_dep.sh
-
-Note the the "sudo" part is important. The script checks it and will return ERR_CODE 126 if it is not ran as sudo. This will install most dependencies in your debian-based distro. It'll also add a line to `/etc/apt/sources.list`. Subsequent calls to this script will add the same line again. 
-
-Then, please run:
-
-    ./configure --prefix ~/usr --disable-python
-
-After this step, all errors require a fresh start from the repo (`git clean -f`is your friend).
-Now please cross all your fingers, legs, hands, arms, hair and ask someone (your hands should not be able to type anything since they're crossed) to type:
-
-    sudo make deb
-    
-This is configured to stop on errors, so anything wrong will stop the process. `git clean -f`is still your friend, and you can fix the problem and start over from the config step. 
+Go to repo Spot Build Env and follow instructions there.
