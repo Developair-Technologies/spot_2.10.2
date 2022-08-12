@@ -173,12 +173,6 @@ flags specific to Spot:
      client code should be compiled with -D_GLIBCXX_DEBUG as well.  This
      options should normally only be useful to run Spot's test-suite.
 
-   --enable-pthread
-     Build and link with the -pthread option, and activate a few
-     parallel variants of the algorithms.  This is currently disabled
-     by default, as it require all third-party tools using Spot to
-     build with -pthread as well.
-
    --enable-c++20
      Build everything in C++20 mode.  We use that in our build farm to
      ensure that Spot can be used in C++20 projects as well.
@@ -325,13 +319,13 @@ bench/            Benchmarks for ...
    wdba/          ... WDBA minimization (for obligation properties).
 python/           Python bindings for Spot and BuDDy
 
-Third-party software
+Third party software
 --------------------
 
 buddy/            A customized version of BuDDy 2.3 (a BDD library).
 ltdl/             Libtool's portable dlopen() wrapper library.
 lib/              Gnulib's portability modules.
-utf8/             Trifunovic's utf-8 routines. https://github.com/nemtrif/utfcpp
+utf8/             Nemanja Trifunovic's utf-8 routines.
 elisp/		  Related emacs modes, used for building the documentation.
 picosat/          A distribution of PicoSAT 965 (a satsolver library).
 spot/bricks/      A collection of useful C++ code provided by DiVinE
