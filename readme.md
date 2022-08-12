@@ -41,5 +41,3 @@ Deployement
 -----------
 
 Building is nice and stuff, but it takes time. Conveniently, we can make a debian package.
-
-Go to repo Spot Build Env and follow instructions there.
