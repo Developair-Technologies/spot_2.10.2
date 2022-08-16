@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:19 -->
+<!-- 2022-05-18 Wed 07:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Translating an LTL formula into a never claim</title>
@@ -230,15 +230,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga736afa">Shell</a></li>
-<li><a href="#org23cf0f2">Python</a></li>
-<li><a href="#org1ee23d4">C++</a></li>
-<li><a href="#orgee9e3fe">Additional comments</a></li>
+<li><a href="#orge1a369f">Shell</a></li>
+<li><a href="#org6f08bef">Python</a></li>
+<li><a href="#orgbd7cd3f">C++</a></li>
+<li><a href="#org73bcdb4">Additional comments</a></li>
 </ul>
 </div>
 </div>
 
-<div id="org452641a" class="figure">
+<div id="orga51713d" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -247,15 +247,15 @@ Sorry, your browser does not support SVG.</object>
 Here is how to translate an LTL (or PSL) formula into a never claim.
 </p>
 
-<div id="outline-container-orga736afa" class="outline-2">
-<h2 id="orga736afa">Shell</h2>
-<div class="outline-text-2" id="text-orga736afa">
+<div id="outline-container-orge1a369f" class="outline-2">
+<h2 id="orge1a369f">Shell</h2>
+<div class="outline-text-2" id="text-orge1a369f">
 <div class="org-src-container">
 <pre class="src src-sh">ltl2tgba --spin <span class="org-string">'GFa -&gt; GFb'</span>
 </pre>
 </div>
 
-<pre class="example" id="orgd0bd437">
+<pre class="example" id="org98fd82a">
 never { /* F(GFb | G!a) */
 T0_init:
   if
@@ -282,9 +282,9 @@ T0_S3:
 </div>
 </div>
 
-<div id="outline-container-org23cf0f2" class="outline-2">
-<h2 id="org23cf0f2">Python</h2>
-<div class="outline-text-2" id="text-org23cf0f2">
+<div id="outline-container-org6f08bef" class="outline-2">
+<h2 id="org6f08bef">Python</h2>
+<div class="outline-text-2" id="text-org6f08bef">
 <p>
 The <code>formula</code> function returns a formula object (or raises a
 parse-error exception).  Formula objects have a <code>translate()</code> method
@@ -314,7 +314,7 @@ that takes a formula (possibly as a string) as first argument:
 </pre>
 </div>
 
-<pre class="example" id="orgac55717">
+<pre class="example" id="orgf31e82e">
 never {
 T0_init:
   if
@@ -342,9 +342,9 @@ T0_S3:
 </div>
 </div>
 
-<div id="outline-container-org1ee23d4" class="outline-2">
-<h2 id="org1ee23d4">C++</h2>
-<div class="outline-text-2" id="text-org1ee23d4">
+<div id="outline-container-orgbd7cd3f" class="outline-2">
+<h2 id="orgbd7cd3f">C++</h2>
+<div class="outline-text-2" id="text-orgbd7cd3f">
 <p>
 All the translation pipeline (this includes simplifying the formula,
 translating the simplified formula into an automaton, and simplifying
@@ -380,7 +380,7 @@ automaton. Finally, the output as a never claim is done via the
 </pre>
 </div>
 
-<pre class="example" id="org4f6c3c9">
+<pre class="example" id="org0ba3ac8">
 never {
 T0_init:
   if
@@ -408,17 +408,17 @@ T0_S3:
 </div>
 </div>
 
-<div id="outline-container-orgee9e3fe" class="outline-2">
-<h2 id="orgee9e3fe">Additional comments</h2>
-<div class="outline-text-2" id="text-orgee9e3fe">
+<div id="outline-container-org73bcdb4" class="outline-2">
+<h2 id="org73bcdb4">Additional comments</h2>
+<div class="outline-text-2" id="text-org73bcdb4">
 <p>
 The Python version of <code>translate()</code> is documented as follows:
 </p>
 
-<pre class="example" id="org68fc1d1">
+<pre class="example" id="orgd294eca">
 Help on function translate in module spot:
 
-translate(formula, *args, dict=&lt;spot.impl.bdd_dict; proxy of &lt;Swig Object of type 'std::shared_ptr&lt; spot::bdd_dict &gt; *' at 0x7f85cde31420&gt; &gt;, xargs=None)
+translate(formula, *args, dict=&lt;spot.impl.bdd_dict; proxy of &lt;Swig Object of type 'std::shared_ptr&lt; spot::bdd_dict &gt; *' at 0x7f167caf2420&gt; &gt;, xargs=None)
     Translate a formula into an automaton.
     
     Keep in mind that 'Deterministic' expresses just a preference that

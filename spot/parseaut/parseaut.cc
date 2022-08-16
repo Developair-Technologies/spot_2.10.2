@@ -4403,45 +4403,51 @@ namespace spot
 {
   automaton_stream_parser::automaton_stream_parser(const std::string& name,
 						   automaton_parser_options opt)
-  try
     : filename_(name), opts_(opt)
   {
-    if (hoayyopen(name, &scanner_))
-      throw std::runtime_error("Cannot open file "s + name);
-  }
-  catch (...)
-  {
-    hoayyclose(scanner_);
-    throw;
+    try
+      {
+        if (hoayyopen(name, &scanner_))
+          throw std::runtime_error("Cannot open file "s + name);
+      }
+    catch (...)
+      {
+        hoayyclose(scanner_);
+        throw;
+      }
   }
 
   automaton_stream_parser::automaton_stream_parser(int fd,
 						   const std::string& name,
 						   automaton_parser_options opt)
-  try
     : filename_(name), opts_(opt)
   {
-    if (hoayyopen(fd, &scanner_))
-      throw std::runtime_error("Cannot open file "s + name);
-  }
-  catch (...)
-  {
-    hoayyclose(scanner_);
-    throw;
+    try
+      {
+        if (hoayyopen(fd, &scanner_))
+          throw std::runtime_error("Cannot open file "s + name);
+      }
+    catch (...)
+      {
+        hoayyclose(scanner_);
+        throw;
+      }
   }
 
   automaton_stream_parser::automaton_stream_parser(const char* data,
 						   const std::string& filename,
 						   automaton_parser_options opt)
-  try
     : filename_(filename), opts_(opt)
   {
-    hoayystring(data, &scanner_);
-  }
-  catch (...)
-  {
-    hoayyclose(scanner_);
-    throw;
+    try
+      {
+        hoayystring(data, &scanner_);
+      }
+    catch (...)
+      {
+        hoayyclose(scanner_);
+        throw;
+      }
   }
 
   automaton_stream_parser::~automaton_stream_parser()

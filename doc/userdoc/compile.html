@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:23 -->
+<!-- 2022-05-18 Wed 07:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Compiling against Spot</title>
@@ -230,17 +230,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8695b38">Case 1: You installed Spot using the Debian packages</a></li>
-<li><a href="#orgaa70d5a">Case 2: You compiled Spot yourself, and installed it in the default location</a></li>
-<li><a href="#org89ea083">Case 3: You compiled Spot yourself, and installed it in a custom directory</a></li>
-<li><a href="#org84e2a51">Case 4: You compiled Spot yourself, but did not install it</a></li>
-<li><a href="#orge40c513">Other libraries</a></li>
-<li><a href="#orgafc33cf">Additional suggestions</a></li>
+<li><a href="#org9be27c4">Case 1: You installed Spot using the Debian packages</a></li>
+<li><a href="#org5aea390">Case 2: You compiled Spot yourself, and installed it in the default location</a></li>
+<li><a href="#org776c3e2">Case 3: You compiled Spot yourself, and installed it in a custom directory</a></li>
+<li><a href="#org758bb5d">Case 4: You compiled Spot yourself, but did not install it</a></li>
+<li><a href="#orge7bddd6">Other libraries</a></li>
+<li><a href="#org05d1d75">Additional suggestions</a></li>
 </ul>
 </div>
 </div>
 
-<div id="org9430fbd" class="figure">
+<div id="org873c276" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -259,7 +259,7 @@ file called <code>hello.cc</code>:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++" id="org25b04d4"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
+<pre class="src src-C++" id="orgd4a8b43"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;spot/misc/version.hh&gt;</span>
 
 <span class="org-type">int</span> <span class="org-function-name">main</span>()
@@ -277,7 +277,7 @@ greetings and the Spot version:
 
 <pre class="example">
 Hello world!
-This is Spot 2.10.2.
+This is Spot 2.10.6.
 </pre>
 
 
@@ -321,9 +321,9 @@ was compiled and installed.
 </p>
 
 
-<div id="outline-container-org8695b38" class="outline-2">
-<h2 id="org8695b38">Case 1: You installed Spot using the Debian packages</h2>
-<div class="outline-text-2" id="text-org8695b38">
+<div id="outline-container-org9be27c4" class="outline-2">
+<h2 id="org9be27c4">Case 1: You installed Spot using the Debian packages</h2>
+<div class="outline-text-2" id="text-org9be27c4">
 <p>
 In particular, you have installed the <code>libspot-dev</code> package: this is
 the one that contains the header files.
@@ -350,9 +350,9 @@ compile <code>hello.cc</code> and then execute <code>hello</code> with
 </div>
 
 
-<div id="outline-container-orgaa70d5a" class="outline-2">
-<h2 id="orgaa70d5a">Case 2: You compiled Spot yourself, and installed it in the default location</h2>
-<div class="outline-text-2" id="text-orgaa70d5a">
+<div id="outline-container-org5aea390" class="outline-2">
+<h2 id="org5aea390">Case 2: You compiled Spot yourself, and installed it in the default location</h2>
+<div class="outline-text-2" id="text-org5aea390">
 <p>
 It does not matter if you compiled from the GIT repository, or from
 the latest tarball.  If you ran something like
@@ -405,9 +405,9 @@ to tell the dynamic loader about this location.
 </div>
 
 
-<div id="outline-container-org89ea083" class="outline-2">
-<h2 id="org89ea083">Case 3: You compiled Spot yourself, and installed it in a custom directory</h2>
-<div class="outline-text-2" id="text-org89ea083">
+<div id="outline-container-org776c3e2" class="outline-2">
+<h2 id="org776c3e2">Case 3: You compiled Spot yourself, and installed it in a custom directory</h2>
+<div class="outline-text-2" id="text-org776c3e2">
 <p>
 For instance you might have used
 </p>
@@ -447,9 +447,9 @@ it every time you want to run a binary that depends on Spot.
 </div>
 
 
-<div id="outline-container-org84e2a51" class="outline-2">
-<h2 id="org84e2a51">Case 4: You compiled Spot yourself, but did not install it</h2>
-<div class="outline-text-2" id="text-org84e2a51">
+<div id="outline-container-org758bb5d" class="outline-2">
+<h2 id="org758bb5d">Case 4: You compiled Spot yourself, but did not install it</h2>
+<div class="outline-text-2" id="text-org758bb5d">
 <p>
 We do not recommend this, but it is possible to compile programs
 that uses an uninstalled version of Spot.
@@ -526,9 +526,9 @@ the desired result.  See the <a href="http://www.gnu.org/software/libtool/manual
 </div>
 </div>
 
-<div id="outline-container-orge40c513" class="outline-2">
-<h2 id="orge40c513">Other libraries</h2>
-<div class="outline-text-2" id="text-orge40c513">
+<div id="outline-container-orge7bddd6" class="outline-2">
+<h2 id="orge7bddd6">Other libraries</h2>
+<div class="outline-text-2" id="text-orge7bddd6">
 <p>
 If your program has to handle BDDs directly (for instance if you are
 <a href="tut22.html">creating an automaton</a> explicitly), or if your system does not support
@@ -547,9 +547,9 @@ case you 2
 </div>
 </div>
 
-<div id="outline-container-orgafc33cf" class="outline-2">
-<h2 id="orgafc33cf">Additional suggestions</h2>
-<div class="outline-text-2" id="text-orgafc33cf">
+<div id="outline-container-org05d1d75" class="outline-2">
+<h2 id="org05d1d75">Additional suggestions</h2>
+<div class="outline-text-2" id="text-org05d1d75">
 <p>
 In all the above invocations to <code>g++</code>, we have focused on arguments
 that are strictly necessary to link against Spot.  Obviously in

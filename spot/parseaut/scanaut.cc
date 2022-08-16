@@ -1,7 +1,18 @@
 #line 2 "scanaut.cc"
-#include "config.h"
+#include "libc-config.h"
+/* Flex 2.6.4's test for <inttypes.h> relies on __STDC_VERSION__
+   which is undefined in C++.   So without that, it will define
+   its own integer types, including a broken SIZE_MAX definition that
+   breaks compilation on OpenBSD. So let's define __STDC_VERSION__ to
+   make sure <inttypes.h> gets included.  Redefining __STDC_VERSION__
+   this way can break all sort of macros defined in <cdefs.h>, so
+   we include "libc-config.h" instead of "config.h" above to define
+   those macros first. */
+#if HAVE_INTTYPES_H && !(defined __STDC_VERSION__)
+#  define __STDC_VERSION__ 199901L
+#endif
 
-#line 5 "scanaut.cc"
+#line 16 "scanaut.cc"
 
 #define  YY_INT_ALIGNED short int
 
@@ -1027,7 +1038,7 @@ static const flex_int16_t yy_chk[1063] =
 */
 /* %option debug */
 
-#line 31 "scanaut.ll"
+#line 42 "scanaut.ll"
 #include <string>
 #include <sys/stat.h>
 #include <spot/parseaut/parsedecl.hh>
@@ -1048,9 +1059,9 @@ struct extra_data
   bool yyin_close = true;
 };
 
-#line 1052 "scanaut.cc"
+#line 1063 "scanaut.cc"
 
-#line 1054 "scanaut.cc"
+#line 1065 "scanaut.cc"
 
 #define INITIAL 0
 #define in_COMMENT 1
@@ -1321,11 +1332,11 @@ YY_DECL
 		}
 
 	{
-#line 63 "scanaut.ll"
+#line 74 "scanaut.ll"
 
 
 
-#line 67 "scanaut.ll"
+#line 78 "scanaut.ll"
   std::string s;
   yylloc->step();
 
@@ -1345,7 +1356,7 @@ YY_DECL
 
 
                         /* skip blanks and comments */
-#line 1349 "scanaut.cc"
+#line 1360 "scanaut.cc"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1405,23 +1416,23 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 86 "scanaut.ll"
+#line 97 "scanaut.ll"
 yylloc->lines(yyleng); yylloc->step();
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 87 "scanaut.ll"
+#line 98 "scanaut.ll"
 yylloc->lines(yyleng / 2); yylloc->step();
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 88 "scanaut.ll"
+#line 99 "scanaut.ll"
 yylloc->step();
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 89 "scanaut.ll"
+#line 100 "scanaut.ll"
 {
                           yyextra->orig_cond = YY_START;
 			  BEGIN(in_COMMENT);
@@ -1430,7 +1441,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 94 "scanaut.ll"
+#line 105 "scanaut.ll"
 {
 			    errno = 0;
 			    char* end;
@@ -1455,32 +1466,32 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 115 "scanaut.ll"
+#line 126 "scanaut.ll"
 BEGIN(in_HOA); return token::HOA;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 116 "scanaut.ll"
+#line 127 "scanaut.ll"
 BEGIN(INITIAL); throw spot::hoa_abort{*yylloc};
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 117 "scanaut.ll"
+#line 128 "scanaut.ll"
 BEGIN(in_NEVER); return token::NEVER;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 118 "scanaut.ll"
+#line 129 "scanaut.ll"
 BEGIN(in_DSTAR); return token::DSA;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 119 "scanaut.ll"
+#line 130 "scanaut.ll"
 BEGIN(in_DSTAR); return token::DRA;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 121 "scanaut.ll"
+#line 132 "scanaut.ll"
 {
 	                  BEGIN(in_LBTT_HEADER);
 			  char* end = nullptr;
@@ -1505,82 +1516,82 @@ YY_RULE_SETUP
 
 case 12:
 YY_RULE_SETUP
-#line 143 "scanaut.ll"
+#line 154 "scanaut.ll"
 return token::STATES;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 144 "scanaut.ll"
+#line 155 "scanaut.ll"
 return token::START;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 145 "scanaut.ll"
+#line 156 "scanaut.ll"
 return token::AP;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 146 "scanaut.ll"
+#line 157 "scanaut.ll"
 return token::ALIAS;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 147 "scanaut.ll"
+#line 158 "scanaut.ll"
 return token::ACCEPTANCE;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 148 "scanaut.ll"
+#line 159 "scanaut.ll"
 return token::ACCNAME;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 149 "scanaut.ll"
+#line 160 "scanaut.ll"
 return token::TOOL;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 150 "scanaut.ll"
+#line 161 "scanaut.ll"
 return token::NAME;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 151 "scanaut.ll"
+#line 162 "scanaut.ll"
 return token::PROPERTIES;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 152 "scanaut.ll"
+#line 163 "scanaut.ll"
 return token::SPOT_HIGHLIGHT_STATES;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 153 "scanaut.ll"
+#line 164 "scanaut.ll"
 return token::SPOT_HIGHLIGHT_EDGES;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 154 "scanaut.ll"
+#line 165 "scanaut.ll"
 return token::SPOT_STATE_PLAYER;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 155 "scanaut.ll"
+#line 166 "scanaut.ll"
 return token::BODY;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 156 "scanaut.ll"
+#line 167 "scanaut.ll"
 BEGIN(INITIAL); return token::END;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 157 "scanaut.ll"
+#line 168 "scanaut.ll"
 return token::STATE;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 158 "scanaut.ll"
+#line 169 "scanaut.ll"
 {
                           // For labels that do not span over several lines,
                           // we look them up in fmap to speed the construction
@@ -1601,7 +1612,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 175 "scanaut.ll"
+#line 186 "scanaut.ll"
 {
                           yylval->str = nullptr;
                           return *yytext;
@@ -1609,12 +1620,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 179 "scanaut.ll"
+#line 190 "scanaut.ll"
 return *yytext;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 181 "scanaut.ll"
+#line 192 "scanaut.ll"
 {
 			   yylval->str = new std::string(yytext, yyleng);
 			   return token::IDENTIFIER;
@@ -1622,7 +1633,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 185 "scanaut.ll"
+#line 196 "scanaut.ll"
 {
 			   yylval->str = new std::string(yytext, yyleng - 1);
 			   return token::HEADERNAME;
@@ -1630,7 +1641,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 189 "scanaut.ll"
+#line 200 "scanaut.ll"
 {
 			   yylval->str = new std::string(yytext + 1, yyleng - 1);
 			   return token::ANAME;
@@ -1639,12 +1650,12 @@ YY_RULE_SETUP
 /* Handle short numbers without going through parse_int() for efficiency. */
 case 33:
 YY_RULE_SETUP
-#line 194 "scanaut.ll"
+#line 205 "scanaut.ll"
 yylval->num = *yytext - '0'; return token::INT;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 195 "scanaut.ll"
+#line 206 "scanaut.ll"
 {
                           yylval->num = (yytext[0] * 10) + yytext[1] - '0' * 11;
                           return token::INT;
@@ -1652,75 +1663,75 @@ YY_RULE_SETUP
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 199 "scanaut.ll"
+#line 210 "scanaut.ll"
 parse_int(); return token::INT;
 	YY_BREAK
 
 
 case 36:
 YY_RULE_SETUP
-#line 203 "scanaut.ll"
+#line 214 "scanaut.ll"
 return token::STATES;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 204 "scanaut.ll"
+#line 215 "scanaut.ll"
 return token::STATE;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 205 "scanaut.ll"
+#line 216 "scanaut.ll"
 return token::START;
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 206 "scanaut.ll"
+#line 217 "scanaut.ll"
 return token::AP;
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 207 "scanaut.ll"
+#line 218 "scanaut.ll"
 return token::V2;
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 208 "scanaut.ll"
+#line 219 "scanaut.ll"
 return token::EXPLICIT;
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 209 "scanaut.ll"
+#line 220 "scanaut.ll"
 yylloc->step();
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 210 "scanaut.ll"
+#line 221 "scanaut.ll"
 yylloc->step();
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 211 "scanaut.ll"
+#line 222 "scanaut.ll"
 return token::ACCPAIRS;
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 212 "scanaut.ll"
+#line 223 "scanaut.ll"
 return token::ACCSIG;
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 213 "scanaut.ll"
+#line 224 "scanaut.ll"
 return token::ENDOFHEADER;
 	YY_BREAK
 /* Handle short numbers without going through parse_int() for efficiency. */
 case 47:
 YY_RULE_SETUP
-#line 215 "scanaut.ll"
+#line 226 "scanaut.ll"
 yylval->num = *yytext - '0'; return token::INT;
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 216 "scanaut.ll"
+#line 227 "scanaut.ll"
 {
                           yylval->num = (yytext[0] * 10) + yytext[1] - '0' * 11;
                           return token::INT;
@@ -1728,7 +1739,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 220 "scanaut.ll"
+#line 231 "scanaut.ll"
 parse_int(); return token::INT;
 	YY_BREAK
 /* The start of any automaton is the end of this one.
@@ -1737,7 +1748,7 @@ parse_int(); return token::INT;
 case 50:
 /* rule 50 can match eol */
 YY_RULE_SETUP
-#line 224 "scanaut.ll"
+#line 235 "scanaut.ll"
 {
 			  yylloc->end = yylloc->begin;
 			  yyless(0);
@@ -1746,64 +1757,64 @@ YY_RULE_SETUP
 			}
 	YY_BREAK
 case YY_STATE_EOF(in_DSTAR):
-#line 230 "scanaut.ll"
+#line 241 "scanaut.ll"
 return token::ENDDSTAR;
 	YY_BREAK
 
 
 case 51:
 YY_RULE_SETUP
-#line 234 "scanaut.ll"
+#line 245 "scanaut.ll"
 return token::SKIP;
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 235 "scanaut.ll"
+#line 246 "scanaut.ll"
 return token::IF;
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 236 "scanaut.ll"
+#line 247 "scanaut.ll"
 return token::FI;
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 237 "scanaut.ll"
+#line 248 "scanaut.ll"
 return token::DO;
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 238 "scanaut.ll"
+#line 249 "scanaut.ll"
 return token::OD;
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 239 "scanaut.ll"
+#line 250 "scanaut.ll"
 return token::ARROW;
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 240 "scanaut.ll"
+#line 251 "scanaut.ll"
 return token::GOTO;
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 241 "scanaut.ll"
+#line 252 "scanaut.ll"
 return token::FALSE;
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 242 "scanaut.ll"
+#line 253 "scanaut.ll"
 return token::ATOMIC;
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 243 "scanaut.ll"
+#line 254 "scanaut.ll"
 return token::ASSERT;
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 245 "scanaut.ll"
+#line 256 "scanaut.ll"
 {
 			  yyextra->parent_level = 1;
 			  BEGIN(in_NEVER_PAR);
@@ -1812,7 +1823,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 251 "scanaut.ll"
+#line 262 "scanaut.ll"
 {
                           yylval->str = new std::string(yytext, yyleng);
 			  return token::FORMULA;
@@ -1820,7 +1831,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 256 "scanaut.ll"
+#line 267 "scanaut.ll"
 {
 			  yylval->str = new std::string(yytext, yyleng);
 	                  return token::IDENTIFIER;
@@ -1836,7 +1847,7 @@ YY_RULE_SETUP
 
 case 64:
 YY_RULE_SETUP
-#line 269 "scanaut.ll"
+#line 280 "scanaut.ll"
 {
 			  BEGIN(in_LBTT_STATE);
                           auto end = parse_int();
@@ -1866,7 +1877,7 @@ YY_RULE_SETUP
 
 case 65:
 YY_RULE_SETUP
-#line 296 "scanaut.ll"
+#line 307 "scanaut.ll"
 {
                            parse_int();
 			   BEGIN(in_LBTT_INIT);
@@ -1875,7 +1886,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 301 "scanaut.ll"
+#line 312 "scanaut.ll"
 {
                            yylval->num = *yytext - '0';
 			   if (yyextra->lbtt_s)
@@ -1888,19 +1899,19 @@ YY_RULE_SETUP
 
 case 67:
 YY_RULE_SETUP
-#line 310 "scanaut.ll"
+#line 321 "scanaut.ll"
 parse_int(); return token::ACC;
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 311 "scanaut.ll"
+#line 322 "scanaut.ll"
 BEGIN(in_LBTT_TRANS); yylloc->step();
 	YY_BREAK
 
 
 case 69:
 YY_RULE_SETUP
-#line 314 "scanaut.ll"
+#line 325 "scanaut.ll"
 {
 			  parse_int();
 			  if (yyextra->lbtt_t)
@@ -1912,7 +1923,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 322 "scanaut.ll"
+#line 333 "scanaut.ll"
 {
                           if (--yyextra->lbtt_states)
 			    {
@@ -1930,19 +1941,19 @@ YY_RULE_SETUP
 
 case 71:
 YY_RULE_SETUP
-#line 336 "scanaut.ll"
+#line 347 "scanaut.ll"
 parse_int(); return token::ACC;
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 337 "scanaut.ll"
+#line 348 "scanaut.ll"
 BEGIN(in_LBTT_GUARD); yylloc->step();
 	YY_BREAK
 
 
 case 73:
 YY_RULE_SETUP
-#line 340 "scanaut.ll"
+#line 351 "scanaut.ll"
 {
   			  yylval->str = new std::string(yytext, yyleng);
 			  BEGIN(in_LBTT_TRANS);
@@ -1953,39 +1964,39 @@ YY_RULE_SETUP
 
 case 74:
 YY_RULE_SETUP
-#line 349 "scanaut.ll"
+#line 360 "scanaut.ll"
 ++yyextra->comment_level;
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 350 "scanaut.ll"
+#line 361 "scanaut.ll"
 continue;
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 351 "scanaut.ll"
+#line 362 "scanaut.ll"
 continue;
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 352 "scanaut.ll"
+#line 363 "scanaut.ll"
 continue;
 	YY_BREAK
 case 78:
 /* rule 78 can match eol */
 YY_RULE_SETUP
-#line 353 "scanaut.ll"
+#line 364 "scanaut.ll"
 yylloc->lines(yyleng); yylloc->end.column = 1;
 	YY_BREAK
 case 79:
 /* rule 79 can match eol */
 YY_RULE_SETUP
-#line 354 "scanaut.ll"
+#line 365 "scanaut.ll"
 yylloc->lines(yyleng / 2); yylloc->end.column = 1;
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 355 "scanaut.ll"
+#line 366 "scanaut.ll"
 {
 			  if (--yyextra->comment_level == 0)
 			    {
@@ -1996,7 +2007,7 @@ YY_RULE_SETUP
                         }
 	YY_BREAK
 case YY_STATE_EOF(in_COMMENT):
-#line 363 "scanaut.ll"
+#line 374 "scanaut.ll"
 {
                            int oc = yyextra->orig_cond;
 	                   BEGIN(oc);
@@ -2010,7 +2021,7 @@ case YY_STATE_EOF(in_COMMENT):
 /* matched late, so that the in_LBTT_GUARD pattern has precedence */
 case 81:
 YY_RULE_SETUP
-#line 374 "scanaut.ll"
+#line 385 "scanaut.ll"
 {
                           yyextra->orig_cond = YY_START;
 			  BEGIN(in_STRING);
@@ -2020,7 +2031,7 @@ YY_RULE_SETUP
 
 case 82:
 YY_RULE_SETUP
-#line 381 "scanaut.ll"
+#line 392 "scanaut.ll"
 {
                            int oc = yyextra->orig_cond;
                            BEGIN(oc);
@@ -2031,7 +2042,7 @@ YY_RULE_SETUP
 case 83:
 /* rule 83 can match eol */
 YY_RULE_SETUP
-#line 387 "scanaut.ll"
+#line 398 "scanaut.ll"
 {
   			  s.append(yytext, yyleng);
                           yylloc->lines(yyleng); yylloc->end.column = 1;
@@ -2040,7 +2051,7 @@ YY_RULE_SETUP
 case 84:
 /* rule 84 can match eol */
 YY_RULE_SETUP
-#line 391 "scanaut.ll"
+#line 402 "scanaut.ll"
 {
   			  s.append(yytext, yyleng);
                           yylloc->lines(yyleng / 2); yylloc->end.column = 1;
@@ -2048,16 +2059,16 @@ YY_RULE_SETUP
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 395 "scanaut.ll"
+#line 406 "scanaut.ll"
 s += yytext[1];
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 396 "scanaut.ll"
+#line 407 "scanaut.ll"
 s.append(yytext, yyleng);
 	YY_BREAK
 case YY_STATE_EOF(in_STRING):
-#line 397 "scanaut.ll"
+#line 408 "scanaut.ll"
 {
                            error_list.push_back(
 			     spot::parse_aut_error(*yylloc,
@@ -2072,7 +2083,7 @@ case YY_STATE_EOF(in_STRING):
 
 case 87:
 YY_RULE_SETUP
-#line 409 "scanaut.ll"
+#line 420 "scanaut.ll"
 {
 			  ++yyextra->parent_level;
 			  yylval->str->append(yytext, yyleng);
@@ -2081,14 +2092,14 @@ YY_RULE_SETUP
 /* if we match ")&&(" or ")||(", stay in <in_NEVER_PAR> mode */
 case 88:
 YY_RULE_SETUP
-#line 414 "scanaut.ll"
+#line 425 "scanaut.ll"
 {
 	                  yylval->str->append(yytext, yyleng);
 			}
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 417 "scanaut.ll"
+#line 428 "scanaut.ll"
 {
 	                  yylval->str->append(yytext, yyleng);
 			  if (!--yyextra->parent_level)
@@ -2102,7 +2113,7 @@ YY_RULE_SETUP
 case 90:
 /* rule 90 can match eol */
 YY_RULE_SETUP
-#line 426 "scanaut.ll"
+#line 437 "scanaut.ll"
 {
                           yylval->str->append(yytext, yyleng);
 			  yylloc->lines(yyleng); yylloc->end.column = 1;
@@ -2111,7 +2122,7 @@ YY_RULE_SETUP
 case 91:
 /* rule 91 can match eol */
 YY_RULE_SETUP
-#line 430 "scanaut.ll"
+#line 441 "scanaut.ll"
 {
 			  yylval->str->append(yytext, yyleng);
   			  yylloc->lines(yyleng / 2); yylloc->end.column = 1;
@@ -2119,11 +2130,11 @@ YY_RULE_SETUP
 	YY_BREAK
 case 92:
 YY_RULE_SETUP
-#line 434 "scanaut.ll"
+#line 445 "scanaut.ll"
 yylval->str->append(yytext, yyleng);
 	YY_BREAK
 case YY_STATE_EOF(in_NEVER_PAR):
-#line 435 "scanaut.ll"
+#line 446 "scanaut.ll"
 {
                           error_list.push_back(
 			    spot::parse_aut_error(*yylloc,
@@ -2137,7 +2148,7 @@ case YY_STATE_EOF(in_NEVER_PAR):
 
 case 93:
 YY_RULE_SETUP
-#line 446 "scanaut.ll"
+#line 457 "scanaut.ll"
 return *yytext;
 	YY_BREAK
 
@@ -2146,10 +2157,10 @@ return *yytext;
 
 case 94:
 YY_RULE_SETUP
-#line 453 "scanaut.ll"
+#line 464 "scanaut.ll"
 ECHO;
 	YY_BREAK
-#line 2153 "scanaut.cc"
+#line 2164 "scanaut.cc"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(in_HOA):
 case YY_STATE_EOF(in_NEVER):
@@ -3327,7 +3338,7 @@ void yyfree (void * ptr , yyscan_t yyscanner)
 
 #define YYTABLES_NAME "yytables"
 
-#line 453 "scanaut.ll"
+#line 464 "scanaut.ll"
 
 
 namespace spot

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:24 -->
+<!-- 2022-05-18 Wed 07:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Upgrading from Spot 1.2.6</title>
@@ -252,7 +252,7 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org65f6a0d">Overview of the changes</a></li>
+<li><a href="#org4dc6bac">Overview of the changes</a></li>
 <li><a href="#cpp17">Upgrading to C++17</a></li>
 <li><a href="#include">Upgrading <code>#include</code> directives</a>
 <ul>
@@ -269,7 +269,7 @@
 </div>
 </div>
 
-<div id="org2397363" class="figure">
+<div id="org09d68bb" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -288,9 +288,9 @@ based on features that appear to be commonly used, based on our the
 experience of updating a couple of projects that are using Spot.
 </p>
 
-<div id="outline-container-org65f6a0d" class="outline-2">
-<h2 id="org65f6a0d">Overview of the changes</h2>
-<div class="outline-text-2" id="text-org65f6a0d">
+<div id="outline-container-org4dc6bac" class="outline-2">
+<h2 id="org4dc6bac">Overview of the changes</h2>
+<div class="outline-text-2" id="text-org4dc6bac">
 <p>
 Let's begin by just trying to summarize what has changed between
 Spot 1.2.6 and Spot 2.x, just to get an idea of what will need to be
@@ -1626,7 +1626,7 @@ By convention <code>foo_ptr</code> is a <code>typedef</code> for <code>std::shar
 following typedefs are provided:
 </p>
 
-<pre class="example" id="orgbba042c">
+<pre class="example" id="orgb6a6761">
 typedef std::shared_ptr&lt;aig&gt; aig_ptr;
 typedef std::shared_ptr&lt;bdd_dict&gt; bdd_dict_ptr;
 typedef std::shared_ptr&lt;const aig&gt; const_aig_ptr;
@@ -1787,7 +1787,7 @@ the automaton, this pointer requires no update when the iterator is
 recycled).
 </p>
 
-<div class="caveat" id="org8a1e999">
+<div class="caveat" id="org2f4ae0c">
 <p>
 The iterator stored in <code>twa::iter_cache_</code> is destroyed by
 <code>twa::~twa()</code>.  In some case, this is too late.  For instance the

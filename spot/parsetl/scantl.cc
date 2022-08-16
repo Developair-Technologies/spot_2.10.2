@@ -1,7 +1,18 @@
 #line 2 "scantl.cc"
-#include "config.h"
+#include "libc-config.h"
+/* Flex 2.6.4's test for <inttypes.h> relies on __STDC_VERSION__
+   which is undefined in C++.   So without that, it will define
+   its own integer types, including a broken SIZE_MAX definition that
+   breaks compilation on OpenBSD. So let's define __STDC_VERSION__ to
+   make sure <inttypes.h> gets included.  Redefining __STDC_VERSION__
+   this way can break all sort of macros defined in <cdefs.h>, so
+   we include "libc-config.h" instead of "config.h" above to define
+   those macros first. */
+#if HAVE_INTTYPES_H && !(defined __STDC_VERSION__)
+#  define __STDC_VERSION__ 199901L
+#endif
 
-#line 5 "scantl.cc"
+#line 16 "scantl.cc"
 
 #define  YY_INT_ALIGNED short int
 
@@ -996,8 +1007,8 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "scantl.ll"
 /* -*- coding: utf-8 -*-
-** Copyright (C) 2010-2015, 2017-2019, 2021, Laboratoire de Recherche
-** et Développement de l'Epita (LRDE).
+** Copyright (C) 2010-2015, 2017-2019, 2021-2022, Laboratoire de
+** Recherche et Développement de l'Epita (LRDE).
 ** Copyright (C) 2003, 2004 Laboratoire d'Informatique de Paris 6
 ** (LIP6), département Systèmes Répartis Coopératifs (SRC), Université
 ** Pierre et Marie Curie.
@@ -1018,7 +1029,7 @@ char *yytext;
 ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#line 33 "scantl.ll"
+#line 44 "scantl.ll"
 #include <cstdlib>
 #include <string>
 
@@ -1038,9 +1049,9 @@ static unsigned comment_level = 0;
 
 typedef tlyy::parser::token token;
 
-#line 1042 "scantl.cc"
+#line 1053 "scantl.cc"
 
-#line 1044 "scantl.cc"
+#line 1055 "scantl.cc"
 
 #define INITIAL 0
 #define not_prop 1
@@ -1274,11 +1285,11 @@ YY_DECL
 		}
 
 	{
-#line 75 "scantl.ll"
+#line 86 "scantl.ll"
 
 
 
-#line 79 "scantl.ll"
+#line 90 "scantl.ll"
   if (start_token)
     {
       int t = start_token;
@@ -1289,7 +1300,7 @@ YY_DECL
   std::string s;
 
 
-#line 1293 "scantl.cc"
+#line 1304 "scantl.cc"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1344,7 +1355,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 89 "scantl.ll"
+#line 100 "scantl.ll"
 {
 			  if (YY_START != in_COMMENT)
 			    {
@@ -1358,38 +1369,38 @@ YY_RULE_SETUP
 
 case 2:
 YY_RULE_SETUP
-#line 99 "scantl.ll"
+#line 110 "scantl.ll"
 continue;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 100 "scantl.ll"
+#line 111 "scantl.ll"
 continue;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 101 "scantl.ll"
+#line 112 "scantl.ll"
 continue;
 	YY_BREAK
 case 5:
 /* rule 5 can match eol */
 YY_RULE_SETUP
-#line 102 "scantl.ll"
+#line 113 "scantl.ll"
 yylloc->lines(yyleng); yylloc->end.column = 1;
 	YY_BREAK
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 103 "scantl.ll"
+#line 114 "scantl.ll"
 yylloc->lines(yyleng / 2); yylloc->end.column = 1;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 104 "scantl.ll"
+#line 115 "scantl.ll"
 if (--comment_level == 0) BEGIN(orig_cond);
 	YY_BREAK
 case YY_STATE_EOF(in_COMMENT):
-#line 105 "scantl.ll"
+#line 116 "scantl.ll"
 {
                            BEGIN(orig_cond);
                            error_list.push_back(
@@ -1401,7 +1412,7 @@ case YY_STATE_EOF(in_COMMENT):
 
 case 8:
 YY_RULE_SETUP
-#line 114 "scantl.ll"
+#line 125 "scantl.ll"
 {
 				  if (!lenient_mode)
                                     {
@@ -1420,7 +1431,7 @@ YY_RULE_SETUP
 
 case 9:
 YY_RULE_SETUP
-#line 129 "scantl.ll"
+#line 140 "scantl.ll"
 {
 				  ++parent_level;
 				  yylval->str->append(yytext, yyleng);
@@ -1428,7 +1439,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 133 "scantl.ll"
+#line 144 "scantl.ll"
 {
 				  if (--parent_level)
 				    {
@@ -1445,11 +1456,11 @@ YY_RULE_SETUP
 case 11:
 /* rule 11 can match eol */
 YY_RULE_SETUP
-#line 145 "scantl.ll"
+#line 156 "scantl.ll"
 yylval->str->append(yytext, yyleng);
 	YY_BREAK
 case YY_STATE_EOF(in_par):
-#line 146 "scantl.ll"
+#line 157 "scantl.ll"
 {
 				  unput(')');
 				  if (!missing_parent)
@@ -1462,7 +1473,7 @@ case YY_STATE_EOF(in_par):
 
 case 12:
 YY_RULE_SETUP
-#line 156 "scantl.ll"
+#line 167 "scantl.ll"
 {
 				  if (!lenient_mode)
 				  {
@@ -1481,7 +1492,7 @@ YY_RULE_SETUP
 
 case 13:
 YY_RULE_SETUP
-#line 171 "scantl.ll"
+#line 182 "scantl.ll"
 {
 				  ++parent_level;
 				  yylval->str->append(yytext, yyleng);
@@ -1489,7 +1500,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 175 "scantl.ll"
+#line 186 "scantl.ll"
 {
 				  if (--parent_level)
 				    {
@@ -1505,7 +1516,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 187 "scantl.ll"
+#line 198 "scantl.ll"
 {
 				  if (--parent_level)
 				    {
@@ -1522,11 +1533,11 @@ YY_RULE_SETUP
 case 16:
 /* rule 16 can match eol */
 YY_RULE_SETUP
-#line 199 "scantl.ll"
+#line 210 "scantl.ll"
 yylval->str->append(yytext, yyleng);
 	YY_BREAK
 case YY_STATE_EOF(in_bra):
-#line 200 "scantl.ll"
+#line 211 "scantl.ll"
 {
 				  unput('}');
 				  if (!missing_parent)
@@ -1539,46 +1550,46 @@ case YY_STATE_EOF(in_bra):
 
 case 17:
 YY_RULE_SETUP
-#line 210 "scantl.ll"
+#line 221 "scantl.ll"
 BEGIN(not_prop); return token::PAR_CLOSE;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 211 "scantl.ll"
+#line 222 "scantl.ll"
 BEGIN(not_prop); return token::BRACE_BANG_CLOSE;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 212 "scantl.ll"
+#line 223 "scantl.ll"
 BEGIN(not_prop); return token::BRACE_CLOSE;
 	YY_BREAK
 /* Must go before the other operators, because the F of FALSE
      should not be mistaken with a unary F. */
 case 20:
 YY_RULE_SETUP
-#line 216 "scantl.ll"
+#line 227 "scantl.ll"
 BEGIN(0); return token::CONST_TRUE;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 217 "scantl.ll"
+#line 228 "scantl.ll"
 BEGIN(0); return token::CONST_FALSE;
 	YY_BREAK
 /* ~ comes from Goal, ! from everybody else */
 case 22:
 YY_RULE_SETUP
-#line 221 "scantl.ll"
+#line 232 "scantl.ll"
 BEGIN(0); return token::OP_NOT;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 223 "scantl.ll"
+#line 234 "scantl.ll"
 BEGIN(0); return token::OP_FIRST_MATCH;
 	YY_BREAK
 /* SVA operators */
 case 24:
 YY_RULE_SETUP
-#line 226 "scantl.ll"
+#line 237 "scantl.ll"
 {
                                   yylval->num = strtoul(yytext + 2, 0, 10);
                                   return token::OP_DELAY_N;
@@ -1586,7 +1597,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 230 "scantl.ll"
+#line 241 "scantl.ll"
 {
 				  errno = 0;
 				  unsigned long n = strtoul(yytext + 2, 0, 10);
@@ -1614,108 +1625,108 @@ YY_RULE_SETUP
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 254 "scantl.ll"
+#line 265 "scantl.ll"
 BEGIN(0); return token::OP_DELAY_PLUS;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 255 "scantl.ll"
+#line 266 "scantl.ll"
 BEGIN(0); return token::OP_DELAY_STAR;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 256 "scantl.ll"
+#line 267 "scantl.ll"
 BEGIN(sqbracket); return token::OP_DELAY_OPEN;
 	YY_BREAK
 /* PSL operators */
 case 29:
 YY_RULE_SETUP
-#line 259 "scantl.ll"
+#line 270 "scantl.ll"
 BEGIN(0); return token::OP_UCONCAT;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 260 "scantl.ll"
+#line 271 "scantl.ll"
 BEGIN(0); return token::OP_ECONCAT;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 261 "scantl.ll"
+#line 272 "scantl.ll"
 BEGIN(0); return token::OP_UCONCAT_NONO;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 262 "scantl.ll"
+#line 273 "scantl.ll"
 BEGIN(0); return token::OP_ECONCAT_NONO;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 263 "scantl.ll"
+#line 274 "scantl.ll"
 BEGIN(0); return token::OP_CONCAT;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 264 "scantl.ll"
+#line 275 "scantl.ll"
 BEGIN(0); return token::OP_FUSION;
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 265 "scantl.ll"
+#line 276 "scantl.ll"
 BEGIN(0); return token::OP_STAR;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 266 "scantl.ll"
+#line 277 "scantl.ll"
 BEGIN(0); return token::OP_BSTAR;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 267 "scantl.ll"
+#line 278 "scantl.ll"
 BEGIN(0); return token::OP_PLUS;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 268 "scantl.ll"
+#line 279 "scantl.ll"
 BEGIN(sqbracket); return token::OP_STAR_OPEN;
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 269 "scantl.ll"
+#line 280 "scantl.ll"
 BEGIN(0); return token::OP_BFSTAR;
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 270 "scantl.ll"
+#line 281 "scantl.ll"
 BEGIN(0); return token::OP_FPLUS;
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 271 "scantl.ll"
+#line 282 "scantl.ll"
 BEGIN(sqbracket); return token::OP_FSTAR_OPEN;
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 272 "scantl.ll"
+#line 283 "scantl.ll"
 BEGIN(sqbracket); return token::OP_EQUAL_OPEN;
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 273 "scantl.ll"
+#line 284 "scantl.ll"
 BEGIN(sqbracket); return token::OP_GOTO_OPEN;
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 274 "scantl.ll"
+#line 285 "scantl.ll"
 BEGIN(0); return token::OP_SQBKT_CLOSE;
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 275 "scantl.ll"
+#line 286 "scantl.ll"
 BEGIN(0); return token::OP_SQBKT_STRONG_CLOSE;
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 276 "scantl.ll"
+#line 287 "scantl.ll"
 {
 				  errno = 0;
 				  unsigned long n = strtoul(yytext, 0, 10);
@@ -1740,7 +1751,7 @@ YY_RULE_SETUP
    , is from Perl */
 case 47:
 YY_RULE_SETUP
-#line 297 "scantl.ll"
+#line 308 "scantl.ll"
 return token::OP_SQBKT_SEP;
 	YY_BREAK
 /* In SVA you use [=1:$] instead of [=1..].  We will also accept
@@ -1748,7 +1759,7 @@ return token::OP_SQBKT_SEP;
      instead, so will accept this too.  */
 case 48:
 YY_RULE_SETUP
-#line 302 "scantl.ll"
+#line 313 "scantl.ll"
 return token::OP_UNBOUNDED;
 	YY_BREAK
 /* & and | come from Spin.  && and || from LTL2BA.
@@ -1757,32 +1768,32 @@ return token::OP_UNBOUNDED;
      +,*,^ are from Wring. */
 case 49:
 YY_RULE_SETUP
-#line 308 "scantl.ll"
+#line 319 "scantl.ll"
 BEGIN(0); return token::OP_OR;
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 309 "scantl.ll"
+#line 320 "scantl.ll"
 BEGIN(0); return token::OP_AND;
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 310 "scantl.ll"
+#line 321 "scantl.ll"
 BEGIN(0); return token::OP_SHORT_AND;
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 311 "scantl.ll"
+#line 322 "scantl.ll"
 BEGIN(0); return token::OP_XOR;
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 312 "scantl.ll"
+#line 323 "scantl.ll"
 BEGIN(0); return token::OP_IMPLIES;
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 313 "scantl.ll"
+#line 324 "scantl.ll"
 BEGIN(0); return token::OP_EQUIV;
 	YY_BREAK
 /* TSLF-like syntactic sugar:
@@ -1795,97 +1806,97 @@ BEGIN(0); return token::OP_EQUIV;
 case 55:
 /* rule 55 can match eol */
 YY_RULE_SETUP
-#line 322 "scantl.ll"
+#line 333 "scantl.ll"
 yyless(1); return token::OP_X;
 	YY_BREAK
 case 56:
 /* rule 56 can match eol */
 YY_RULE_SETUP
-#line 323 "scantl.ll"
+#line 334 "scantl.ll"
 yyless(1); return token::OP_F;
 	YY_BREAK
 case 57:
 /* rule 57 can match eol */
 YY_RULE_SETUP
-#line 324 "scantl.ll"
+#line 335 "scantl.ll"
 yyless(1); return token::OP_G;
 	YY_BREAK
 case 58:
 /* rule 58 can match eol */
 YY_RULE_SETUP
-#line 325 "scantl.ll"
+#line 336 "scantl.ll"
 BEGIN(sqbracket); return token::OP_XREP;
 	YY_BREAK
 case 59:
 /* rule 59 can match eol */
 YY_RULE_SETUP
-#line 326 "scantl.ll"
+#line 337 "scantl.ll"
 BEGIN(sqbracket); return token::OP_FREP;
 	YY_BREAK
 case 60:
 /* rule 60 can match eol */
 YY_RULE_SETUP
-#line 327 "scantl.ll"
+#line 338 "scantl.ll"
 BEGIN(sqbracket); return token::OP_GREP;
 	YY_BREAK
 /* <> (DIAMOND) and [] (BOX), are used in Spin.
      () (CIRCLE) is not, but would make sense.  */
 case 61:
 YY_RULE_SETUP
-#line 330 "scantl.ll"
+#line 341 "scantl.ll"
 BEGIN(0); return token::OP_F;
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 331 "scantl.ll"
+#line 342 "scantl.ll"
 BEGIN(0); return token::OP_G;
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 332 "scantl.ll"
+#line 343 "scantl.ll"
 BEGIN(0); return token::OP_U;
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 333 "scantl.ll"
+#line 344 "scantl.ll"
 BEGIN(0); return token::OP_R;
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 334 "scantl.ll"
+#line 345 "scantl.ll"
 BEGIN(0); return token::OP_X;
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 335 "scantl.ll"
+#line 346 "scantl.ll"
 BEGIN(0); return token::OP_STRONG_X;
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 336 "scantl.ll"
+#line 347 "scantl.ll"
 BEGIN(0); return token::OP_W;
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 337 "scantl.ll"
+#line 348 "scantl.ll"
 BEGIN(0); return token::OP_M;
 	YY_BREAK
 /* The combining overline or macron (overbar) should normally
      occur only after a single letter, but we do not check that. */
 case 69:
 YY_RULE_SETUP
-#line 341 "scantl.ll"
+#line 352 "scantl.ll"
 return token::OP_POST_NEG;
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 342 "scantl.ll"
+#line 353 "scantl.ll"
 return token::OP_POST_POS;
 	YY_BREAK
 case 71:
 /* rule 71 can match eol */
 YY_RULE_SETUP
-#line 344 "scantl.ll"
+#line 355 "scantl.ll"
 /* discard whitespace */ yylloc->step ();
 	YY_BREAK
 /* An Atomic proposition cannot start with the letter
@@ -1895,9 +1906,9 @@ YY_RULE_SETUP
      don't, because Ffalse is never used in practice).
   */
 case 72:
-#line 353 "scantl.ll"
+#line 364 "scantl.ll"
 case 73:
-#line 354 "scantl.ll"
+#line 365 "scantl.ll"
 /*
      However if we have just parsed an atomic proposition, then we are
      not expecting another atomic proposition, so we can be stricter
@@ -1914,10 +1925,10 @@ case 73:
      E.g. UFXp.   This way, `p=0UFXp=1' will be parsed as `(p=0)U(F(X(p=1)))'.
   */
 case 74:
-#line 370 "scantl.ll"
+#line 381 "scantl.ll"
 case 75:
 YY_RULE_SETUP
-#line 370 "scantl.ll"
+#line 381 "scantl.ll"
 {
 			  yylval->str = new std::string(yytext, yyleng);
 			  BEGIN(not_prop);
@@ -1930,7 +1941,7 @@ YY_RULE_SETUP
      string has been parsed. */
 case 76:
 YY_RULE_SETUP
-#line 380 "scantl.ll"
+#line 391 "scantl.ll"
 {
                           orig_cond = not_prop;
 			  BEGIN(in_STRING);
@@ -1938,7 +1949,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 384 "scantl.ll"
+#line 395 "scantl.ll"
 {
 			  orig_cond = lbt;
 			  BEGIN(in_STRING);
@@ -1947,7 +1958,7 @@ YY_RULE_SETUP
 
 case 78:
 YY_RULE_SETUP
-#line 390 "scantl.ll"
+#line 401 "scantl.ll"
 {
                            BEGIN(orig_cond);
 			   yylval->str = new std::string(s);
@@ -1957,7 +1968,7 @@ YY_RULE_SETUP
 case 79:
 /* rule 79 can match eol */
 YY_RULE_SETUP
-#line 395 "scantl.ll"
+#line 406 "scantl.ll"
 {
   			  s.append(yytext, yyleng);
                           yylloc->lines(yyleng); yylloc->end.column = 1;
@@ -1966,7 +1977,7 @@ YY_RULE_SETUP
 case 80:
 /* rule 80 can match eol */
 YY_RULE_SETUP
-#line 399 "scantl.ll"
+#line 410 "scantl.ll"
 {
   			  s.append(yytext, yyleng);
                           yylloc->lines(yyleng / 2); yylloc->end.column = 1;
@@ -1974,16 +1985,16 @@ YY_RULE_SETUP
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 403 "scantl.ll"
+#line 414 "scantl.ll"
 s += yytext[1];
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 404 "scantl.ll"
+#line 415 "scantl.ll"
 s.append(yytext, yyleng);
 	YY_BREAK
 case YY_STATE_EOF(in_STRING):
-#line 405 "scantl.ll"
+#line 416 "scantl.ll"
 {
                            error_list.push_back(
 			     spot::one_parse_error(*yylloc,
@@ -1997,7 +2008,7 @@ case YY_STATE_EOF(in_STRING):
 /* these are operators */
 case 83:
 YY_RULE_SETUP
-#line 416 "scantl.ll"
+#line 427 "scantl.ll"
 return *yytext;
 	YY_BREAK
 /* in LBT's format, atomic proposition look like p0 or p3141592, but
@@ -2005,7 +2016,7 @@ return *yytext;
      string that is not an operator. */
 case 84:
 YY_RULE_SETUP
-#line 420 "scantl.ll"
+#line 431 "scantl.ll"
 {
 			  yylval->str = new std::string(yytext, yyleng);
 			  return token::ATOMIC_PROP;
@@ -2013,22 +2024,22 @@ YY_RULE_SETUP
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 426 "scantl.ll"
+#line 437 "scantl.ll"
 return *yytext;
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(not_prop):
 case YY_STATE_EOF(sqbracket):
 case YY_STATE_EOF(lbt):
-#line 428 "scantl.ll"
+#line 439 "scantl.ll"
 return token::END_OF_INPUT;
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 430 "scantl.ll"
+#line 441 "scantl.ll"
 ECHO;
 	YY_BREAK
-#line 2032 "scantl.cc"
+#line 2043 "scantl.cc"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -3078,7 +3089,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 430 "scantl.ll"
+#line 441 "scantl.ll"
 
 
 void

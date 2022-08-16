@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:18 -->
+<!-- 2022-05-18 Wed 07:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SAT-based Minimization of Deterministic ω-Automata</title>
@@ -252,18 +252,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgec016b3">How to change the SAT solver used</a></li>
-<li><a href="#org21c5133">Enabling SAT-based minimization in <code>ltl2tgba</code> or <code>dstar2tgba</code></a></li>
-<li><a href="#org628d2c6">More acceptance sets</a></li>
-<li><a href="#org8297ce0">Low-level details</a></li>
-<li><a href="#org7b0d229">Using <code>autfilt --sat-minimize</code> to minimize any deterministic ω-automaton</a></li>
-<li><a href="#orgf682d72">Logging statistics</a></li>
-<li><a href="#orgb4ddf2f">Python interface</a></li>
+<li><a href="#orga406c4c">How to change the SAT solver used</a></li>
+<li><a href="#org0f514db">Enabling SAT-based minimization in <code>ltl2tgba</code> or <code>dstar2tgba</code></a></li>
+<li><a href="#orgcdd4ac2">More acceptance sets</a></li>
+<li><a href="#org6e216b0">Low-level details</a></li>
+<li><a href="#orgeca9331">Using <code>autfilt --sat-minimize</code> to minimize any deterministic ω-automaton</a></li>
+<li><a href="#orgb34e847">Logging statistics</a></li>
+<li><a href="#org77b9a10">Python interface</a></li>
 </ul>
 </div>
 </div>
 
-<div id="org733043d" class="figure">
+<div id="org5c2609a" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -313,9 +313,9 @@ generalization of the SAT encoding to deal with deterministic TωA
 with any acceptance condition.</li>
 </ol>
 
-<div id="outline-container-orgec016b3" class="outline-2">
-<h2 id="orgec016b3">How to change the SAT solver used</h2>
-<div class="outline-text-2" id="text-orgec016b3">
+<div id="outline-container-orga406c4c" class="outline-2">
+<h2 id="orga406c4c">How to change the SAT solver used</h2>
+<div class="outline-text-2" id="text-orga406c4c">
 <p>
 By default Spot uses PicoSAT 965, this SAT-solver
 is built into the Spot library, so that no temporary files are used to
@@ -340,9 +340,9 @@ We assume the SAT solver follows the input/output conventions of the
 </div>
 </div>
 
-<div id="outline-container-org21c5133" class="outline-2">
-<h2 id="org21c5133">Enabling SAT-based minimization in <code>ltl2tgba</code> or <code>dstar2tgba</code></h2>
-<div class="outline-text-2" id="text-org21c5133">
+<div id="outline-container-org0f514db" class="outline-2">
+<h2 id="org0f514db">Enabling SAT-based minimization in <code>ltl2tgba</code> or <code>dstar2tgba</code></h2>
+<div class="outline-text-2" id="text-org0f514db">
 <p>
 Both tools follow the same interface, because they use the same
 post-processing steps internally (i.e., the <code>spot::postprocessor</code>
@@ -415,12 +415,12 @@ We can draw it:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org50af235">ltl2tgba -D -x sat-minimize <span class="org-string">'a U X(b | GF!b)'</span> -d
+<pre class="src src-sh" id="org81589fc">ltl2tgba -D -x sat-minimize <span class="org-string">'a U X(b | GF!b)'</span> -d
 </pre>
 </div>
 
 
-<div id="orga4b47fa" class="figure">
+<div id="orgc7fde42" class="figure">
 <p><object type="image/svg+xml" data="gfaexxb3.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -434,12 +434,12 @@ result will of course be slightly bigger.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orgde9971a">ltl2tgba -BD -x sat-minimize <span class="org-string">'a U X(b | GF!b)'</span> -d
+<pre class="src src-sh" id="org2872369">ltl2tgba -BD -x sat-minimize <span class="org-string">'a U X(b | GF!b)'</span> -d
 </pre>
 </div>
 
 
-<div id="orgacec7a8" class="figure">
+<div id="org265f633" class="figure">
 <p><object type="image/svg+xml" data="gfaexxb4.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -535,9 +535,9 @@ input(states=11) output(states=4, acc-sets=1, det=1)
 </div>
 </div>
 
-<div id="outline-container-org628d2c6" class="outline-2">
-<h2 id="org628d2c6">More acceptance sets</h2>
-<div class="outline-text-2" id="text-org628d2c6">
+<div id="outline-container-orgcdd4ac2" class="outline-2">
+<h2 id="orgcdd4ac2">More acceptance sets</h2>
+<div class="outline-text-2" id="text-orgcdd4ac2">
 <p>
 The formula "<code>G(F(!b &amp; (X!a M (F!a &amp; F!b))) U !b)</code>" can in fact be
 minimized into an even smaller automaton if we use multiple acceptance
@@ -579,9 +579,9 @@ degeneralized in the meantime for the purpose of determinization.
 </div>
 </div>
 
-<div id="outline-container-org8297ce0" class="outline-2">
-<h2 id="org8297ce0">Low-level details</h2>
-<div class="outline-text-2" id="text-org8297ce0">
+<div id="outline-container-org6e216b0" class="outline-2">
+<h2 id="org6e216b0">Low-level details</h2>
+<div class="outline-text-2" id="text-org6e216b0">
 <p>
 The following figure (from our <a href="https://www.lrde.epita.fr/~adl/dl/adl/baarir.14.forte.pdf">FORTE'14 paper</a>) gives an overview of
 the processing chains that can be used to turn an LTL formula into a
@@ -592,7 +592,7 @@ options).
 </p>
 
 
-<div id="orgd28f3fa" class="figure">
+<div id="org06e1a03" class="figure">
 <p><object type="image/svg+xml" data="satmin.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -698,9 +698,9 @@ is implied.
 </div>
 </div>
 
-<div id="outline-container-org7b0d229" class="outline-2">
-<h2 id="org7b0d229">Using <code>autfilt --sat-minimize</code> to minimize any deterministic ω-automaton</h2>
-<div class="outline-text-2" id="text-org7b0d229">
+<div id="outline-container-orgeca9331" class="outline-2">
+<h2 id="orgeca9331">Using <code>autfilt --sat-minimize</code> to minimize any deterministic ω-automaton</h2>
+<div class="outline-text-2" id="text-orgeca9331">
 <p>
 This interface is new in Spot 1.99 and allows to minimize any
 deterministic ω-automaton, regardless of the acceptance condition
@@ -724,12 +724,12 @@ ltl2dstar --ltl2nba=spin:ltl2tgba@-Ds --output-format=hoa - - &gt; output.hoa
 Let's draw it:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh" id="orgd5dd7c2">autfilt output.hoa --dot
+<pre class="src src-sh" id="orgb051472">autfilt output.hoa --dot
 </pre>
 </div>
 
 
-<div id="org0ba9bf8" class="figure">
+<div id="org13b4d17" class="figure">
 <p><object type="image/svg+xml" data="autfiltsm1.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -743,12 +743,12 @@ solver used):
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org7393eeb">autfilt --sat-minimize output.hoa --dot
+<pre class="src src-sh" id="org0bd1442">autfilt --sat-minimize output.hoa --dot
 </pre>
 </div>
 
 
-<div id="orgae66209" class="figure">
+<div id="orgcf8de52" class="figure">
 <p><object type="image/svg+xml" data="autfiltsm2.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -759,12 +759,12 @@ We can also attempt to build a state-based version with
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orgd15b8d6">autfilt -S --sat-minimize output.hoa --dot
+<pre class="src src-sh" id="org8c212ed">autfilt -S --sat-minimize output.hoa --dot
 </pre>
 </div>
 
 
-<div id="orgf77476c" class="figure">
+<div id="org55ac476" class="figure">
 <p><object type="image/svg+xml" data="autfiltsm3.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -785,12 +785,12 @@ Let's try with generalized co-Büchi for instance:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orga56a5f9">autfilt -S --sat-minimize=<span class="org-string">'acc="generalized-co-Buchi 2"'</span> output.hoa --dot
+<pre class="src src-sh" id="org49412ef">autfilt -S --sat-minimize=<span class="org-string">'acc="generalized-co-Buchi 2"'</span> output.hoa --dot
 </pre>
 </div>
 
 
-<div id="org83a859f" class="figure">
+<div id="orgb3c628f" class="figure">
 <p><object type="image/svg+xml" data="autfiltsm4.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -804,12 +804,12 @@ attempt to create a co-Büchi automaton with
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org6daaeed">autfilt -S --sat-minimize=<span class="org-string">'acc="Fin(0)"'</span> output.hoa --dot
+<pre class="src src-sh" id="orgd9872d2">autfilt -S --sat-minimize=<span class="org-string">'acc="Fin(0)"'</span> output.hoa --dot
 </pre>
 </div>
 
 
-<div id="orgddc9c30" class="figure">
+<div id="org1ddbe4e" class="figure">
 <p><object type="image/svg+xml" data="autfiltsm5.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -841,13 +841,13 @@ smaller than the output.   Let's take this small TGBA as input:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org0885485">ltl2tgba <span class="org-string">'GFa &amp; GFb'</span> &gt;output2.hoa
+<pre class="src src-sh" id="org889a4e3">ltl2tgba <span class="org-string">'GFa &amp; GFb'</span> &gt;output2.hoa
 autfilt output2.hoa --dot
 </pre>
 </div>
 
 
-<div id="org25e8cff" class="figure">
+<div id="org492bae5" class="figure">
 <p><object type="image/svg+xml" data="autfiltsm6.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -861,7 +861,7 @@ non-zero exit code (because no automata were output).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org2a2cc72">autfilt --sat-minimize=<span class="org-string">'acc="Buchi"'</span> output2.hoa
+<pre class="src src-sh" id="org2829ba4">autfilt --sat-minimize=<span class="org-string">'acc="Buchi"'</span> output2.hoa
 <span class="org-builtin">echo</span> $<span class="org-variable-name">?</span>
 </pre>
 </div>
@@ -875,12 +875,12 @@ However if we allow more states, it will work:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org7d38c5c">autfilt --sat-minimize=<span class="org-string">'acc="Buchi",max-states=3'</span> output2.hoa --dot
+<pre class="src src-sh" id="org6d95b86">autfilt --sat-minimize=<span class="org-string">'acc="Buchi",max-states=3'</span> output2.hoa --dot
 </pre>
 </div>
 
 
-<div id="org88527c5" class="figure">
+<div id="orgc06e827" class="figure">
 <p><object type="image/svg+xml" data="autfiltsm8.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -963,12 +963,12 @@ automaton is not colored:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org2af569e">autfilt -S --sat-minimize=<span class="org-string">'acc="parity max even 3"'</span> output2.hoa --dot
+<pre class="src src-sh" id="orga0fc6bd">autfilt -S --sat-minimize=<span class="org-string">'acc="parity max even 3"'</span> output2.hoa --dot
 </pre>
 </div>
 
 
-<div id="orgfd0b6a8" class="figure">
+<div id="orge2d0cfa" class="figure">
 <p><object type="image/svg+xml" data="autfiltsm9.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -980,12 +980,12 @@ belong to exactly one acceptance set:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org4ad3998">autfilt -S --sat-minimize=<span class="org-string">'acc="parity max even 3",colored'</span> output2.hoa --dot
+<pre class="src src-sh" id="org7156519">autfilt -S --sat-minimize=<span class="org-string">'acc="parity max even 3",colored'</span> output2.hoa --dot
 </pre>
 </div>
 
 
-<div id="org67157bd" class="figure">
+<div id="orgfef6931" class="figure">
 <p><object type="image/svg+xml" data="autfiltsm10.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -993,9 +993,9 @@ Sorry, your browser does not support SVG.</object>
 </div>
 </div>
 
-<div id="outline-container-orgf682d72" class="outline-2">
-<h2 id="orgf682d72">Logging statistics</h2>
-<div class="outline-text-2" id="text-orgf682d72">
+<div id="outline-container-orgb34e847" class="outline-2">
+<h2 id="orgb34e847">Logging statistics</h2>
+<div class="outline-text-2" id="text-orgb34e847">
 <p>
 If the environment variable <code>SPOT_SATLOG</code> is set to the name of a
 file, the minimization function will append statistics about each of
@@ -1071,9 +1071,9 @@ Here is the contents of the <code>stats.csv</code> file:
 <td class="org-right">&#xa0;</td>
 <td class="org-right">5120</td>
 <td class="org-right">446320</td>
-<td class="org-right">44</td>
-<td class="org-right">4</td>
-<td class="org-right">31</td>
+<td class="org-right">36</td>
+<td class="org-right">3</td>
+<td class="org-right">22</td>
 <td class="org-right">0</td>
 <td class="org-left">&#xa0;</td>
 </tr>
@@ -1086,9 +1086,9 @@ Here is the contents of the <code>stats.csv</code> file:
 <td class="org-right">48</td>
 <td class="org-right">11520</td>
 <td class="org-right">1515749</td>
-<td class="org-right">146</td>
-<td class="org-right">7</td>
-<td class="org-right">384</td>
+<td class="org-right">72</td>
+<td class="org-right">3</td>
+<td class="org-right">205</td>
 <td class="org-right">0</td>
 <td class="org-left">HOA:&#x2026;</td>
 </tr>
@@ -1101,9 +1101,9 @@ Here is the contents of the <code>stats.csv</code> file:
 <td class="org-right">&#xa0;</td>
 <td class="org-right">8000</td>
 <td class="org-right">874992</td>
-<td class="org-right">83</td>
+<td class="org-right">41</td>
 <td class="org-right">0</td>
-<td class="org-right">121</td>
+<td class="org-right">65</td>
 <td class="org-right">0</td>
 <td class="org-left">&#xa0;</td>
 </tr>
@@ -1157,9 +1157,9 @@ have 6 states.
 </div>
 </div>
 
-<div id="outline-container-orgb4ddf2f" class="outline-2">
-<h2 id="orgb4ddf2f">Python interface</h2>
-<div class="outline-text-2" id="text-orgb4ddf2f">
+<div id="outline-container-org77b9a10" class="outline-2">
+<h2 id="org77b9a10">Python interface</h2>
+<div class="outline-text-2" id="text-org77b9a10">
 <p>
 See the <a href="https://spot.lrde.epita.fr/ipynb/satmin.html"><code>satmin.ipynb</code></a> notebook.
 </p>

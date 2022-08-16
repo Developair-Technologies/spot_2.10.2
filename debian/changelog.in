@@ -1,4 +1,4 @@
-spot (@VERSION@@GITPATCH@-1) unstable; urgency=low
+spot (@VERSION@@GITPATCH@-1) stable; urgency=low
 
   * Initial release
 

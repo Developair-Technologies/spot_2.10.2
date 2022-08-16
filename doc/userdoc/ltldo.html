@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:23 -->
+<!-- 2022-05-18 Wed 07:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title><code>ltldo</code></title>
@@ -230,18 +230,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org473de83">Example: computing statistics for <code>ltl3ba</code></a></li>
-<li><a href="#org8df0a43">Example: running <code>spin</code> and producing HOA</a></li>
-<li><a href="#org9a007b8">Syntax for specifying tools to call</a></li>
-<li><a href="#org7650552">Shorthands for existing tools</a></li>
-<li><a href="#orga76f16d">Transparent renaming</a></li>
+<li><a href="#org507c4ac">Example: computing statistics for <code>ltl3ba</code></a></li>
+<li><a href="#orgcf19938">Example: running <code>spin</code> and producing HOA</a></li>
+<li><a href="#org57657e6">Syntax for specifying tools to call</a></li>
+<li><a href="#org2db9ac7">Shorthands for existing tools</a></li>
+<li><a href="#orgddc9e81">Transparent renaming</a></li>
 <li><a href="#portfolio">Acting as a portfolio of translators</a></li>
-<li><a href="#org0891497">Controlling and measuring time</a></li>
+<li><a href="#org9dd9087">Controlling and measuring time</a></li>
 </ul>
 </div>
 </div>
 
-<div id="orgf98dee1" class="figure">
+<div id="orgd24f731" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -265,9 +265,9 @@ In effect, <code>ltldo</code> wraps the I/O interface of the Spot tools on top o
 any other tool.
 </p>
 
-<div id="outline-container-org473de83" class="outline-2">
-<h2 id="org473de83">Example: computing statistics for <code>ltl3ba</code></h2>
-<div class="outline-text-2" id="text-org473de83">
+<div id="outline-container-org507c4ac" class="outline-2">
+<h2 id="org507c4ac">Example: computing statistics for <code>ltl3ba</code></h2>
+<div class="outline-text-2" id="text-org507c4ac">
 <p>
 As a motivating example, consider a scenario where we want to run
 <a href="https://sourceforge.net/projects/ltl3ba/"><code>ltl3ba</code></a> on a set of 10 formulas stored in a file.  For each formula
@@ -327,7 +327,7 @@ Here is how the shell command could look like:
 <span class="org-keyword">done</span>
 </pre>
 </div>
-<pre class="example" id="org74060f6">
+<pre class="example" id="orga9bcdb9">
 true,1,1
 true U a,2,4
 !(!((a U []b) U b) U []&lt;&gt;a),2,4
@@ -349,7 +349,7 @@ Using <code>ltldo</code> the above command can be reduced to this:
 <pre class="src src-sh">ltldo <span class="org-string">'ltl3ba -f %s&gt;%O'</span> -F sample.ltl --stats=<span class="org-string">'%f,%s,%t'</span>
 </pre>
 </div>
-<pre class="example" id="org971088c">
+<pre class="example" id="orgf758972">
 1,1,1
 1 U a,2,4
 !(!((a U Gb) U b) U GFa),2,4
@@ -381,9 +381,9 @@ command:
 </div>
 </div>
 
-<div id="outline-container-org8df0a43" class="outline-2">
-<h2 id="org8df0a43">Example: running <code>spin</code> and producing HOA</h2>
-<div class="outline-text-2" id="text-org8df0a43">
+<div id="outline-container-orgcf19938" class="outline-2">
+<h2 id="orgcf19938">Example: running <code>spin</code> and producing HOA</h2>
+<div class="outline-text-2" id="text-orgcf19938">
 <p>
 Here is another example, where we use Spin to produce two automata in
 the <a href="http://adl.github.io/hoaf/">HOA format</a>.  Spin has no support for HOA, but <code>ltldo</code> simply
@@ -432,15 +432,15 @@ Again, using the shorthands defined below, the previous command can be
 simplified to just this:
 </p>
 
-<pre class="example" id="org3570ef2">
+<pre class="example" id="org7ed6868">
 ltldo spin -f a -f GFa
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org9a007b8" class="outline-2">
-<h2 id="org9a007b8">Syntax for specifying tools to call</h2>
-<div class="outline-text-2" id="text-org9a007b8">
+<div id="outline-container-org57657e6" class="outline-2">
+<h2 id="org57657e6">Syntax for specifying tools to call</h2>
+<div class="outline-text-2" id="text-org57657e6">
 <p>
 The syntax for specifying how a tool should be called is the same as
 in <a href="ltlcross.html"><code>ltlcross</code></a>.  Namely, the following sequences are available.
@@ -519,9 +519,9 @@ Much more readable!
 </div>
 </div>
 
-<div id="outline-container-org7650552" class="outline-2">
-<h2 id="org7650552">Shorthands for existing tools</h2>
-<div class="outline-text-2" id="text-org7650552">
+<div id="outline-container-org2db9ac7" class="outline-2">
+<h2 id="org2db9ac7">Shorthands for existing tools</h2>
+<div class="outline-text-2" id="text-org2db9ac7">
 <p>
 There is a list of existing tools for which <code>ltldo</code> (and <code>ltlcross</code>)
 have built-in specifications.  This list can be printed using the
@@ -532,7 +532,7 @@ have built-in specifications.  This list can be printed using the
 <pre class="src src-sh">ltldo --list-shorthands
 </pre>
 </div>
-<pre class="example" id="orgc2ba43f">
+<pre class="example" id="orgd9a0c18">
 If a COMMANDFMT does not use any %-sequence, and starts with one of
 the following regexes, then the string on the right is appended.
 
@@ -565,10 +565,10 @@ requested with <code>-d</code>) for the neverclaim produced by <code>ltl2ba -f a
 <pre class="src src-sh">ltldo ltl2ba -f a -d
 </pre>
 </div>
-<pre class="example" id="org8ec3bea">
+<pre class="example" id="orgada9adf">
 digraph "" {
   rankdir=LR
-  label="\n[Büchi]"
+  label="[Büchi]"
   labelloc="t"
   node [shape="circle"]
   I [label="", style=invis, width=0]
@@ -603,9 +603,9 @@ ltl3ba -H2, 1 states, 2 edges
 </div>
 </div>
 
-<div id="outline-container-orga76f16d" class="outline-2">
-<h2 id="orga76f16d">Transparent renaming</h2>
-<div class="outline-text-2" id="text-orga76f16d">
+<div id="outline-container-orgddc9e81" class="outline-2">
+<h2 id="orgddc9e81">Transparent renaming</h2>
+<div class="outline-text-2" id="text-orgddc9e81">
 <p>
 If you have ever tried to use <code>spin</code>, <code>ltl2ba</code>, or <code>ltl3ba</code>, to translate
 a formula such as <code>[]!Error</code>, you have noticed that it does not work:
@@ -804,7 +804,7 @@ can use the following command instead.
 </pre>
 </div>
 
-<pre class="example" id="orgd521ce5">
+<pre class="example" id="org5b17a3b">
 HOA: v1
 name: "F(a &amp; Xa)"
 States: 3
@@ -839,7 +839,7 @@ automaton.
   ltldo -F-/2 ltl2ba ltl3ba <span class="org-string">'ltl2tgba -s'</span> --smallest --stats=<span class="org-string">'%&lt;,%T'</span>
 </pre>
 </div>
-<pre class="example" id="org2cb533a">
+<pre class="example" id="org2ee03b9">
 dac-patterns:10,ltl2ba
 dac-patterns:11,ltl2ba
 dac-patterns:12,ltl2tgba -s
@@ -869,7 +869,7 @@ To understand the above pipeline, remove the <code>ltldo</code> invocation.  The
 <pre class="src src-sh">genltl --dac=10..20 --format=%F:%L,%f
 </pre>
 </div>
-<pre class="example" id="org06bdcf7">
+<pre class="example" id="org14540d6">
 dac-patterns:10,G((p0 &amp; !p1) -&gt; (!p1 U (!p1 &amp; p2)))
 dac-patterns:11,!p0 W (p0 W (!p0 W (p0 W G!p0)))
 dac-patterns:12,Fp0 -&gt; ((!p0 &amp; !p1) U (p0 | ((!p0 &amp; p1) U (p0 | ((!p0 &amp; !p1) U (p0 | ((!p0 &amp; p1) U (p0 | (!p1 U p0)))))))))
@@ -910,7 +910,7 @@ files.)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orgde6ec1b"><span class="org-builtin">echo</span> input,ltl2ba,ltl3ba,ltl2tgba -s
+<pre class="src src-sh" id="org328b389"><span class="org-builtin">echo</span> input,ltl2ba,ltl3ba,ltl2tgba -s
 genltl --dac=10..20 --format=%F:%L,%f |
   ltldo -F-/2 ltl2ba --stats <span class="org-string">'%&lt;,%f,%ss %ee %dd'</span> |
   ltldo -F-/2 ltl3ba --stats <span class="org-string">'%&lt;,%f,%&gt;,%ss %ee %dd'</span> |
@@ -1020,9 +1020,9 @@ genltl --dac=10..20 --format=%F:%L,%f |
 </div>
 </div>
 
-<div id="outline-container-org0891497" class="outline-2">
-<h2 id="org0891497">Controlling and measuring time</h2>
-<div class="outline-text-2" id="text-org0891497">
+<div id="outline-container-org9dd9087" class="outline-2">
+<h2 id="org9dd9087">Controlling and measuring time</h2>
+<div class="outline-text-2" id="text-org9dd9087">
 <p>
 The run time of each command can be restricted with the <code>-T NUM</code>
 option.  The argument is the maximum number of seconds that each

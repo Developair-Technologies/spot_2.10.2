@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:20 -->
+<!-- 2022-05-18 Wed 07:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Constructing and transforming formulas</title>
@@ -230,23 +230,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org74e64e3">Constructing formulas</a>
+<li><a href="#orgd2006d8">Constructing formulas</a>
 <ul>
-<li><a href="#org32ab86c">C++</a></li>
-<li><a href="#org9124c84">Python</a></li>
+<li><a href="#orga54217f">C++</a></li>
+<li><a href="#org13f858c">Python</a></li>
 </ul>
 </li>
-<li><a href="#orgacb8be1">Transforming formulas</a>
+<li><a href="#org77af283">Transforming formulas</a>
 <ul>
-<li><a href="#org12d02a1">C++</a></li>
-<li><a href="#orge2f16c6">Python</a></li>
+<li><a href="#orgda9afca">C++</a></li>
+<li><a href="#orgd06c90d">Python</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="org58679eb" class="figure">
+<div id="org2e672d9" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -264,13 +264,13 @@ then Python.  Once these basics are covered, we will show examples for
 traversing and transforming formulas (again in C++ then Python).
 </p>
 
-<div id="outline-container-org74e64e3" class="outline-2">
-<h2 id="org74e64e3">Constructing formulas</h2>
-<div class="outline-text-2" id="text-org74e64e3">
+<div id="outline-container-orgd2006d8" class="outline-2">
+<h2 id="orgd2006d8">Constructing formulas</h2>
+<div class="outline-text-2" id="text-orgd2006d8">
 </div>
-<div id="outline-container-org32ab86c" class="outline-3">
-<h3 id="org32ab86c">C++</h3>
-<div class="outline-text-3" id="text-org32ab86c">
+<div id="outline-container-orga54217f" class="outline-3">
+<h3 id="orga54217f">C++</h3>
+<div class="outline-text-3" id="text-orga54217f">
 <p>
 The <code>spot::formula</code> class contains static methods that act as
 constructors for each supported operator.
@@ -411,9 +411,9 @@ GFc is G
 </div>
 </div>
 
-<div id="outline-container-org9124c84" class="outline-3">
-<h3 id="org9124c84">Python</h3>
-<div class="outline-text-3" id="text-org9124c84">
+<div id="outline-container-org13f858c" class="outline-3">
+<h3 id="org13f858c">Python</h3>
+<div class="outline-text-3" id="text-org13f858c">
 <p>
 The Python equivalent is similar:
 </p>
@@ -458,13 +458,13 @@ GFc is G
 </div>
 </div>
 
-<div id="outline-container-orgacb8be1" class="outline-2">
-<h2 id="orgacb8be1">Transforming formulas</h2>
-<div class="outline-text-2" id="text-orgacb8be1">
+<div id="outline-container-org77af283" class="outline-2">
+<h2 id="org77af283">Transforming formulas</h2>
+<div class="outline-text-2" id="text-org77af283">
 </div>
-<div id="outline-container-org12d02a1" class="outline-3">
-<h3 id="org12d02a1">C++</h3>
-<div class="outline-text-3" id="text-org12d02a1">
+<div id="outline-container-orgda9afca" class="outline-3">
+<h3 id="orgda9afca">C++</h3>
+<div class="outline-text-3" id="text-orgda9afca">
 <p>
 In Spot, Formula objects are immutable: this allows identical subtrees
 to be shared among multiple formulas.  Algorithms that "transform"
@@ -497,7 +497,7 @@ time time by not exploring further.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++" id="org9e0c0a2"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
+<pre class="src src-C++" id="org2b4b5c5"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;spot/tl/formula.hh&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;spot/tl/print.hh&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;spot/tl/parse.hh&gt;</span>
@@ -520,7 +520,7 @@ time time by not exploring further.
 </pre>
 </div>
 
-<pre class="example" id="org21aeab1">
+<pre class="example" id="orgb805f24">
 FGa -&gt; (GFb &amp; GF(b &amp; c &amp; d))
 FGa
 Ga
@@ -548,7 +548,7 @@ in a formula:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++" id="org2a6beb7"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
+<pre class="src src-C++" id="org0b17a9b"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;spot/tl/formula.hh&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;spot/tl/print.hh&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;spot/tl/parse.hh&gt;</span>
@@ -584,8 +584,8 @@ after:  GFa -&gt; (FGb &amp; FG(b &amp; c &amp; d))
 
 
 <ul class="org-ul">
-<li><a id="orgbedafa0"></a>Additional tricks about <code>map</code> and <code>traverse</code> in C++<br />
-<div class="outline-text-4" id="text-orgbedafa0">
+<li><a id="org86276cd"></a>Additional tricks about <code>map</code> and <code>traverse</code> in C++<br />
+<div class="outline-text-4" id="text-org86276cd">
 <p>
 As seen above, the first argument of <code>map()</code> and <code>traverse()</code> is a
 function <code>fun()</code> (or actually any object that as an <code>operator()</code>) that
@@ -595,7 +595,7 @@ formula.
 </p>
 
 <p>
-For instance instead of having a lambda capturing the <a href="#org9e0c0a2"><code>gcount</code>
+For instance instead of having a lambda capturing the <a href="#org2b4b5c5"><code>gcount</code>
 variable in the first example</a>, we could pass a reference to this
 variable:
 </p>
@@ -637,7 +637,7 @@ capturing them in the lambda.
 
 <p>
 The possibility to pass additional arguments is however more useful in
-the case of <code>map</code>.  Let's write a variant of our <a href="#org2a6beb7"><code>xchg_fg()</code> example</a>
+the case of <code>map</code>.  Let's write a variant of our <a href="#org0b17a9b"><code>xchg_fg()</code> example</a>
 that counts the number of exchanges performed.  First, we do it
 without lambda:
 </p>
@@ -736,9 +736,9 @@ exchanges:  6
 </div>
 
 
-<div id="outline-container-orge2f16c6" class="outline-3">
-<h3 id="orge2f16c6">Python</h3>
-<div class="outline-text-3" id="text-orge2f16c6">
+<div id="outline-container-orgd06c90d" class="outline-3">
+<h3 id="orgd06c90d">Python</h3>
+<div class="outline-text-3" id="text-orgd06c90d">
 <p>
 The Python version of the above two examples uses a very similar
 syntax.  Python only supports a very limited form of lambda
@@ -762,7 +762,7 @@ f.traverse(countg)
 </pre>
 </div>
 
-<pre class="example" id="orgfc89853">
+<pre class="example" id="orgb00cb2f">
 FGa -&gt; (GFb &amp; GF(b &amp; c &amp; d))
 FGa
 Ga

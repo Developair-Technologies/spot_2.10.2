@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:21 -->
+<!-- 2022-05-18 Wed 07:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title><code>autfilt</code></title>
@@ -230,29 +230,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org14a2658">Conversion between formats</a></li>
-<li><a href="#orgcb3afbf">Displaying statistics</a></li>
-<li><a href="#org1cacbc0">Filtering automata</a></li>
-<li><a href="#orgb1b0807">Simplifying automata and changing acceptance conditions</a>
+<li><a href="#org5b08495">Conversion between formats</a></li>
+<li><a href="#org4c31901">Displaying statistics</a></li>
+<li><a href="#orge620214">Filtering automata</a></li>
+<li><a href="#org17d9a23">Simplifying automata and changing acceptance conditions</a>
 <ul>
-<li><a href="#org81ad06f">Determinization</a></li>
+<li><a href="#org43657bb">Determinization</a></li>
 </ul>
 </li>
-<li><a href="#org8dfcfd3">Transformations</a></li>
-<li><a href="#org709bcb0">Decorations</a></li>
-<li><a href="#org2466c0a">Examples</a>
+<li><a href="#org001530a">Transformations</a></li>
+<li><a href="#org40128fb">Decorations</a></li>
+<li><a href="#org177656d">Examples</a>
 <ul>
-<li><a href="#orge8c3e62">Acceptance transformations</a></li>
-<li><a href="#orgb3d5133">Atomic proposition removal</a></li>
-<li><a href="#org4a7e0b6">Testing word acceptance</a></li>
-<li><a href="#org859d5a6">Decorations</a></li>
+<li><a href="#org50cc377">Acceptance transformations</a></li>
+<li><a href="#org5782689">Atomic proposition removal</a></li>
+<li><a href="#orgc505c3a">Testing word acceptance</a></li>
+<li><a href="#orge6992b2">Decorations</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="org43e824f" class="figure">
+<div id="org3e2a8c8" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -279,9 +279,9 @@ output (i.e., format conversion) without any transformation and
 filtering.
 </p>
 
-<div id="outline-container-org14a2658" class="outline-2">
-<h2 id="org14a2658">Conversion between formats</h2>
-<div class="outline-text-2" id="text-org14a2658">
+<div id="outline-container-org5b08495" class="outline-2">
+<h2 id="org5b08495">Conversion between formats</h2>
+<div class="outline-text-2" id="text-org5b08495">
 <p>
 <code>autfilt</code> can read automata written in the <a href="http://adl.github.io/hoaf/">Hanoi Omega Automata
 Format</a>, as <a href="http://spinroot.com/spin/Man/never.html">Spin never claims</a>, using <a href="http://www.tcs.hut.fi/Software/lbtt/doc/html/Format-for-automata.html">LBTT's format</a>, or using
@@ -315,7 +315,7 @@ autfilt example.hoa --dot
 </pre>
 </div>
 
-<pre class="example" id="org55484b5">
+<pre class="example" id="org9caa4db">
 digraph "" {
   rankdir=LR
   label=&lt;Inf(&lt;font color="#1F78B4"&gt;⓿&lt;/font&gt;)&lt;br/&gt;[Büchi]&gt;
@@ -342,7 +342,7 @@ The <code>--spin</code> option implicitly requires a degeneralization:
 </pre>
 </div>
 
-<pre class="example" id="orgdd503b5">
+<pre class="example" id="org39ec6c1">
 never {
 T0_init:
   if
@@ -376,9 +376,9 @@ Option <code>--lbtt</code> only works for Büchi or generalized Büchi acceptanc
 </div>
 </div>
 
-<div id="outline-container-orgcb3afbf" class="outline-2">
-<h2 id="orgcb3afbf">Displaying statistics</h2>
-<div class="outline-text-2" id="text-orgcb3afbf">
+<div id="outline-container-org4c31901" class="outline-2">
+<h2 id="org4c31901">Displaying statistics</h2>
+<div class="outline-text-2" id="text-org4c31901">
 <p>
 One special output format of <code>autfilt</code> is the statistic output.  For
 instance the following command calls <a href="randaut.html"><code>randaut</code></a> to generate 10 random
@@ -393,7 +393,7 @@ autfilt --stats=<span class="org-string">'%s states, %e edges, %a acc-sets, %c S
 </pre>
 </div>
 
-<pre class="example" id="org4270c64">
+<pre class="example" id="orga634d3a">
 16 states, 30 edges, 1 acc-sets, 3 SCCs, det=0
 20 states, 42 edges, 2 acc-sets, 1 SCCs, det=0
 15 states, 27 edges, 2 acc-sets, 1 SCCs, det=0
@@ -409,7 +409,7 @@ autfilt --stats=<span class="org-string">'%s states, %e edges, %a acc-sets, %c S
 <p>
 The following <code>%</code> sequences are available:
 </p>
-<pre class="example" id="orga3d1226">
+<pre class="example" id="org0348db8">
 %&lt;                         the part of the line before the formula if it
                            comes from a column extracted from a CSV file
 %&gt;                         the part of the line after the formula if it comes
@@ -476,15 +476,15 @@ automaton.
 </div>
 </div>
 
-<div id="outline-container-org1cacbc0" class="outline-2">
-<h2 id="org1cacbc0">Filtering automata</h2>
-<div class="outline-text-2" id="text-org1cacbc0">
+<div id="outline-container-orge620214" class="outline-2">
+<h2 id="orge620214">Filtering automata</h2>
+<div class="outline-text-2" id="text-orge620214">
 <p>
 <code>autfilt</code> offers multiple options to filter automata based on
 different characteristics of the automaton.
 </p>
 
-<pre class="example" id="org3b17f26">
+<pre class="example" id="org0ae1972">
     --acc-sccs=RANGE, --accepting-sccs=RANGE
                            keep automata whose number of non-trivial
                            accepting SCCs is in RANGE
@@ -569,9 +569,9 @@ keep the others.
 </div>
 </div>
 
-<div id="outline-container-orgb1b0807" class="outline-2">
-<h2 id="orgb1b0807">Simplifying automata and changing acceptance conditions</h2>
-<div class="outline-text-2" id="text-orgb1b0807">
+<div id="outline-container-org17d9a23" class="outline-2">
+<h2 id="org17d9a23">Simplifying automata and changing acceptance conditions</h2>
+<div class="outline-text-2" id="text-org17d9a23">
 <p>
 The standard set of automata simplification routines (these are often
 referred to as the "post-processing" routines, because these are the
@@ -583,7 +583,7 @@ TGBA) are available through the following options.
 This set of options controls the desired type of output automaton:
 </p>
 
-<pre class="example" id="org167860c">
+<pre class="example" id="org38d2781">
 -b, --buchi, --Buchi       automaton with Büchi acceptance
 -B, --sba, --ba            state-based Büchi Automaton (same as -S -b)
     --cobuchi, --coBuchi   automaton with co-Büchi acceptance (will
@@ -664,9 +664,9 @@ just implies that <code>autfilt</code> could not find it.</li>
 </div>
 
 
-<div id="outline-container-org81ad06f" class="outline-3">
-<h3 id="org81ad06f">Determinization</h3>
-<div class="outline-text-3" id="text-org81ad06f">
+<div id="outline-container-org43657bb" class="outline-3">
+<h3 id="org43657bb">Determinization</h3>
+<div class="outline-text-3" id="text-org43657bb">
 <p>
 Spot has basically two ways to determinize automata, and that it uses
 when <code>--deterministic</code> is passed.
@@ -708,14 +708,14 @@ set.
 </div>
 </div>
 
-<div id="outline-container-org8dfcfd3" class="outline-2">
-<h2 id="org8dfcfd3">Transformations</h2>
-<div class="outline-text-2" id="text-org8dfcfd3">
+<div id="outline-container-org001530a" class="outline-2">
+<h2 id="org001530a">Transformations</h2>
+<div class="outline-text-2" id="text-org001530a">
 <p>
 The following transformations are available:
 </p>
 
-<pre class="example" id="org6deb2f3">
+<pre class="example" id="orge78bce4">
 --cleanup-acceptance   remove unused acceptance sets from the automaton
 --cnf-acceptance       put the acceptance condition in Conjunctive Normal
                        Form
@@ -819,16 +819,16 @@ The following transformations are available:
 </div>
 </div>
 
-<div id="outline-container-org709bcb0" class="outline-2">
-<h2 id="org709bcb0">Decorations</h2>
-<div class="outline-text-2" id="text-org709bcb0">
+<div id="outline-container-org40128fb" class="outline-2">
+<h2 id="org40128fb">Decorations</h2>
+<div class="outline-text-2" id="text-org40128fb">
 <p>
 Decorations work by coloring some states or edges in the automaton.
 They are only useful when the automaton is output in Dot format (with
 <code>--dot</code> or <code>-d</code>) or HOA v1.1 format (with <code>-H1.1</code> or <code>--hoa=1.1</code>).
 </p>
 
-<pre class="example" id="org6a385cf">
+<pre class="example" id="orgaadbf61">
 --highlight-accepting-run[=NUM]
                        highlight one accepting run using color NUM
 --highlight-languages  highlight states that recognize identical
@@ -851,13 +851,13 @@ sets, but this might change in the future.
 </div>
 </div>
 
-<div id="outline-container-org2466c0a" class="outline-2">
-<h2 id="org2466c0a">Examples</h2>
-<div class="outline-text-2" id="text-org2466c0a">
+<div id="outline-container-org177656d" class="outline-2">
+<h2 id="org177656d">Examples</h2>
+<div class="outline-text-2" id="text-org177656d">
 </div>
-<div id="outline-container-orge8c3e62" class="outline-3">
-<h3 id="orge8c3e62">Acceptance transformations</h3>
-<div class="outline-text-3" id="text-orge8c3e62">
+<div id="outline-container-org50cc377" class="outline-3">
+<h3 id="org50cc377">Acceptance transformations</h3>
+<div class="outline-text-3" id="text-org50cc377">
 <p>
 Here is an automaton with transition-based acceptance:
 </p>
@@ -893,12 +893,12 @@ discussed <a href="oaut.html#default-dot">on another page</a>.)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orgb76e501">autfilt aut-ex1.hoa --dot
+<pre class="src src-sh" id="orgc48ecb0">autfilt aut-ex1.hoa --dot
 </pre>
 </div>
 
 
-<div id="org86e881f" class="figure">
+<div id="org9b38382" class="figure">
 <p><object type="image/svg+xml" data="autfilt-ex1.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -909,12 +909,12 @@ Using <code>-S</code> will "push" the acceptance membership of the transitions t
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org82c6faf">autfilt -S aut-ex1.hoa --dot
+<pre class="src src-sh" id="org2c98197">autfilt -S aut-ex1.hoa --dot
 </pre>
 </div>
 
 
-<div id="orgcf64c82" class="figure">
+<div id="org8e13de9" class="figure">
 <p><object type="image/svg+xml" data="autfilt-ex2.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -925,12 +925,12 @@ Using <code>--cnf-acceptance</code> simply rewrites the acceptance condition in 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org3b80021">autfilt --cnf-acceptance aut-ex1.hoa --dot
+<pre class="src src-sh" id="orgb6f186c">autfilt --cnf-acceptance aut-ex1.hoa --dot
 </pre>
 </div>
 
 
-<div id="org7a9afba" class="figure">
+<div id="org97c679b" class="figure">
 <p><object type="image/svg+xml" data="autfilt-ex3.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -943,12 +943,12 @@ of identical acceptance sets, etc) to simplify the acceptance formula of an auto
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org07479de">autfilt --simplify-acc aut-ex1.hoa --dot
+<pre class="src src-sh" id="orgfd9970f">autfilt --simplify-acc aut-ex1.hoa --dot
 </pre>
 </div>
 
 
-<div id="orga6f35c7" class="figure">
+<div id="org06b175c" class="figure">
 <p><object type="image/svg+xml" data="autfilt-ex3b.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -964,12 +964,12 @@ not simplify the automaton constructed, so additionally passing
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org2b012e8">autfilt --remove-fin --small aut-ex1.hoa --dot
+<pre class="src src-sh" id="org08cd92b">autfilt --remove-fin --small aut-ex1.hoa --dot
 </pre>
 </div>
 
 
-<div id="org2cda6fe" class="figure">
+<div id="org4c8bc99" class="figure">
 <p><object type="image/svg+xml" data="autfilt-ex4.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -982,12 +982,12 @@ reflect the fact that these sets can never be visited.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org570d4fe">autfilt --mask-acc=1,2 aut-ex1.hoa --dot
+<pre class="src src-sh" id="orgc048239">autfilt --mask-acc=1,2 aut-ex1.hoa --dot
 </pre>
 </div>
 
 
-<div id="org5beaaac" class="figure">
+<div id="org5e1f707" class="figure">
 <p><object type="image/svg+xml" data="autfilt-ex5.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -1002,12 +1002,12 @@ without any color.)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org10108e6">autfilt --colored-parity aut-ex1.hoa --dot
+<pre class="src src-sh" id="orgd853591">autfilt --colored-parity aut-ex1.hoa --dot
 </pre>
 </div>
 
 
-<div id="org1bfdaed" class="figure">
+<div id="org5c9b358" class="figure">
 <p><object type="image/svg+xml" data="autfilt-ex6.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -1019,12 +1019,12 @@ argument of the <code>--parity</code> or <code>--colored-parity</code> option.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orgd9dbd05">autfilt --parity=<span class="org-string">'min odd'</span> aut-ex1.hoa --dot
+<pre class="src src-sh" id="org510ee33">autfilt --parity=<span class="org-string">'min odd'</span> aut-ex1.hoa --dot
 </pre>
 </div>
 
 
-<div id="org85082d3" class="figure">
+<div id="org251592b" class="figure">
 <p><object type="image/svg+xml" data="autfilt-ex6b.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -1034,9 +1034,9 @@ Sorry, your browser does not support SVG.</object>
 
 
 
-<div id="outline-container-orgb3d5133" class="outline-3">
-<h3 id="orgb3d5133">Atomic proposition removal</h3>
-<div class="outline-text-3" id="text-orgb3d5133">
+<div id="outline-container-org5782689" class="outline-3">
+<h3 id="org5782689">Atomic proposition removal</h3>
+<div class="outline-text-3" id="text-org5782689">
 <p>
 Atomic propositions can be removed from an automaton in three ways:
 </p>
@@ -1052,36 +1052,36 @@ Here are the results of these three options on our example:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org315d272">autfilt --remove-ap=a aut-ex1.hoa --dot
+<pre class="src src-sh" id="orgb1e4136">autfilt --remove-ap=a aut-ex1.hoa --dot
 </pre>
 </div>
 
 
-<div id="org957d940" class="figure">
+<div id="org47ccd8e" class="figure">
 <p><object type="image/svg+xml" data="autfilt-ex6a.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org2a6e015">autfilt --remove-ap=<span class="org-variable-name">a</span>=0 aut-ex1.hoa --dot
+<pre class="src src-sh" id="orgc9d154b">autfilt --remove-ap=<span class="org-variable-name">a</span>=0 aut-ex1.hoa --dot
 </pre>
 </div>
 
 
-<div id="orgc1f694f" class="figure">
+<div id="org62907a9" class="figure">
 <p><object type="image/svg+xml" data="autfilt-ex6b.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orgbde4b3b">autfilt --remove-ap=<span class="org-variable-name">a</span>=1 aut-ex1.hoa --dot
+<pre class="src src-sh" id="orgcd1e522">autfilt --remove-ap=<span class="org-variable-name">a</span>=1 aut-ex1.hoa --dot
 </pre>
 </div>
 
 
-<div id="org1889407" class="figure">
+<div id="org6b3c5c2" class="figure">
 <p><object type="image/svg+xml" data="autfilt-ex6c.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -1089,9 +1089,9 @@ Sorry, your browser does not support SVG.</object>
 </div>
 </div>
 
-<div id="outline-container-org4a7e0b6" class="outline-3">
-<h3 id="org4a7e0b6">Testing word acceptance</h3>
-<div class="outline-text-3" id="text-org4a7e0b6">
+<div id="outline-container-orgc505c3a" class="outline-3">
+<h3 id="orgc505c3a">Testing word acceptance</h3>
+<div class="outline-text-3" id="text-orgc505c3a">
 <p>
 The following example checks whether the formula <code>a U b U c</code> accepts
 the word <code>a&amp;!b&amp;!c; cycle{!a&amp;!b&amp;c}</code>.
@@ -1123,7 +1123,7 @@ stored as the name of the automaton by <code>ltl2tgba</code>).
 </pre>
 </div>
 
-<pre class="example" id="org38a1fbb">
+<pre class="example" id="org61eef16">
 F!b
 !b
 F(!a &amp; !b)
@@ -1164,9 +1164,9 @@ a | G((a &amp; GFa) | (!a &amp; FG!a))
 </div>
 </div>
 
-<div id="outline-container-org859d5a6" class="outline-3">
-<h3 id="org859d5a6">Decorations</h3>
-<div class="outline-text-3" id="text-org859d5a6">
+<div id="outline-container-orge6992b2" class="outline-3">
+<h3 id="orge6992b2">Decorations</h3>
+<div class="outline-text-3" id="text-orge6992b2">
 <p>
 We know from a previous example that formula <code>a U b U c</code> accepts the
 word <code>b; cycle{c}</code>.  We can actually highlight the corresponding
@@ -1174,12 +1174,12 @@ run in the automaton:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org0a4441a">ltl2tgba <span class="org-string">'a U b U c'</span> | autfilt --highlight-word=<span class="org-string">'a&amp;!b&amp;!c; cycle{!a&amp;!b&amp;c}'</span> -d
+<pre class="src src-sh" id="org3abf70e">ltl2tgba <span class="org-string">'a U b U c'</span> | autfilt --highlight-word=<span class="org-string">'a&amp;!b&amp;!c; cycle{!a&amp;!b&amp;c}'</span> -d
 </pre>
 </div>
 
 
-<div id="org0796608" class="figure">
+<div id="org0cfecf9" class="figure">
 <p><object type="image/svg+xml" data="autfilt-hlword.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -1194,14 +1194,14 @@ previous ones.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org210e5b5">ltl2tgba <span class="org-string">'a U b U c'</span> |
+<pre class="src src-sh" id="org795adc8">ltl2tgba <span class="org-string">'a U b U c'</span> |
   autfilt --highlight-word=5,<span class="org-string">'a&amp;!b&amp;!c; cycle{!a&amp;!b&amp;c}'</span> <span class="org-sh-escaped-newline">\</span>
           --highlight-word=4,<span class="org-string">'!a&amp;b&amp;!c; cycle{!a&amp;!b&amp;c}'</span> -d
 </pre>
 </div>
 
 
-<div id="org00af81f" class="figure">
+<div id="org34ea3c6" class="figure">
 <p><object type="image/svg+xml" data="autfilt-hlword2.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -1216,13 +1216,13 @@ made.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org2e67db5">ltl2tgba <span class="org-string">'F((b R a) W Gb)'</span> |
+<pre class="src src-sh" id="orgf70a2b6">ltl2tgba <span class="org-string">'F((b R a) W Gb)'</span> |
     autfilt --highlight-nondet-states=5 --highlight-nondet-edges=1 -d
 </pre>
 </div>
 
 
-<div id="org0526eaa" class="figure">
+<div id="orgbfc76ba" class="figure">
 <p><object type="image/svg+xml" data="autfilt-hlnondet.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>

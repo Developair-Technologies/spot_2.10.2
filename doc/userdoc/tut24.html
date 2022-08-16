@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:25 -->
+<!-- 2022-05-18 Wed 07:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Iterating over alternating automata</title>
@@ -230,13 +230,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgae9181f">C++</a></li>
-<li><a href="#org5ce3821">Python</a></li>
+<li><a href="#orgc274b15">C++</a></li>
+<li><a href="#org82b6884">Python</a></li>
 </ul>
 </div>
 </div>
 
-<div id="org1b5b6e3" class="figure">
+<div id="orgd3c2964" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -254,7 +254,7 @@ demonstrate a universal initial state).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-hoa" id="org601b460"><span class="org-hoa-header-uppercase">HOA:</span> v1
+<pre class="src src-hoa" id="orgd77e462"><span class="org-hoa-header-uppercase">HOA:</span> v1
 <span class="org-hoa-header-uppercase">States:</span> 3
 <span class="org-hoa-header-uppercase">Start:</span> 0&amp;1
 <span class="org-hoa-header-uppercase">AP:</span> 1 <span class="org-string">"a"</span>
@@ -274,15 +274,15 @@ demonstrate a universal initial state).
 </div>
 
 
-<div id="org7b09d2b" class="figure">
+<div id="orgc4bc748" class="figure">
 <p><object type="image/svg+xml" data="tut24in.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
-<div id="outline-container-orgae9181f" class="outline-2">
-<h2 id="orgae9181f">C++</h2>
-<div class="outline-text-2" id="text-orgae9181f">
+<div id="outline-container-orgc274b15" class="outline-2">
+<h2 id="orgc274b15">C++</h2>
+<div class="outline-text-2" id="text-orgc274b15">
 <p>
 Let us assume that this automaton has been loaded in variable <code>aut</code>,
 and that we run the following code, similar to what we did in the
@@ -290,7 +290,7 @@ and that we run the following code, similar to what we did in the
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++" id="orgfc5dec1"><span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">"Initial state: "</span> &lt;&lt; aut-&gt;get_init_state_number() &lt;&lt; <span class="org-string">'\n'</span>;
+<pre class="src src-C++" id="org44db66b"><span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">"Initial state: "</span> &lt;&lt; aut-&gt;get_init_state_number() &lt;&lt; <span class="org-string">'\n'</span>;
 
 <span class="org-keyword">const</span> <span class="org-constant">spot</span>::<span class="org-type">bdd_dict_ptr</span>&amp; <span class="org-variable-name">dict</span> = aut-&gt;get_dict();
 <span class="org-type">unsigned</span> <span class="org-variable-name">n</span> = aut-&gt;num_states();
@@ -363,7 +363,7 @@ decide whether to enclose the destinations in braces.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++" id="org61747f4"><span class="org-type">unsigned</span> <span class="org-variable-name">init</span> = aut-&gt;get_init_state_number();
+<pre class="src src-C++" id="org5942507"><span class="org-type">unsigned</span> <span class="org-variable-name">init</span> = aut-&gt;get_init_state_number();
 <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">"Initial state:"</span>;
 <span class="org-keyword">if</span> (aut-&gt;is_univ_dest(init))
   <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">" {"</span>;
@@ -421,9 +421,9 @@ State 2:
 </div>
 </div>
 
-<div id="outline-container-org5ce3821" class="outline-2">
-<h2 id="org5ce3821">Python</h2>
-<div class="outline-text-2" id="text-org5ce3821">
+<div id="outline-container-org82b6884" class="outline-2">
+<h2 id="org82b6884">Python</h2>
+<div class="outline-text-2" id="text-org82b6884">
 <p>
 Here is the Python version of this code:
 </p>
@@ -452,7 +452,7 @@ Here is the Python version of this code:
 </pre>
 </div>
 
-<pre class="example" id="orga86388b">
+<pre class="example" id="org9fbd501">
 Initial states: { 0 1 }
 State 0:
   edge(0 -&gt; 0)

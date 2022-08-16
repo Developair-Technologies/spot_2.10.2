@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:23 -->
+<!-- 2022-05-18 Wed 07:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title><code>ltlgrind</code></title>
@@ -230,18 +230,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org89cfded">Miscellaneous options</a>
+<li><a href="#org7bd7b4f">Miscellaneous options</a>
 <ul>
-<li><a href="#org8a1cf11"><code>--sort</code></a></li>
-<li><a href="#org5fb26e6"><code>-m N</code>, <code>--mutations=N</code></a></li>
-<li><a href="#org2f04c97"><code>-n N</code>, <code>--max-output=N</code></a></li>
+<li><a href="#org59d7605"><code>--sort</code></a></li>
+<li><a href="#orgde61c7d"><code>-m N</code>, <code>--mutations=N</code></a></li>
+<li><a href="#orgae93d2c"><code>-n N</code>, <code>--max-output=N</code></a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="org9d2c2b7" class="figure">
+<div id="org15a6358" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -263,7 +263,7 @@ formula that caused a problem before trying to debug it (see also
 Here is a list of the different kinds of mutations that can be applied:
 </p>
 
-<pre class="example" id="orgaff8b09">
+<pre class="example" id="orga4cf478">
 --ap-to-const          atomic propositions are replaced with true/false
 --remove-multop-operands   remove one operand from multops
 --remove-one-ap        all occurrences of an atomic proposition are
@@ -293,7 +293,7 @@ specified, only those will be applied.
 </pre>
 </div>
 
-<pre class="example" id="orgea1dda3">
+<pre class="example" id="org3b32ab8">
 a
 G(b &lt;-&gt; c)
 a W G(b &lt;-&gt; c)
@@ -323,13 +323,13 @@ automatically by calling <code>ltlcross</code> with the <code>--grind=FILENAME</
 argument.
 </p>
 
-<div id="outline-container-org89cfded" class="outline-2">
-<h2 id="org89cfded">Miscellaneous options</h2>
-<div class="outline-text-2" id="text-org89cfded">
+<div id="outline-container-org7bd7b4f" class="outline-2">
+<h2 id="org7bd7b4f">Miscellaneous options</h2>
+<div class="outline-text-2" id="text-org7bd7b4f">
 </div>
-<div id="outline-container-org8a1cf11" class="outline-3">
-<h3 id="org8a1cf11"><code>--sort</code></h3>
-<div class="outline-text-3" id="text-org8a1cf11">
+<div id="outline-container-org59d7605" class="outline-3">
+<h3 id="org59d7605"><code>--sort</code></h3>
+<div class="outline-text-3" id="text-org59d7605">
 <p>
 Output formulas from the shortest to the longest one. The
 length of a formula is the number of atomic propositions, constants
@@ -337,9 +337,9 @@ and operators occurring in the formula.
 </p>
 </div>
 </div>
-<div id="outline-container-org5fb26e6" class="outline-3">
-<h3 id="org5fb26e6"><code>-m N</code>, <code>--mutations=N</code></h3>
-<div class="outline-text-3" id="text-org5fb26e6">
+<div id="outline-container-orgde61c7d" class="outline-3">
+<h3 id="orgde61c7d"><code>-m N</code>, <code>--mutations=N</code></h3>
+<div class="outline-text-3" id="text-orgde61c7d">
 <p>
 Specify the number of mutations to be applied to the formula. By
 default, <code>N=1</code>, so using this option is like calling ltlgrind on its
@@ -348,9 +348,9 @@ several formulas, ltlgrind doesn't handle duplicates.
 </p>
 </div>
 </div>
-<div id="outline-container-org2f04c97" class="outline-3">
-<h3 id="org2f04c97"><code>-n N</code>, <code>--max-output=N</code></h3>
-<div class="outline-text-3" id="text-org2f04c97">
+<div id="outline-container-orgae93d2c" class="outline-3">
+<h3 id="orgae93d2c"><code>-n N</code>, <code>--max-output=N</code></h3>
+<div class="outline-text-3" id="text-orgae93d2c">
 <p>
 Limit the number of mutated formulas output to <code>N</code>.
 </p>

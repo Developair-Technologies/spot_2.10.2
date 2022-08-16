@@ -1069,8 +1069,8 @@ bdd_format_formula = _impl.bdd_format_formula
 enable_utf8 = _impl.enable_utf8
 bdd_format_isop = _impl.bdd_format_isop
 bdd_print_isop = _impl.bdd_print_isop
-formula_to_bdd = _impl.formula_to_bdd
 bdd_to_formula = _impl.bdd_to_formula
+formula_to_bdd = _impl.formula_to_bdd
 class vector_rs_pair(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr

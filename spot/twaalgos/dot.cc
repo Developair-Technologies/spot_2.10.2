@@ -471,8 +471,8 @@ namespace spot
         // (e.g., "&" -> "&amp;") can increase it a lot, and (2)
         // a label of size 2048 is already unreasonable to display.
         std::string s = str_psl(f);
-        if (s.size() > 2048)
-          s = "(label too long)";
+        //if (s.size() > 2048)
+        //  s = "(label too long)";
         return escape_for_output(os, s);
       }
 

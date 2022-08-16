@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:23 -->
+<!-- 2022-05-18 Wed 07:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Using games to check a simulation</title>
@@ -252,13 +252,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0acfd6b">Python</a></li>
-<li><a href="#org0b2c048">C++</a></li>
+<li><a href="#org38d821f">Python</a></li>
+<li><a href="#orgb32bc20">C++</a></li>
 </ul>
 </div>
 </div>
 
-<div id="org723c2db" class="figure">
+<div id="org7b8c64d" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -288,11 +288,12 @@ transition, and reaching a destination state \(d'\) that simulates \(d\).
 </p>
 
 <p>
-In the following automaton, for instance, XXX
+In the following automaton, for instance, state 5 simulates state 1,
+and state 4 simulates state 0.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-hoa" id="orgf657371"><span class="org-hoa-header-uppercase">HOA:</span> v1
+<pre class="src src-hoa" id="orgf594af0"><span class="org-hoa-header-uppercase">HOA:</span> v1
 <span class="org-hoa-header-uppercase">States:</span> 6
 <span class="org-hoa-header-uppercase">Start:</span> 0
 <span class="org-hoa-header-uppercase">AP:</span> 2 <span class="org-string">"a"</span> <span class="org-string">"b"</span>
@@ -316,7 +317,7 @@ In the following automaton, for instance, XXX
 </div>
 
 
-<div id="orge312ccb" class="figure">
+<div id="org0ab018a" class="figure">
 <p><object type="image/svg+xml" data="tut40in.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -346,7 +347,7 @@ Here is how the game arena look like starting from \((q,q')=(4,0)\):
 </p>
 
 
-<div id="orgdac7b5f" class="figure">
+<div id="orgb697046" class="figure">
 <p><object type="image/svg+xml" data="tut40gameunsolved.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -368,7 +369,7 @@ strategies.
 </p>
 
 
-<div id="org29a60b0" class="figure">
+<div id="org7cd115e" class="figure">
 <p><object type="image/svg+xml" data="tut40gamesolved.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -384,21 +385,23 @@ games, or add more state to this game, to learn about other pairs of
 states.
 </p>
 
-<div id="outline-container-org0acfd6b" class="outline-2">
-<h2 id="org0acfd6b">Python</h2>
-<div class="outline-text-2" id="text-org0acfd6b">
+<div id="outline-container-org38d821f" class="outline-2">
+<h2 id="org38d821f">Python</h2>
+<div class="outline-text-2" id="text-org38d821f">
 <p>
 We now look at how to create such a game in Python.
 </p>
 
 <p>
-Essentially, a game in Spot is just an automaton equiped with a
-special property to indicate the owner of each states.  So it can be
-created using the usual interface:
+Essentially, a game in Spot is just an automaton equiped with a <a href="concepts.html#named-properties">named
+property "state-player"</a> that hold a Boolean vector indicating the
+owner of each state.  The game can be created using the usual
+automaton interface, and the owners are set by calling
+<code>game.set_state_players()</code> with a vector of Boolean at the very end.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgb0345e5"><span class="org-keyword">import</span> spot
+<pre class="src src-python" id="org1fcb5d6"><span class="org-keyword">import</span> spot
 <span class="org-keyword">from</span> spot <span class="org-keyword">import</span> buddy
 
 <span class="org-keyword">def</span> <span class="org-function-name">direct_sim_game</span>(aut, s1, s2):
@@ -421,7 +424,7 @@ created using the usual interface:
     <span class="org-variable-name">todo</span> = []
 
     <span class="org-comment-delimiter"># </span><span class="org-comment">Create the state (i, j) for a player if it does not exist yet and</span>
-    <span class="org-comment-delimiter"># </span><span class="org-comment">returns the state's number in the game.</span>
+    <span class="org-comment-delimiter"># </span><span class="org-comment">return the state's number in the game.</span>
     <span class="org-keyword">def</span> <span class="org-function-name">get_game_state</span>(player, i, j):
         <span class="org-variable-name">orig_state</span> = s_orig_states <span class="org-keyword">if</span> player <span class="org-keyword">else</span> d_orig_states
         <span class="org-keyword">if</span> (i, j) <span class="org-keyword">in</span> orig_state:
@@ -485,7 +488,7 @@ in state \((i,j)\), we could proceed as follow:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgfe4afe6"><span class="org-keyword">def</span> <span class="org-function-name">list_simulations</span>(aut, i, j):
+<pre class="src src-python" id="org21ddc15"><span class="org-keyword">def</span> <span class="org-function-name">list_simulations</span>(aut, i, j):
     <span class="org-variable-name">g</span> = direct_sim_game(aut, i, j)
     spot.solve_game(g)
 
@@ -519,9 +522,9 @@ On our running example, that gives:
 </div>
 </div>
 
-<div id="outline-container-org0b2c048" class="outline-2">
-<h2 id="org0b2c048">C++</h2>
-<div class="outline-text-2" id="text-org0b2c048">
+<div id="outline-container-orgb32bc20" class="outline-2">
+<h2 id="orgb32bc20">C++</h2>
+<div class="outline-text-2" id="text-orgb32bc20">
 <p>
 Here is some almost equivalent code in C++.
 </p>
@@ -533,7 +536,7 @@ product of automata.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++" id="org61b47e2"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;spot/twaalgos/game.hh&gt;</span>
+<pre class="src src-C++" id="orgb5f7a2d"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;spot/twaalgos/game.hh&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;spot/twa/twagraph.hh&gt;</span>
 
 <span class="org-constant">spot</span>::<span class="org-type">twa_graph_ptr</span> <span class="org-function-name">direct_sim_game</span>(<span class="org-constant">spot</span>::<span class="org-type">const_twa_graph_ptr</span> <span class="org-variable-name">aut</span>,
@@ -623,7 +626,7 @@ need to read the automaton from a file.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++" id="org9fdc242"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
+<pre class="src src-C++" id="org901de79"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;spot/twa/twagraph.hh&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;spot/parseaut/public.hh&gt;</span>
 

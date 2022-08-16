@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:19 -->
+<!-- 2022-05-18 Wed 07:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title><code>randaut</code></title>
@@ -252,16 +252,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org426bf55">States and density</a></li>
-<li><a href="#org27aa5fd">Acceptance condition</a></li>
-<li><a href="#org281938f">Determinism</a></li>
-<li><a href="#orgfd1567d">Output formats</a></li>
-<li><a href="#orge8f2ec0">Generating a stream of automata</a></li>
+<li><a href="#org6fcfebd">States and density</a></li>
+<li><a href="#org77dfad8">Acceptance condition</a></li>
+<li><a href="#org7452f5c">Determinism</a></li>
+<li><a href="#orga8fbce7">Output formats</a></li>
+<li><a href="#org90e074c">Generating a stream of automata</a></li>
 </ul>
 </div>
 </div>
 
-<div id="org1fa1230" class="figure">
+<div id="org4f3e06b" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -277,12 +277,12 @@ supply.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org28e4c4d">randaut a b --dot
+<pre class="src src-sh" id="orgc72b2e1">randaut a b --dot
 </pre>
 </div>
 
 
-<div id="orgc947c59" class="figure">
+<div id="org92e3d96" class="figure">
 <p><object type="image/svg+xml" data="randaut1.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -293,9 +293,9 @@ As for <a href="randltl.html"><code>randltl</code></a>, you can supply a number 
 instead of giving a list of atomic propositions.
 </p>
 
-<div id="outline-container-org426bf55" class="outline-2">
-<h2 id="org426bf55">States and density</h2>
-<div class="outline-text-2" id="text-org426bf55">
+<div id="outline-container-org6fcfebd" class="outline-2">
+<h2 id="org6fcfebd">States and density</h2>
+<div class="outline-text-2" id="text-org6fcfebd">
 <p>
 The numbers of states can be controlled using the <code>-Q</code> option.  This
 option will accept a range as argument, so for instance <code>-Q3..6</code> will
@@ -316,24 +316,24 @@ In particular <code>-e0</code> will cause all states to have 1 successors, and
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orga0fa8b3">randaut -Q3 -e0 2 --dot
+<pre class="src src-sh" id="org0098eff">randaut -Q3 -e0 2 --dot
 </pre>
 </div>
 
 
-<div id="orgf62a747" class="figure">
+<div id="org496d635" class="figure">
 <p><object type="image/svg+xml" data="randaut2.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org63261e0">randaut -Q3 -e1 2 --dot
+<pre class="src src-sh" id="orgcf08c8f">randaut -Q3 -e1 2 --dot
 </pre>
 </div>
 
 
-<div id="orga373aab" class="figure">
+<div id="org38a8e2a" class="figure">
 <p><object type="image/svg+xml" data="randaut3.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -341,9 +341,9 @@ Sorry, your browser does not support SVG.</object>
 </div>
 </div>
 
-<div id="outline-container-org27aa5fd" class="outline-2">
-<h2 id="org27aa5fd">Acceptance condition</h2>
-<div class="outline-text-2" id="text-org27aa5fd">
+<div id="outline-container-org77dfad8" class="outline-2">
+<h2 id="org77dfad8">Acceptance condition</h2>
+<div class="outline-text-2" id="text-org77dfad8">
 <p>
 The generation of the acceptance condition and acceptance sets is
 controlled with the following four parameters:
@@ -354,7 +354,7 @@ controlled with the following four parameters:
 acceptance condition, and the number of associated acceptance sets.
 The <code>ACCEPTANCE</code> argument is documented in <code>--help</code> as follows:</li>
 </ul>
-<pre class="example" id="org0aa357a">
+<pre class="example" id="org0da8043">
 RANGE may have one of the following forms: 'INT', 'INT..INT', or '..INT'.
 In the latter case, the missing number is assumed to be 1.
 
@@ -406,12 +406,12 @@ ans <code>-s</code> (or <code>--spin</code>) implies <code>-B</code>.
 
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orgf454f7f">randaut -Q3 -e0.5 -A3 -a0.5 2 --dot
+<pre class="src src-sh" id="orgc6a38f8">randaut -Q3 -e0.5 -A3 -a0.5 2 --dot
 </pre>
 </div>
 
 
-<div id="org73ec7f2" class="figure">
+<div id="orgaf37567" class="figure">
 <p><object type="image/svg+xml" data="randaut4.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -419,24 +419,24 @@ Sorry, your browser does not support SVG.</object>
 
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orgf2e1150">randaut -Q3 -e0.4 -B -a0.7 2 --dot
+<pre class="src src-sh" id="orga303a00">randaut -Q3 -e0.4 -B -a0.7 2 --dot
 </pre>
 </div>
 
 
-<div id="org6e3b092" class="figure">
+<div id="orgec68883" class="figure">
 <p><object type="image/svg+xml" data="randaut5.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orgd92733e">randaut -Q6 -e0.4 -S -a.2 -A <span class="org-string">'Streett 1..3'</span> 2 --dot
+<pre class="src src-sh" id="orge98e6b5">randaut -Q6 -e0.4 -S -a.2 -A <span class="org-string">'Streett 1..3'</span> 2 --dot
 </pre>
 </div>
 
 
-<div id="org4900d1a" class="figure">
+<div id="org3cd3b01" class="figure">
 <p><object type="image/svg+xml" data="randaut5b.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -451,12 +451,12 @@ give <code>randaut</code> some freedom, as in this example.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orgeb3169d">randaut -Q10 -S --colored -A <span class="org-string">'parity rand rand 3..4'</span> 2 --dot
+<pre class="src src-sh" id="org32ab671">randaut -Q10 -S --colored -A <span class="org-string">'parity rand rand 3..4'</span> 2 --dot
 </pre>
 </div>
 
 
-<div id="org4468108" class="figure">
+<div id="org65bed0e" class="figure">
 <p><object type="image/svg+xml" data="randaut5c.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -464,9 +464,9 @@ Sorry, your browser does not support SVG.</object>
 </div>
 </div>
 
-<div id="outline-container-org281938f" class="outline-2">
-<h2 id="org281938f">Determinism</h2>
-<div class="outline-text-2" id="text-org281938f">
+<div id="outline-container-org7452f5c" class="outline-2">
+<h2 id="org7452f5c">Determinism</h2>
+<div class="outline-text-2" id="text-org7452f5c">
 <p>
 The output can only contain a single edge between two given states.
 By default, the label of this edge is a random assignment of all
@@ -484,12 +484,12 @@ therefore deterministic and complete.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org13b420e">randaut -D -Q3 -e0.6 -A2 -a0.5 2 --dot
+<pre class="src src-sh" id="orga63247d">randaut -D -Q3 -e0.6 -A2 -a0.5 2 --dot
 </pre>
 </div>
 
 
-<div id="org2e39d9e" class="figure">
+<div id="org2624b0b" class="figure">
 <p><object type="image/svg+xml" data="randaut6.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -508,9 +508,9 @@ states.
 </div>
 </div>
 
-<div id="outline-container-orgfd1567d" class="outline-2">
-<h2 id="orgfd1567d">Output formats</h2>
-<div class="outline-text-2" id="text-orgfd1567d">
+<div id="outline-container-orga8fbce7" class="outline-2">
+<h2 id="orga8fbce7">Output formats</h2>
+<div class="outline-text-2" id="text-orga8fbce7">
 <p>
 The output format can be controlled using <a href="oaut.html">the common output options</a>
 like <code>--hoaf</code>, <code>--dot=</code>, <code>--lbtt</code>, and <code>--spin</code>.  Note that <code>--spin</code>
@@ -547,9 +547,9 @@ wc -l randaut-*.hoa
 </div>
 </div>
 
-<div id="outline-container-orge8f2ec0" class="outline-2">
-<h2 id="orge8f2ec0">Generating a stream of automata</h2>
-<div class="outline-text-2" id="text-orge8f2ec0">
+<div id="outline-container-org90e074c" class="outline-2">
+<h2 id="org90e074c">Generating a stream of automata</h2>
+<div class="outline-text-2" id="text-org90e074c">
 <p>
 Use option <code>-n</code> to specify a number of automata to build.  A negative
 value will cause an infinite number of automata to be produced.  This
@@ -575,14 +575,14 @@ displayed.)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org39e40f6">randaut -n -1 --colored -A<span class="org-string">'parity min odd 4'</span> a b |
+<pre class="src src-sh" id="orgd59ffd7">randaut -n -1 --colored -A<span class="org-string">'parity min odd 4'</span> a b |
 autfilt --sccs=5 --trivial-sccs=1 --rejecting-sccs=1 <span class="org-sh-escaped-newline">\</span>
         --inherently-weak-sccs=2 --weak-sccs=1 -n 1 --dot=.s
 </pre>
 </div>
 
 
-<div id="orgf92b343" class="figure">
+<div id="org6052e1e" class="figure">
 <p><object type="image/svg+xml" data="randaut7.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>

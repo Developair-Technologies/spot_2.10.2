@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:23 -->
+<!-- 2022-05-18 Wed 07:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Converting a never claim into HOA</title>
@@ -230,15 +230,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org07fdc1e">Shell</a></li>
-<li><a href="#org419dd2c">Python</a></li>
-<li><a href="#org7f01176">C++</a></li>
-<li><a href="#orgfcf6117">Additional comments</a></li>
+<li><a href="#orgb667830">Shell</a></li>
+<li><a href="#orgfa6bbc9">Python</a></li>
+<li><a href="#org117e430">C++</a></li>
+<li><a href="#org67635dc">Additional comments</a></li>
 </ul>
 </div>
 </div>
 
-<div id="orgc2cb8c6" class="figure">
+<div id="orga241a21" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -253,7 +253,7 @@ cat tut20.never
 </pre>
 </div>
 
-<pre class="example" id="org1a78856">
+<pre class="example" id="org0f80f32">
 never  {    /* []&lt;&gt;foo U bar */
 T0_init:
 	do
@@ -292,9 +292,9 @@ expect.  Even if our example uses a never claim as input, the code we
 write will read any of those formats.
 </p>
 
-<div id="outline-container-org07fdc1e" class="outline-2">
-<h2 id="org07fdc1e">Shell</h2>
-<div class="outline-text-2" id="text-org07fdc1e">
+<div id="outline-container-orgb667830" class="outline-2">
+<h2 id="orgb667830">Shell</h2>
+<div class="outline-text-2" id="text-orgb667830">
 <p>
 This is very simple: <a href="autfilt.html"><code>autfilt</code></a> can read automata in any of the
 supported formats, and outputs it in the HOA format by default:
@@ -334,9 +334,9 @@ supported formats, and outputs it in the HOA format by default:
 </div>
 </div>
 
-<div id="outline-container-org419dd2c" class="outline-2">
-<h2 id="org419dd2c">Python</h2>
-<div class="outline-text-2" id="text-org419dd2c">
+<div id="outline-container-orgfa6bbc9" class="outline-2">
+<h2 id="orgfa6bbc9">Python</h2>
+<div class="outline-text-2" id="text-orgfa6bbc9">
 <p>
 Another one-liner.  The <code>spot.automaton()</code> function reads a single
 automaton, and each automaton has a <code>to_str()</code> method that can print
@@ -378,9 +378,9 @@ in <code>hoa</code>, <code>lbtt</code>, <code>spin</code> (for never claim) or <
 </div>
 </div>
 
-<div id="outline-container-org7f01176" class="outline-2">
-<h2 id="org7f01176">C++</h2>
-<div class="outline-text-2" id="text-org7f01176">
+<div id="outline-container-org117e430" class="outline-2">
+<h2 id="org117e430">C++</h2>
+<div class="outline-text-2" id="text-org117e430">
 <p>
 Parsing an automaton is similar to <a href="tut01.html">parsing an LTL formula</a>.  The
 <code>parse_aut()</code> function takes a filename and a BDD dictionary (to be
@@ -472,9 +472,9 @@ can be specified if needed.
 </div>
 </div>
 
-<div id="outline-container-orgfcf6117" class="outline-2">
-<h2 id="orgfcf6117">Additional comments</h2>
-<div class="outline-text-2" id="text-orgfcf6117">
+<div id="outline-container-org67635dc" class="outline-2">
+<h2 id="org67635dc">Additional comments</h2>
+<div class="outline-text-2" id="text-org67635dc">
 <p>
 There are actually different C++ interfaces to the automaton parser,
 depending on your use case.  For instance the parser is able to read a

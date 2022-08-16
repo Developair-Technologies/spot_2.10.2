@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:23 -->
+<!-- 2022-05-18 Wed 07:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title><code>genltl</code></title>
@@ -227,7 +227,7 @@
 </div><div id="content">
 <h1 class="title"><code>genltl</code></h1>
 
-<div id="orge78fd15" class="figure">
+<div id="org45beaf7" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -244,7 +244,7 @@ given different names in different papers, so we alias different
 option names to the same pattern.
 </p>
 
-<pre class="example" id="org3125ef4">
+<pre class="example" id="org6ed9a49">
 --and-f=RANGE, --gh-e=RANGE
                        F(p1)&amp;F(p2)&amp;...&amp;F(pn)
 --and-fg=RANGE         FG(p1)&amp;FG(p2)&amp;...&amp;FG(pn)
@@ -329,7 +329,7 @@ An example is probably all it takes to understand how this tool works:
 <pre class="src src-sh">genltl --and-gf=1..5 --u-left=1..5
 </pre>
 </div>
-<pre class="example" id="orgbe6a331">
+<pre class="example" id="org1ef1646">
 GFp1
 GFp1 &amp; GFp2
 GFp1 &amp; GFp2 &amp; GFp3
@@ -357,7 +357,7 @@ suitable for being included in a LaTeX table.
 <pre class="src src-sh">genltl --and-gf=1..5 --u-left=1..5 --latex --format=<span class="org-string">'%F &amp; %L &amp; $%f$ \\'</span>
 </pre>
 </div>
-<pre class="example" id="orga6d9b6c">
+<pre class="example" id="org0c5896c">
 and-gf &amp; 1 &amp; $\G \F p_{1}$ \\
 and-gf &amp; 2 &amp; $\G \F p_{1} \land \G \F p_{2}$ \\
 and-gf &amp; 3 &amp; $\G \F p_{1} \land \G \F p_{2} \land \G \F p_{3}$ \\
@@ -418,7 +418,7 @@ used.  Here is the complete list:
 </pre>
 </div>
 
-<pre class="example" id="orgd3e22c8">
+<pre class="example" id="org2722d2a">
 dac-patterns=1,G!p0
 dac-patterns=2,Fp0 -&gt; (!p1 U p0)
 dac-patterns=3,G(p0 -&gt; G!p1)

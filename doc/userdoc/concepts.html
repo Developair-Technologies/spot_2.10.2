@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:23 -->
+<!-- 2022-05-18 Wed 07:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Concepts</title>
@@ -263,7 +263,7 @@
 <li><a href="#trans-acc">Transition-based, vs. State-based acceptance</a></li>
 <li><a href="#acceptance-condition">Acceptance condition</a></li>
 <li><a href="#automaton-generalized">ω-Automaton with generalized acceptance</a></li>
-<li><a href="#orgab8f54d">Alternating ω-automata</a></li>
+<li><a href="#org3a98df0">Alternating ω-automata</a></li>
 <li><a href="#neverclaim">Never claims</a></li>
 <li><a href="#lbtt">LBTT's format</a></li>
 <li><a href="#dstar">DSTAR format</a></li>
@@ -278,7 +278,7 @@
 </div>
 </div>
 
-<div id="orgb2f97bb" class="figure">
+<div id="org8047f3e" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -447,7 +447,7 @@ which \(a\) is always true, and \(b\) is true infinitely often.
 </p>
 
 
-<div id="orgd94e16e" class="figure">
+<div id="org7d8db92" class="figure">
 <p><object type="image/svg+xml" data="concept-buchi1.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -467,7 +467,7 @@ the <a href="#ltl">LTL formula</a> <code>G(door_open -&gt; light_on)</code> that
 </p>
 
 
-<div id="org44f17c8" class="figure">
+<div id="org739b547" class="figure">
 <p><object type="image/svg+xml" data="concept-buchi2.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -504,7 +504,7 @@ instant.
 </p>
 
 
-<div id="orgb01199e" class="figure">
+<div id="org604fb0f" class="figure">
 <p><object type="image/svg+xml" data="concept-buchi3.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -533,7 +533,7 @@ have been aggregated in an edge.
 Here is a simple example:
 </p>
 
-<div id="orga0ff78a" class="figure">
+<div id="orga92ec68" class="figure">
 <p><object type="image/svg+xml" data="concept-te1.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -550,7 +550,7 @@ following transition structure:
 </p>
 
 
-<div id="orgf531c8a" class="figure">
+<div id="orgbbfefb4" class="figure">
 <p><object type="image/svg+xml" data="concept-te2.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -611,7 +611,7 @@ contains a single state.
 </p>
 
 
-<div id="orgdf97496" class="figure">
+<div id="org24b7b00" class="figure">
 <p><object type="image/svg+xml" data="concept-gba1.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -631,7 +631,7 @@ its more complex look).
 </p>
 
 
-<div id="orgf5095c4" class="figure">
+<div id="orgb3df691" class="figure">
 <p><object type="image/svg+xml" data="concept-gba2.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -648,7 +648,7 @@ equivalent Büchi automaton has three state:
 </p>
 
 
-<div id="orge120edb" class="figure">
+<div id="org33e4439" class="figure">
 <p><object type="image/svg+xml" data="concept-gba-vs-ba.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -664,7 +664,7 @@ both.
 </p>
 
 
-<div id="org7234c85" class="figure">
+<div id="org494ed09" class="figure">
 <p><object type="image/svg+xml" data="concept-gba-vs-ba2.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -693,7 +693,7 @@ Here is an example of Transition-based Generalized Büchi Automaton
 </p>
 
 
-<div id="org1600269" class="figure">
+<div id="orgdd6ce9b" class="figure">
 <p><object type="image/svg+xml" data="concept-tgba1.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -712,7 +712,7 @@ that can be represented using a one-state transition-based Büchi
 automaton:
 </p>
 
-<div id="org8fdabea" class="figure">
+<div id="org4055308" class="figure">
 <p><object type="image/svg+xml" data="concept-tgba2.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -724,14 +724,14 @@ state-based acceptance:
 </p>
 
 
-<div id="orgb58a499" class="figure">
+<div id="org07c1981" class="figure">
 <p><object type="image/svg+xml" data="concept-tba-vs-ba.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
 
-<div class="implem" id="org36b6d66">
+<div class="implem" id="orge73a838">
 <p>
 Internally, instead of representing <i>acceptance sets</i> as actual sets
 of edges, Spot labels each edge of the automaton by a bit-vector that
@@ -929,7 +929,7 @@ by Spot:
 </p>
 
 
-<div id="org4ef0271" class="figure">
+<div id="org75412f3" class="figure">
 <p><object type="image/svg+xml" data="concept-twa1.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -937,9 +937,9 @@ Sorry, your browser does not support SVG.</object>
 </div>
 </div>
 
-<div id="outline-container-orgab8f54d" class="outline-2">
-<h2 id="orgab8f54d">Alternating ω-automata</h2>
-<div class="outline-text-2" id="text-orgab8f54d">
+<div id="outline-container-org3a98df0" class="outline-2">
+<h2 id="org3a98df0">Alternating ω-automata</h2>
+<div class="outline-text-2" id="text-org3a98df0">
 <p>
 Alternating ω-automata are ω-automata in which the destination of an
 edge can be a group of states.  If an edge has more than one
@@ -962,7 +962,7 @@ generated by <a href="https://sourceforge.net/projects/ltl3ba/"><code>ltl3ba 1.1
 </p>
 
 
-<div id="org3ace8cd" class="figure">
+<div id="org7a77f1b" class="figure">
 <p><object type="image/svg+xml" data="concepts-alt.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -1004,7 +1004,7 @@ infinitely often \(p_1\)).  The graphical representation of that
 automaton follows.
 </p>
 
-<pre class="example" id="org4893a2a">
+<pre class="example" id="orgbaccb36">
 never { /* p0 | GFp1 */			never { /* p0 | GFp1 */
 T0_init:				T0_init:
   if					  do
@@ -1027,7 +1027,7 @@ accept_all:				accept_all:
 </pre>
 
 
-<div id="orgd03a27a" class="figure">
+<div id="org5b6293c" class="figure">
 <p><object type="image/svg+xml" data="concept-never1.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -1063,7 +1063,7 @@ For instance the Büchi automaton we used as an example for never
 claims can be encoded as follows:
 </p>
 
-<pre class="example" id="org9137adb">
+<pre class="example" id="orge100c90">
 4 1
 0 1 -1
 1 p0
@@ -1083,7 +1083,7 @@ claims can be encoded as follows:
 </pre>
 
 
-<div id="org4b895ad" class="figure">
+<div id="org99154aa" class="figure">
 <p><object type="image/svg+xml" data="concept-never1.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -1095,7 +1095,7 @@ support transition-based acceptance.  This is indicated by a <code>t</code> on
 the first line:
 </p>
 
-<pre class="example" id="orge3172d1">
+<pre class="example" id="org1579844">
 3 1t
 0 1
 1 -1 p0
@@ -1111,7 +1111,7 @@ the first line:
 </pre>
 
 
-<div id="org55b80f8" class="figure">
+<div id="orgd0adbe0" class="figure">
 <p><object type="image/svg+xml" data="concept-lbtt2.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -1152,7 +1152,7 @@ preferred.  <code>ltl2dstar</code> can now also output HOA directly.
 Here is one Rabin automaton in the DSTAR format:
 </p>
 
-<pre class="example" id="orgcbf6813">
+<pre class="example" id="org0849ad1">
 DRA v2 explicit
 Comment: "Union{Safra[NBA=2],Safra[NBA=2]}"
 States: 4
@@ -1187,7 +1187,7 @@ Acc-Sig: +0 +1
 </pre>
 
 
-<div id="org187063a" class="figure">
+<div id="org8cb0d7a" class="figure">
 <p><object type="image/svg+xml" data="concept-dstar.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -1240,7 +1240,7 @@ automata, alternating automata, and for arbitrary acceptance conditions.
 </div>
 
 
-<div id="orge1dae66" class="figure">
+<div id="org3f0a8e8" class="figure">
 <p><object type="image/svg+xml" data="concept-hoa.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -1498,11 +1498,11 @@ Here is for instance a translation of <code>{(1;1)[*]}[]-&gt;a</code> discussed 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org9b9c496">ltl2tgba <span class="org-string">'{(1;1)[*]}[]-&gt;a'</span> -d
+<pre class="src src-sh" id="org7852a7b">ltl2tgba <span class="org-string">'{(1;1)[*]}[]-&gt;a'</span> -d
 </pre>
 </div>
 
-<div id="org3684ee4" class="figure">
+<div id="org40c57c1" class="figure">
 <p><object type="image/svg+xml" data="concept-ltl2tgba.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -1520,7 +1520,7 @@ from the command-line, Python, or C++.
 <h2 id="architecture">Architecture of Spot</h2>
 <div class="outline-text-2" id="text-architecture">
 
-<div id="org68793d7" class="figure">
+<div id="org5afa405" class="figure">
 <p><object type="image/svg+xml" data="arch.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:23 -->
+<!-- 2022-05-18 Wed 07:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Testing the equivalence of two formulas</title>
@@ -252,14 +252,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org280ed2a">Shell</a></li>
-<li><a href="#orgda6a77b">Python</a></li>
-<li><a href="#org43c02db">C++</a></li>
+<li><a href="#orgc5857e1">Shell</a></li>
+<li><a href="#orge0913ee">Python</a></li>
+<li><a href="#org34571d6">C++</a></li>
 </ul>
 </div>
 </div>
 
-<div id="org3d7ba35" class="figure">
+<div id="org9c4fb80" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -269,9 +269,9 @@ This page shows how to test whether two LTL/PSL formulas are
 equivalent, i.e., if they denote the same languages.
 </p>
 
-<div id="outline-container-org280ed2a" class="outline-2">
-<h2 id="org280ed2a">Shell</h2>
-<div class="outline-text-2" id="text-org280ed2a">
+<div id="outline-container-orgc5857e1" class="outline-2">
+<h2 id="orgc5857e1">Shell</h2>
+<div class="outline-text-2" id="text-orgc5857e1">
 <p>
 Using a <code>ltlfilt</code> you can use <code>--equivalent-to=f</code> to filter a list of
 LTL formula and retain only those equivalent to <code>f</code>.  So this gives an easy
@@ -311,9 +311,9 @@ familiar to <code>grep</code> users.)
 </div>
 </div>
 
-<div id="outline-container-orgda6a77b" class="outline-2">
-<h2 id="orgda6a77b">Python</h2>
-<div class="outline-text-2" id="text-orgda6a77b">
+<div id="outline-container-orge0913ee" class="outline-2">
+<h2 id="orge0913ee">Python</h2>
+<div class="outline-text-2" id="text-orge0913ee">
 <p>
 In Python, we can implement this in a number of ways.  The
 easiest is to use the <code>spot.are_equivalent()</code> function.
@@ -390,9 +390,9 @@ equivalences.
 </div>
 </div>
 
-<div id="outline-container-org43c02db" class="outline-2">
-<h2 id="org43c02db">C++</h2>
-<div class="outline-text-2" id="text-org43c02db">
+<div id="outline-container-org34571d6" class="outline-2">
+<h2 id="org34571d6">C++</h2>
+<div class="outline-text-2" id="text-org34571d6">
 <p>
 Here are possible C++ implementations using either <code>are_equivalent()</code>
 or the <code>language_containment_checker</code>.  Note that the

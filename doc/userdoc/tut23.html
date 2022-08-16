@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:25 -->
+<!-- 2022-05-18 Wed 07:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Creating an alternating automaton by adding states and transitions</title>
@@ -231,13 +231,13 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#cpp">C++</a></li>
-<li><a href="#orge75cadc">Python</a></li>
-<li><a href="#orgb228cc1">Additional comments</a></li>
+<li><a href="#org753a89b">Python</a></li>
+<li><a href="#org06ec652">Additional comments</a></li>
 </ul>
 </div>
 </div>
 
-<div id="orgece204e" class="figure">
+<div id="org7b910d4" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -248,7 +248,7 @@ co-Büchi automaton (recognizing <code>GFa</code>) and then print it.
 </p>
 
 
-<div id="org31724c4" class="figure">
+<div id="orgaecfed1" class="figure">
 <p><object type="image/svg+xml" data="tut23-aut.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -266,7 +266,7 @@ edges (declared with <code>new_edge()</code>) and universal edges (declared with
 <h2 id="cpp">C++</h2>
 <div class="outline-text-2" id="text-cpp">
 <div class="org-src-container">
-<pre class="src src-C++" id="org9c15240"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
+<pre class="src src-C++" id="org4e0682a"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;spot/twaalgos/hoa.hh&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;spot/twa/twagraph.hh&gt;</span>
 
@@ -336,9 +336,9 @@ edges (declared with <code>new_edge()</code>) and universal edges (declared with
 </div>
 </div>
 
-<div id="outline-container-orge75cadc" class="outline-2">
-<h2 id="orge75cadc">Python</h2>
-<div class="outline-text-2" id="text-orge75cadc">
+<div id="outline-container-org753a89b" class="outline-2">
+<h2 id="org753a89b">Python</h2>
+<div class="outline-text-2" id="text-org753a89b">
 <div class="org-src-container">
 <pre class="src src-python"><span class="org-keyword">import</span> spot
 <span class="org-keyword">import</span> buddy
@@ -405,9 +405,9 @@ aut.new_edge(2, 2, buddy.bddtrue);
 </div>
 </div>
 
-<div id="outline-container-orgb228cc1" class="outline-2">
-<h2 id="orgb228cc1">Additional comments</h2>
-<div class="outline-text-2" id="text-orgb228cc1">
+<div id="outline-container-org06ec652" class="outline-2">
+<h2 id="org06ec652">Additional comments</h2>
+<div class="outline-text-2" id="text-org06ec652">
 <p>
 Alternating automata in Spot can also have a universal initial state:
 e.g, an automaton may start in <code>0&amp;1&amp;2</code>.  Use <code>set_univ_init_state()</code>

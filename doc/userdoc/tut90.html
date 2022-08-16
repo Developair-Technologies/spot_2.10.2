@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 08:20 -->
+<!-- 2022-05-18 Wed 07:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The bdd_dict interface (advanced topic)</title>
@@ -252,14 +252,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf30d7c0">The purpose of <code>bdd_dict</code></a></li>
+<li><a href="#org3427ec1">The purpose of <code>bdd_dict</code></a></li>
 <li><a href="#ap">Prolonging the association between a BDD variable and an atomic proposition</a></li>
 <li><a href="#anonymous">Anonymous BDD variables</a></li>
 </ul>
 </div>
 </div>
 
-<div id="org6967be7" class="figure">
+<div id="org950ff5d" class="figure">
 <p><object type="image/svg+xml" data="spot2.svg" class="org-svg" id="spotlogo">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -298,9 +298,9 @@ the atomic propositions \(a\) and \(b\), we need to make sure that both
 automata agree on the BDD variables used to represent \(a\) and \(b\).
 </p>
 
-<div id="outline-container-orgf30d7c0" class="outline-2">
-<h2 id="orgf30d7c0">The purpose of <code>bdd_dict</code></h2>
-<div class="outline-text-2" id="text-orgf30d7c0">
+<div id="outline-container-org3427ec1" class="outline-2">
+<h2 id="org3427ec1">The purpose of <code>bdd_dict</code></h2>
+<div class="outline-text-2" id="text-org3427ec1">
 <p>
 The <code>spot::bdd_dict</code> object is in charge of allocating BDD variables,
 and ensuring that multiple users reuse the same variables for similar
@@ -455,21 +455,21 @@ for debugging, please do not rely on its output).
 </pre>
 </div>
 
-<pre class="example" id="org8c5eb77">
-aut1@0x561982bbc400: a=0 b=1
+<pre class="example" id="orgb8b8091">
+aut1@0x55c4a6879400: a=0 b=1
 Variable Map:
- 0 Var[a] x1 { 0x561982bbc400 }
- 1 Var[b] x1 { 0x561982bbc400 }
+ 0 Var[a] x1 { 0x55c4a6879400 }
+ 1 Var[b] x1 { 0x55c4a6879400 }
 Anonymous lists:
   [0] 
 Free list:
 
 ---
-aut2@0x561982bbd990: b=1 c=2
+aut2@0x55c4a687a990: b=1 c=2
 Variable Map:
- 0 Var[a] x1 { 0x561982bbc400 }
- 1 Var[b] x2 { 0x561982bbc400 0x561982bbd990 }
- 2 Var[c] x1 { 0x561982bbd990 }
+ 0 Var[a] x1 { 0x55c4a6879400 }
+ 1 Var[b] x2 { 0x55c4a6879400 0x55c4a687a990 }
+ 2 Var[c] x1 { 0x55c4a687a990 }
 Anonymous lists:
   [0] 
 Free list:
@@ -478,8 +478,8 @@ Free list:
 aut1 destroyed
 Variable Map:
  0 Free
- 1 Var[b] x1 { 0x561982bbd990 }
- 2 Var[c] x1 { 0x561982bbd990 }
+ 1 Var[b] x1 { 0x55c4a687a990 }
+ 2 Var[c] x1 { 0x55c4a687a990 }
 Anonymous lists:
   [0] 
 Free list:
@@ -571,7 +571,7 @@ all transition that belong to a certain acceptance set.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org0f1309f"><span class="org-keyword">import</span> spot
+<pre class="src src-python" id="org538065b"><span class="org-keyword">import</span> spot
 
 <span class="org-keyword">class</span> <span class="org-type">trans_set</span>:
     <span class="org-keyword">def</span> <span class="org-function-name">__init__</span>(<span class="org-keyword">self</span>, <span class="org-builtin">dict</span>):
