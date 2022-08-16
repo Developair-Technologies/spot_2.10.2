@@ -241,7 +241,6 @@ TESTS_twa = \
   core/remfin.test \
   core/gragsa.test \
   core/dstar.test \
-  core/readsave.test \
   core/dot2tex.test \
   core/ltldo.test \
   core/ltldo2.test \
@@ -518,7 +517,6 @@ ltlsmin/kripke.log: core/kripkecat$(EXEEXT)
 
 TESTS_sanity = \
   sanity/80columns.test \
-  sanity/bin.test \
   sanity/getenv.test \
   sanity/includes.test \
   sanity/ipynb.pl \
